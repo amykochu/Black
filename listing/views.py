@@ -7,7 +7,7 @@ from listing.forms import ListingForm
 class DashboardHome(View):
     """Home dashboard"""
     def get(self, request):
-        return render(request, 'base.html', {})
+        return render(request, 'dashboard.html', {})
 
 
 class ListingView(View):
