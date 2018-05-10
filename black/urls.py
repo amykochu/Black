@@ -22,5 +22,6 @@ from django.conf import settings
 urlpatterns = [
     path('', views.DashboardHome.as_view(), name='home'),
     path('admin/', admin.site.urls),
-    path('upload/', views.ListingView.as_view(), name='upload'),
+    path('upload/', views.UploadView.as_view(), name='upload'),
+    path('search/', views.SearchView.as_view(), name='search'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
