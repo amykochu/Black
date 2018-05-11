@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="col-xl-3 col-sm-6 mb-3">
-<form action="" method="post">
-  {% csrf_token %}
-  <input type="text" name="search_key" placeholder="Search..">
-  <button type="submit">Submit</button>
-</form>
-<br><br>
+    <div class="card mb-3">
+        <div class="card-header">
+          <b><i class="fa fa-search" aria-hidden="true"></i> Search</b></div>
+        <div class="card-body">
+        <form action="" method="post" class="listing" style="padding: 0px">
+          {% csrf_token %}
+          <div class="row">
+             <div class="col-xl-5 col-sm-6 mb-3"><input type="text" name="search_key" placeholder="Search.."></div>
+             <div class="col-xl-3 col-sm-6 mb-3"><div class="row"><button type="submit">Submit</button></div></div>
+          </div>
+        </form>
+
+<div class="row">
+
     {% for i in result %}
+    <div class="col-xl-3 col-sm-6 mb-3">
     <div class="card text-dark bg-white o-hidden h-100">
     <div class="card-body">
       <div class="card-body-icon">
@@ -18,7 +26,7 @@
       <h5>US $5 - 50</h5>
       <span><i class="fa fa-map-marker text-warning" aria-hidden="true"></i> Hong Kong</span>
       <p>Widget Description</p>
-      </span>
+      <div><a href="#">#Automobile&Components</a> <a href="#">#Retailing</a></div>
     </div>
     </div>
     <span class="card-footer text-dark clearfix small z-1" href="#">
@@ -27,6 +35,10 @@
       </span>
     </span >
     </div>
+    </div>
     {% endfor %}
+
+</div>
+</div>
 </div>
 {% endblock %}
