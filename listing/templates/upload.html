@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-<input type="submit" value="Upload">
-</form>
+    <div class="card mb-3">
+        <div class="card-header">
+          <b><i class="fa fa-upload" aria-hidden="true"></i> Upload</b></div>
+        <div class="card-body">
+        	<div class="row">
+		        <div class="col-xl-4 col-sm-6 mb-3">
+		          <div class="text-dark bg-white o-hidden h-100">
+			            <div class="card-body">
+							<form action="" method="post" class="listing">
+							    {% csrf_token %}
+							    {{ form.as_p }}
+							<input type="submit" value="Upload">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
 
