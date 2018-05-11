@@ -77,7 +77,7 @@ class Listing(models.Model):
     WIDGET_12_CHOICES = (
         (1, 'Year 1'),
         (2, 'Year 2'),
-        (3, 'year 3')
+        (3, 'Year 3')
     )
 
     WIDGET_15_CHOICES = (
