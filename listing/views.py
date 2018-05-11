@@ -27,8 +27,8 @@ class UploadView(View):
 
         form = ListingForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            obj = form.save()
+            return redirect('detail-view', obj.id)
         return render(request, 'upload.html', {'form': form})
 
 
