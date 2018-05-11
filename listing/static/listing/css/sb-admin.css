@@ -533,7 +533,23 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
     background: #f8f9fa;
   }
 }
-
+@media (max-width: 480px)
+{
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link
+{
+      color: #000!important;
+     padding-left: 0px!important; 
+}
+.navbar-dark .navbar-toggler-icon
+{
+  color: #000;
+  background:none!important;
+}
+.navbar-toggler-icon
+{
+  height: 25px!important;
+}
+}
 .card-body-icon {
   position: absolute;
   z-index: 0;
