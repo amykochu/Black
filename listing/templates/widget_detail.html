@@ -10,10 +10,10 @@
         						<b>US$ {{ result.widget2 }}</b>
         					</div>
         					<div class="col-xl-2">
-        						<i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {{ result.widget8.widget_choice }}
+        						<i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {{ result.widget8.all|join:", " }}
         					</div>
         					<div class="col-xl-3">
-        						<i class="fa fa-crosshairs text-danger" aria-hidden="true"></i> {{ result.widget8.widget_choice }}
+        						<i class="fa fa-crosshairs text-danger" aria-hidden="true"></i> {{ result.widget8.all|join:", " }}
         					</div>
         		<div class="col-xl-12 col-sm-6 mb-3">		
 				<label>Description 1 </label>
@@ -51,7 +51,7 @@
 				<h4><b>Description 1</b>    {{ result.widget5 }}</h4>
 				<h4><b>Description 2 </b>   {{ result.widget6 }}</h4>
 				<h4><b>Description 3  </b>  {{ result.widget5 }}</h4>
-				<h4><b>Description 4 </b>   {{ result.widget11.widget_choice }}</h4>
+				<h4><b>Description 4 </b>   {{ result.widget11 }}</h4>
 			</div>
 		</div>
         		</div>
