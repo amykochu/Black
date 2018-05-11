@@ -1,22 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="card mb-3">
+        <div class="card-body">
+        	<div class="row">
+        		<div class="col-xl-8 col-sm-6 mb-3 wid-details">
+        			<h2>{{ result.widget1 }}</h2>
+        				<div class="row">
+        					<div class="col-xl-2">
+        						<b>US$ {{ result.widget2 }}</b>
+        					</div>
+        					<div class="col-xl-2">
+        						<i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {{ result.widget3 }}
+        					</div>
+        					<div class="col-xl-3">
+        						<i class="fa fa-crosshairs text-danger" aria-hidden="true"></i> {{ result.widget4 }}
+        					</div>
+        		<div class="col-xl-12 col-sm-6 mb-3">		
+				<label>Description 1 </label>
+				<p>{{ result.widget5 }}</p>
+				<label>Description 2 </label>
+				<p>   {{ result.widget6 }}</p>
+				<label>Location</label>
+				<p>    {{ result.widget7 }}</p>
+			</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-3">
+					<label>Description 3</label>
+					<p>    {{ result.widget8 }}</p>
+				</div>
+				<div class="col-xl-3">
+				<label>Description 4 </label>   
+				<p>{{ result.widget9 }}</p>
+				</div>
+				<div class="col-xl-3">
+				<label>Description 5 </label>
+				<p>   {{ result.widget10 }}</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-12">
+				<label>Description 6  </label>
+				<p>  {{ result.widget11 }}</p>
+			</div>
+			</div>
+			<div class="card mb-3">
+		        <div class="card-header">
+		          <b><i class="fa fa-th-large" aria-hidden="true"></i> WIDGET METRICS</b></div>
+		        <div class="card-body">
+				<h4><b>Description 1</b>    {{ result.widget5 }}</h4>
+				<h4><b>Description 2 </b>   {{ result.widget6 }}</h4>
+				<h4><b>Description 3  </b>  {{ result.widget8 }}</h4>
+				<h4><b>Description 4 </b>   {{ result.widget9 }}</h4>
+			</div>
+		</div>
+        		</div>
+        	
+        </div>
+		</div>
+	</div>
 
-<h4>Widget title    {{ result.widget1 }}</h4>
-<h4>$    {{ result.widget2 }}</h4>
-<h4>Hong    {{ result.widget3 }}</h4>
-<h4>Asia    {{ result.widget4 }}</h4>
-<h4>Description 1    {{ result.widget5 }}</h4>
-<h4>Description 2    {{ result.widget6 }}</h4>
-<h4>Location    {{ result.widget7 }}</h4>
-<h4>Description 3    {{ result.widget8 }}</h4>
-<h4>Description 4    {{ result.widget9 }}</h4>
-<h4>Description 5    {{ result.widget10 }}</h4>
-<h4>Description 6    {{ result.widget11 }}</h4>
-<br><br>
-
-<h3>WIDGET METRICS</h3>
-<h4>Description 1    {{ result.widget5 }}</h4>
-<h4>Description 2    {{ result.widget6 }}</h4>
-<h4>Description 3    {{ result.widget8 }}</h4>
-<h4>Description 4    {{ result.widget9 }}</h4>
 {% endblock %}
