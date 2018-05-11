@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload/', views.UploadView.as_view(), name='upload'),
     path('search/', views.SearchView.as_view(), name='search'),
+    path('detail/<pk>/', views.WidgetDetailView.as_view(), name='detail-view'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
