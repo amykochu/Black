@@ -72,11 +72,11 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link">
+          <a class="nav-link" href="/upload/">
             <i class="fa fa-fw fa-upload"></i>Upload</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">
+          <a class="nav-link" href="/search/">
             <i class="fa fa-fw fa-search"></i>Search</a>
         </li>
         <li class="nav-item">
@@ -123,19 +123,19 @@
       </div>
     </div>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static '/listing/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static '/listing/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="{% static '/listing/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="{% static '/listing/vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static '/listing/vendor/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static '/listing/vendor/datatables/dataTables.bootstrap4.js' %}"></script>
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin.min.js"></script>
+    <script src="{% static '/listing/js/sb-admin.min.js' %}"></script>
     <!-- Custom scripts for this page-->
-    <script src="js/sb-admin-datatables.min.js"></script>
-    <script src="js/sb-admin-charts.min.js"></script>
+    <script src="{% static '/listing/js/sb-admin-datatables.min.js' %}"></script>
+    <script src="{% static '/listing/js/sb-admin-charts.min.js' %}"></script>
   </div>
 </body>
 
