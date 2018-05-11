@@ -14,7 +14,7 @@
     </div>
     </div>
     <span class="card-footer text-dark clearfix small z-1" href="#">
-      <span class="float-left"><i class="fa fa-crosshairs text-danger" aria-hidden="true"></i>{{ i.widget8.widget_choice }}</span>
+      <span class="float-left"><i class="fa fa-crosshairs text-danger" aria-hidden="true"></i>{{ i.widget8.widget_choice.all|join:", " }} </span>
       <span class="float-right">
         <a href="{% url 'detail-view' i.id %}" class="text-dark"><i class="fa fa-plus" aria-hidden="true"></i></a>
       </span>
