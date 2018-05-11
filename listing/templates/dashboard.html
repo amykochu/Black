@@ -9,7 +9,9 @@
           <b><i class="fa fa-th-large" aria-hidden="true"></i> Latest Widgets</b></div>
         <div class="card-body">
         	<div class="row">
+            {% for i in result %}
             {% include "widget.html" %}
+            {% endfor %}
       	</div>
       </div>
   </div>
