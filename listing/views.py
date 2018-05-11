@@ -62,5 +62,5 @@ class SearchView(View):
                                                Q(widget16__icontains=search_key) |
                                                Q(widget17__widget_choice__icontains=search_key) |
                                                Q(widget18__icontains=search_key) |
-                                               Q(widget19__icontains=search_key))
+                                               Q(widget19__icontains=search_key)).distict()
         return render(request, 'search_page.html', {'result': search_result})
