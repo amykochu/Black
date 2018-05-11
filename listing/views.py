@@ -11,7 +11,9 @@ from django.views.generic import TemplateView, DetailView, ListView
 class DashboardHome(View):
     """Home dashboard"""
     def get(self, request):
-        return render(request, 'dashboard.html', {})
+
+        result = Listing.objects.all().order_by('-pk')[:3]
+        return render(request, 'dashboard.html', {'result': result})
 
 
 class UploadView(View):
@@ -64,3 +66,12 @@ class SearchView(View):
                                                Q(widget18__icontains=search_key) |
                                                Q(widget19__icontains=search_key)).distinct()
         return render(request, 'search_page.html', {'result': search_result})
+
+
+class WidgetDetailView(DetailView):
+    """ Detail view for Widgets """
+
+    model = Listing
+    template_name = 'widget_detail.html'
+    context_object_name = 'result'
+
