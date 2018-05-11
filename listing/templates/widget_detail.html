@@ -10,10 +10,10 @@
         						<b>US$ {{ result.widget2 }}</b>
         					</div>
         					<div class="col-xl-2">
-        						<i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {% for m in result.widget17.all %} {{ m }} <br/>{% endfor %}
+        						<i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {% for m in result.widget17.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}
         					</div>
         					<div class="col-xl-3">
-        						<i class="fa fa-crosshairs text-danger" aria-hidden="true"></i> {% for m in result.widget17.all %} {{ m }} <br/>{% endfor %}
+        						<i class="fa fa-crosshairs text-danger" aria-hidden="true"></i> {% for m in result.widget17.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}
         					</div>
         		<div class="col-xl-12 col-sm-6 mb-3">		
 				<label>Description 1 </label>
