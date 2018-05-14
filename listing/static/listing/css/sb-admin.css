@@ -455,6 +455,34 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 {
     color: #656565 !important;
 }
+.refine-search
+{
+  font-size: 12px;
+  color: #000;
+  display: inline-block;
+  margin-left: 10px;
+  line-height: 30px;
+}
+.refining label
+{
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 13px;
+  line-height: 20px;
+}
+.refining
+{
+  display: none;
+  width: 100%!important;
+/*  opacity: 1!important;*/
+}
+.refining label input
+{
+  margin-top: 4px;
+  display: inline-block;
+  margin-right: 5px;
+  float: left;
+}
 .ml-auto a:hover
 {
    color: #101010!important; 
