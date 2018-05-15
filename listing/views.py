@@ -80,7 +80,7 @@ class SearchView(View):
                                                    Q(widget18__icontains=search_key) |
                                                    Q(widget19__icontains=search_key)).distinct()
 
-        return render(request, 'search_page.html', {'result': search_result})
+        return render(request, 'search_page.html', {'result': search_result, 'form': search_params})
 
 
 class WidgetDetailView(DetailView):
