@@ -8,15 +8,35 @@
           {% csrf_token %}
           <div class="row">
              <div class="col-xl-5 col-sm-6 mb-3"><input type="text" name="search_key" placeholder="Search.."></div>
-             <div class="col-xl-3 col-sm-6 mb-3"><div class="row"><button type="submit">Submit</button></div></div>
-          </div>
-        </form>
+             <div class="col-xl-3 col-sm-6 mb-3"><div class="row"><button type="submit">Submit</button><a href="#" class="refine-search">Refine Result </a></div></div>
 
+          </div>
+        <!--</form>-->
+<div class="row">
+  <div class="col-xl-7 col-sm-6 mb-3">
+    <div class="card text-dark bg-white o-hidden h-100 refining">
+      <div class="card-body">
+        <h5>Refine by:</h5>
+        {{ form }}
+        </div>
+    </div>
+  </div>
+</div>
 <div class="row">
     {% for i in result %}
     {% include "widget.html" %}
     {% endfor %}
 </div>
+</form>
 </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    $(".refine-search").click(function()
+    {
+      $(".refining").toggle(500);
+    });
+  });
+</script>
 {% endblock %}
