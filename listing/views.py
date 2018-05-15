@@ -1,11 +1,13 @@
+import operator
+from functools import reduce
+
 from django.shortcuts import render, redirect
 from django.views import View
-from django.http import HttpResponse
+from django.db.models import Q
+from django.views.generic import DetailView
+
 from listing.forms import ListingForm, SearchForm
 from listing.models import Listing
-from django.db.models import Q
-
-from django.views.generic import TemplateView, DetailView, ListView
 
 
 class DashboardHome(View):
@@ -31,8 +33,6 @@ class UploadView(View):
             return redirect('detail-view', obj.id)
         return render(request, 'upload.html', {'form': form})
 
-import operator
-from functools import reduce
 
 class SearchView(View):
     """ Search page view """
@@ -51,6 +51,7 @@ class SearchView(View):
             widget10 = search_params.cleaned_data['widget10']
             widget11 = search_params.cleaned_data['widget11']
             widget12 = search_params.cleaned_data['widget12']
+            # widget13 = search_params.cleaned_data['widget13']
             widget15 = search_params.cleaned_data['widget15']
             param_lis = [Q(widget7__icontains=widget7),
                          Q(widget10__icontains=widget10),
@@ -58,29 +59,26 @@ class SearchView(View):
                          Q(widget12__icontains=widget12),
                          Q(widget15__icontains=widget15)]
             search_result = Listing.objects.filter(reduce(operator.and_, param_lis))
-            print("RESULTTTTTTTTTTTTTT TTTTTT   ", search_result)
-        # search_result = Listing.objects.filter(Q(widget1__icontains=search_key) |
-        #                                        Q(widget2__icontains=search_key) |
-        #                                        Q(widget3__icontains=search_key) |
-        #                                        Q(widget4__icontains=search_key) |
-        #                                        Q(widget5__icontains=search_key) |
-        #                                        Q(widget6__icontains=search_key) |
-        #                                        Q(widget7__icontains=search_key) |
-        #                                        Q(widget8__widget_choice__icontains=search_key) |
-        #                                        Q(widget9__widget_choice__icontains=search_key) |
-        #                                        Q(widget10__icontains=search_key) |
-        #                                        Q(widget11__icontains=search_key) |
-        #                                        Q(widget12__icontains=search_key) |
-        #                                        Q(widget13__widget_choice__icontains=search_key) |
-        #                                        Q(widget14__widget_choice__icontains=search_key) |
-        #                                        Q(widget15__icontains=search_key) |
-        #                                        Q(widget16__icontains=search_key) |
-        #                                        Q(widget17__widget_choice__icontains=search_key) |
-        #                                        Q(widget18__icontains=search_key) |
-        #                                        Q(widget19__icontains=search_key)).distinct()
-        # key = search_params.cleaned_data['widget8']
-        # key1 = list(key.all().values_list('widget_choice', flat=True))
-        # search_result = Listing.objects.filter(Q(widget8__widget_choice__icontains=key1[0]))
+        if search_key:
+            search_result = search_result.filter(Q(widget1__icontains=search_key) |
+                                                   Q(widget2__icontains=search_key) |
+                                                   Q(widget3__icontains=search_key) |
+                                                   Q(widget4__icontains=search_key) |
+                                                   Q(widget5__icontains=search_key) |
+                                                   Q(widget6__icontains=search_key) |
+                                                   Q(widget7__icontains=search_key) |
+                                                   Q(widget8__widget_choice__icontains=search_key) |
+                                                   Q(widget9__widget_choice__icontains=search_key) |
+                                                   Q(widget10__icontains=search_key) |
+                                                   Q(widget11__icontains=search_key) |
+                                                   Q(widget12__icontains=search_key) |
+                                                   Q(widget13__widget_choice__icontains=search_key) |
+                                                   Q(widget14__widget_choice__icontains=search_key) |
+                                                   Q(widget15__icontains=search_key) |
+                                                   Q(widget16__icontains=search_key) |
+                                                   Q(widget17__widget_choice__icontains=search_key) |
+                                                   Q(widget18__icontains=search_key) |
+                                                   Q(widget19__icontains=search_key)).distinct()
 
         return render(request, 'search_page.html', {'result': search_result})
 

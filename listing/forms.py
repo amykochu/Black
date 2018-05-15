@@ -16,15 +16,15 @@ class SearchForm(forms.ModelForm):
 
     class Meta:
         model = Listing
-        fields = {'widget7', 'widget8', 'widget9', 'widget10', 'widget11', 'widget12', 'widget13', 'widget15'}
+        fields = {'widget7', 'widget10', 'widget11', 'widget12', 'widget15'}
 
     def __init__(self, *args, **kwargs):
         super(SearchForm, self).__init__(*args, **kwargs)
         self.fields['widget7'].required = False
-        self.fields['widget8'].required = False
-        self.fields['widget9'].required = False
+        # self.fields['widget8'].required = False
+        # self.fields['widget9'].required = False
         self.fields['widget10'].required = False
         self.fields['widget11'].required = False
         self.fields['widget12'].required = False
-        self.fields['widget13'].required = False
+        # self.fields['widget13'].required = False
         self.fields['widget15'].required = False
