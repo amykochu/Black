@@ -6,15 +6,15 @@ from django.views import View
 from django.db.models import Q
 from django.views.generic import DetailView
 
-from listing.forms import ListingForm, SearchForm
-from listing.models import Listing
+from listing.forms import OpportunityForm, MandateForm
+from listing.models import Mandate, Opportunity
 
 
 class DashboardHome(View):
     """Home dashboard"""
     def get(self, request):
 
-        result = Listing.objects.all().order_by('-pk')[:3]
+        result = Opportunity.objects.all().order_by('-pk')[:3]
         return render(request, 'dashboard.html', {'result': result})
 
 
@@ -23,14 +23,17 @@ class UploadView(View):
 
     def get(self, request):
 
-        return render(request, 'upload.html', {'form': ListingForm()})
+        return render(request, 'upload.html', {'form': OpportunityForm()})
 
     def post(self, request):
 
-        form = ListingForm(request.POST)
+        form = OpportunityForm(request.POST, request.FILES)
+        print("FORM ++++   ", request.POST.values)
         if form.is_valid():
             obj = form.save()
-            return redirect('detail-view', obj.id)
+            print("++++++++++++++++++++++++     ", obj)
+            # return redirect('detail-view', obj.id)
+        print("INVALID +++ +++ ++ ++ + ++ ")
         return render(request, 'upload.html', {'form': form})
 
 
@@ -38,12 +41,12 @@ class SearchView(View):
     """ Search page view """
 
     def get(self, request):
-        return render(request, 'search_page.html', {'form': SearchForm})
+        return render(request, 'search_page.html', {'form': OpportunityForm})
 
     def post(self, request):
         search_result = None
         search_key = request.POST.get('search_key', '')
-        search_params = SearchForm(request.POST)
+        search_params = OpportunityForm(request.POST)
         if search_params.is_valid():
             widget7 = search_params.cleaned_data['widget7']
             # widget8 = search_params.cleaned_data['widget8']
@@ -58,7 +61,7 @@ class SearchView(View):
                          Q(widget11__icontains=widget11),
                          Q(widget12__icontains=widget12),
                          Q(widget15__icontains=widget15)]
-            search_result = Listing.objects.filter(reduce(operator.and_, param_lis))
+            search_result = Opportunity.objects.filter(reduce(operator.and_, param_lis))
         if search_key:
             search_result = search_result.filter(Q(widget1__icontains=search_key) |
                                                    Q(widget2__icontains=search_key) |
@@ -86,7 +89,7 @@ class SearchView(View):
 class WidgetDetailView(DetailView):
     """ Detail view for Widgets """
 
-    model = Listing
+    model = Opportunity
     template_name = 'widget_detail.html'
     context_object_name = 'result'
 

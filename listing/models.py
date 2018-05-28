@@ -1,126 +1,179 @@
 from django.db import models
 
 
-class Widget8(models.Model):
+class InvestmentOffered(models.Model):
 
-    widget_choice = models.CharField(max_length=500)
+    label = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.widget_choice
+        return self.label
 
 
-class Widget9(models.Model):
+class ValuationFundTicket(models.Model):
 
-    widget_choice = models.CharField(max_length=500)
+    label = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.widget_choice
+        return self.label
 
 
-class Widget13(models.Model):
+class Yield(models.Model):
 
-    widget_choice = models.CharField(max_length=500)
+    label = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.widget_choice
+        return self.label
 
 
-class Widget14(models.Model):
+class Class(models.Model):
 
-    widget_choice = models.CharField(max_length=500)
+    label = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.widget_choice
+        return self.label
 
 
-class Widget17(models.Model):
+class SeriesStage(models.Model):
 
-    widget_choice = models.CharField(max_length=500)
+    label = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.widget_choice
+        return self.label
 
 
-class Listing(models.Model):
+class InvestorSpecial(models.Model):
 
-    WIDGET_6_CHOICES = (
-        (1, '0-6 months'),
-        (2, '6-12 months'),
-        (3, '12-24 months'),
-        (4, '24 months +'),
-    )
-
-    WIDGET_7_CHOICES = (
-        (1, '0-20'),
-        (2, '20-50'),
-        (3, '50-100'),
-        (4, '100-500'),
-        (5, '500-2000'),
-    )
-
-    WIDGET_10_CHOICES = (
-        (1, '1-4'),
-        (2, '4-8'),
-        (3, '8 +')
-    )
-
-    WIDGET_12_CHOICES = (
-        (1, 'Year 1'),
-        (2, 'Year 2'),
-        (3, 'Year 3')
-    )
-
-    WIDGET_15_CHOICES = (
-        (1, 'YES'),
-        (2, 'NO')
-    )
-
-    WIDGET_16_CHOICES = (
-        (1, 'Option A'),
-        (2, 'Option B')
-    )
-
-    WIDGET_18_CHOICES = (
-        (1, 'YES'),
-        (2, 'NO')
-    )
-
-    widget1 = models.CharField(max_length=500)
-    widget2 = models.CharField(max_length=500)
-    widget3 = models.CharField(max_length=500)
-    widget4 = models.CharField(max_length=500)
-    widget5 = models.CharField(max_length=500)
-    widget6 = models.IntegerField(choices=WIDGET_6_CHOICES)
-    widget7 = models.IntegerField(choices=WIDGET_7_CHOICES)
-    widget8 = models.ManyToManyField(Widget8)
-    widget9 = models.ManyToManyField(Widget9)
-    widget10 = models.IntegerField(choices=WIDGET_10_CHOICES)
-    widget11 = models.CharField(max_length=500)
-    widget12 = models.IntegerField(choices=WIDGET_12_CHOICES)
-    widget13 = models.ManyToManyField(Widget13)
-    widget14 = models.ManyToManyField(Widget14)
-    widget15 = models.IntegerField(choices=WIDGET_15_CHOICES)
-    widget16 = models.IntegerField(choices=WIDGET_16_CHOICES)
-    widget17 = models.ManyToManyField(Widget17)
-    widget18 = models.IntegerField(choices=WIDGET_18_CHOICES)
-    widget19 = models.CharField(max_length=500)
+    label = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.widget1
+        return self.label
 
-    class Meta:
 
-        verbose_name = 'Listing'
-        verbose_name_plural = 'Listings'
+class EstPayback(models.Model):
+
+    label = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.label
+
+
+class Offer(models.Model):
+
+    label = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.label
+
+
+class Financial(models.Model):
+
+    label = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.label
+
+
+# class Year(models.Model):
+#
+#     year1 = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Year 1', blank=True, null=True)
+#     year2 = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Year 2', blank=True, null=True)
+#     year3 = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Year 3', blank=True, null=True)
+#
+#     def __str__(self):
+#         return str(self.pk)
+
+
+class Opportunity(models.Model):
+    """ Model for opportunity upload """
+
+    company_description = models.CharField(max_length=500, verbose_name='Company / Fund description', blank=True, null=True)
+    opportunity_created = models.CharField(max_length=500, verbose_name='What makes this opportunity unique? '
+                                                                        'How will value be created/unlocked?', blank=True, null=True)
+    selling_by = models.CharField(max_length=500, verbose_name='Who is selling? Why?', blank=True, null=True)
+    competitors = models.CharField(max_length=500, verbose_name='Major competitors', blank=True, null=True)
+    valuation = models.ManyToManyField(ValuationFundTicket, verbose_name='Valuation - metrics and rationale')
+    amount_invested = models.DecimalField(max_digits=5, decimal_places=2,
+                                          verbose_name='Amount invested to date ($USm)', blank=True, null=True)
+    ownership_structure = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Ownership structure (%)', blank=True, null=True)
+    ebitda = models.FloatField(verbose_name='Company EBITDA ($USm)', blank=True, null=True)
+    break_even_year = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Break-even year', blank=True, null=True)
+    est_payback = models.ManyToManyField(EstPayback, verbose_name='Est. payback on raise')
+    size_ticket_total = models.ManyToManyField(ValuationFundTicket, verbose_name='Size ticket total available',
+                                               related_name='opportunity_size_ticket')
+    #
+    geography = models.CharField(max_length=500, verbose_name='Geography', blank=True, null=True)
+    #
+    sector = models.CharField(max_length=500, verbose_name='Sector', blank=True, null=True)
+    yield_select = models.ManyToManyField(Yield, verbose_name='Yield')
+    return_estimate = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Return estimate (3-yr) (%)', blank=True, null=True)
+    #
+    growth_expectation = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%)', blank=True, null=True)
+    class_select = models.ManyToManyField(Class, verbose_name='Class')
+    series_stage = models.ManyToManyField(SeriesStage, verbose_name='Series/stage')
+    investor_required = models.ManyToManyField(InvestorSpecial, verbose_name='Lead Investor required in place')
+    amount_lead_partner = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Amount injected by Lead Partner', blank=True, null=True)
+    amount_other_partner = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Amount injected by Other Partners', blank=True, null=True)
+    amount_weraise = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Amount available for WeRaise', blank=True, null=True)
+    investment_offered = models.ManyToManyField(InvestmentOffered, verbose_name='Type of investment offered')
+    offer = models.ManyToManyField(Offer, verbose_name='Offer')
+    special_situation = models.ManyToManyField(InvestorSpecial, verbose_name='Special situation',
+                                               related_name='special_situation')
+    financials = models.ManyToManyField(Financial, verbose_name='Financials')
+    #
+    Revenue = models.CharField(max_length=500, verbose_name='Revenue', blank=True, null=True)
+    estimated_irr = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Estimated IRR', blank=True, null=True)
+    exit_timing = models.CharField(max_length=500, verbose_name='Expected exit timing', blank=True, null=True)
+    use_of_funds = models.CharField(max_length=500, verbose_name='Use of funds', blank=True, null=True)
+    deadline_commitment = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Deadline for formal commitment', blank=True, null=True)
+    deadline_legal = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Deadline for execution of legal docs', blank=True, null=True)
+    proposed_process = models.CharField(max_length=500, verbose_name='Proposed process', blank=True, null=True)
+    proposed_exit = models.CharField(max_length=500, verbose_name='Proposed exit options', blank=True, null=True)
+    financial_statements = models.FileField(upload_to='listing/documents/',
+                                            verbose_name='Do you have 3 years audited financial statements available?', blank=True, null=True)
+    financial_model = models.FileField(upload_to='listing/documents/', verbose_name='Do you have a financial model?', blank=True, null=True)
+    investor_deck = models.FileField(upload_to='listing/documents/', verbose_name='Do you have an investor deck?', blank=True, null=True)
+    company_bio = models.TextField(max_length=500, verbose_name='Company Bio', blank=True, null=True)
+    ceo_bio = models.TextField(max_length=500, verbose_name='CEO Bio', blank=True, null=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.pk)
+
+
+class Mandate(models.Model):
+    """ Model to upload Mandate """
+
+    investment_sought = models.ManyToManyField(InvestmentOffered, verbose_name='Type of investment sought')
+    fund_size = models.ManyToManyField(ValuationFundTicket, verbose_name='Required company or fund size')
+    size_ticket_total = models.ManyToManyField(ValuationFundTicket, verbose_name='Desired ticket size',
+                                               related_name='mandate_size_ticket')
+    percentage_company = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='% of company (min - max)')
+    #
+    geography = models.CharField(max_length=500, verbose_name='Geography')
+    #
+    sector = models.CharField(max_length=500, verbose_name='Sector')
+    yield_select = models.ManyToManyField(Yield, verbose_name='Yield')
+    #
+    growth_required = models.CharField(max_length=500, verbose_name='Earnings growth required (%)')
+    class_select = models.ManyToManyField(Class, verbose_name='Class')
+    series_stage = models.ManyToManyField(SeriesStage, verbose_name='Series/stage')
+    investor_required = models.ManyToManyField(InvestorSpecial, verbose_name='Lead Investor required in place')

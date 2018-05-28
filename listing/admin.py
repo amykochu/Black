@@ -1,41 +1,25 @@
 from django.contrib import admin
 
-from listing.models import Listing, Widget8, Widget9, Widget13, Widget14, Widget17
+from listing.models import (Opportunity, Mandate, InvestmentOffered, ValuationFundTicket, Yield, Class,
+                            SeriesStage, InvestorSpecial, EstPayback, Offer, Financial)
 
 
-class ListingAdmin(admin.ModelAdmin):
+# class ListingAdmin(admin.ModelAdmin):
+#
+#     list_display = ('widget1', 'widget2', 'widget3', 'created_on', 'updated_on',)
 
-    list_display = ('widget1', 'widget2', 'widget3', 'created_on', 'updated_on',)
+admin.site.register(Mandate)
+admin.site.register(Opportunity)
+admin.site.register(InvestmentOffered)
+admin.site.register(ValuationFundTicket)
+admin.site.register(Yield)
+admin.site.register(Class)
+admin.site.register(SeriesStage)
+admin.site.register(InvestorSpecial)
+admin.site.register(EstPayback)
+admin.site.register(Offer)
+admin.site.register(Financial)
+# admin.site.register(Year)
 
+# admin.site.register(Widget8, Widget8Admin)
 
-class Widget8Admin(admin.ModelAdmin):
-
-    list_display = ('widget_choice',)
-
-
-class Widget9Admin(admin.ModelAdmin):
-
-    list_display = ('widget_choice',)
-
-
-class Widget13Admin(admin.ModelAdmin):
-
-    list_display = ('widget_choice',)
-
-
-class Widget14Admin(admin.ModelAdmin):
-
-    list_display = ('widget_choice',)
-
-
-class Widget17Admin(admin.ModelAdmin):
-
-    list_display = ('widget_choice',)
-
-
-admin.site.register(Listing, ListingAdmin)
-admin.site.register(Widget8, Widget8Admin)
-admin.site.register(Widget9, Widget9Admin)
-admin.site.register(Widget13, Widget13Admin)
-admin.site.register(Widget14, Widget14Admin)
-admin.site.register(Widget17, Widget17Admin)

@@ -5,6 +5,7 @@ html {
 
 body {
   overflow-x: hidden;
+  font-family: "Roboto Condensed";
 }
 
 body.sticky-footer {
@@ -24,6 +25,10 @@ span.nav-item
       display: inline-block;
     padding-top: 10px;
     padding-left: 10px;
+}
+.fa-fw {
+    width: 35px!important;
+    text-align: center;
 }
 .content-wrapper {
   min-height: calc(100vh - 56px);
@@ -75,14 +80,20 @@ span.nav-item
   background: rgba(52, 58, 64, 0.5);
   line-height: 45px;
 }
+.fixed-top
+{
+  width: 250px;
+  padding-top: 35px!important;
+  background-color: #000;
+}
 .navbar-dark .navbar-nav .nav-link
 {
   color: #000;
 }
 .navbar-dark
 {
-  background-color: #f2f2f2;
-  border-bottom: 1px solid #ddd;
+  /*background-color: #f2f2f2;*/
+  /*border-bottom: 1px solid #ddd;*/
 }
 .navbar-dark .navbar-brand
 {
@@ -128,7 +139,7 @@ span.nav-item
 .listing label
 {
   width: 100%;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
 }
 .listing input[type="text"], .listing select
@@ -271,7 +282,8 @@ span.nav-item
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    margin-top: 56px;
+    margin-top: 90px;
+    padding-top: 30px;
   }
   #mainNav .navbar-collapse .navbar-sidenav > .nav-item {
     width: 250px;
@@ -512,7 +524,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 @media (min-width: 992px) {
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
-    background: #5c5c5c;
+    background: #000;
   }
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
     color: white !important;
