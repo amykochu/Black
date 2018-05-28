@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
 
 
 class InvestmentOffered(models.Model):
@@ -91,16 +92,6 @@ class Financial(models.Model):
         return self.label
 
 
-# class Year(models.Model):
-#
-#     year1 = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Year 1', blank=True, null=True)
-#     year2 = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Year 2', blank=True, null=True)
-#     year3 = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Year 3', blank=True, null=True)
-#
-#     def __str__(self):
-#         return str(self.pk)
-
-
 class Opportunity(models.Model):
     """ Model for opportunity upload """
 
@@ -124,8 +115,9 @@ class Opportunity(models.Model):
     sector = models.CharField(max_length=500, verbose_name='Sector', blank=True, null=True)
     yield_select = models.ManyToManyField(Yield, verbose_name='Yield')
     return_estimate = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Return estimate (3-yr) (%)', blank=True, null=True)
-    #
-    growth_expectation = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%)', blank=True, null=True)
+    growth_expectation_year1 = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%) Year 1', blank=True, null=True)
+    growth_expectation_year2 = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%) Year 2', blank=True, null=True)
+    growth_expectation_year3 = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%) Year 3', blank=True, null=True)
     class_select = models.ManyToManyField(Class, verbose_name='Class')
     series_stage = models.ManyToManyField(SeriesStage, verbose_name='Series/stage')
     investor_required = models.ManyToManyField(InvestorSpecial, verbose_name='Lead Investor required in place')
@@ -147,9 +139,15 @@ class Opportunity(models.Model):
     proposed_process = models.CharField(max_length=500, verbose_name='Proposed process', blank=True, null=True)
     proposed_exit = models.CharField(max_length=500, verbose_name='Proposed exit options', blank=True, null=True)
     financial_statements = models.FileField(upload_to='listing/documents/',
-                                            verbose_name='Do you have 3 years audited financial statements available?', blank=True, null=True)
-    financial_model = models.FileField(upload_to='listing/documents/', verbose_name='Do you have a financial model?', blank=True, null=True)
-    investor_deck = models.FileField(upload_to='listing/documents/', verbose_name='Do you have an investor deck?', blank=True, null=True)
+                                            verbose_name='Do you have 3 years audited financial statements available?',
+                                            validators=[FileExtensionValidator(allowed_extensions=['xls', 'xlsx', 'pdf'])],
+                                            blank=True, null=True)
+    financial_model = models.FileField(upload_to='listing/documents/', verbose_name='Do you have a financial model?',
+                                       validators=[FileExtensionValidator(allowed_extensions=['xls', 'xlsx', 'pdf'])],
+                                       blank=True, null=True)
+    investor_deck = models.FileField(upload_to='listing/documents/', verbose_name='Do you have an investor deck?',
+                                     validators=[FileExtensionValidator(allowed_extensions=['xls', 'xlsx', 'pdf', 'pptx'])],
+                                     blank=True, null=True)
     company_bio = models.TextField(max_length=500, verbose_name='Company Bio', blank=True, null=True)
     ceo_bio = models.TextField(max_length=500, verbose_name='CEO Bio', blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)

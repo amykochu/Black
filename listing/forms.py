@@ -25,10 +25,6 @@ from listing.models import Opportunity, Mandate
 class OpportunityForm(forms.ModelForm):
     """ Form to upload Opportunity data """
 
-    # est_payback = forms.MultipleChoiceField(choices=Opportunity.EST_PAYBACK_CHOICES)
-    # size_ticket_total = forms.MultipleChoiceField(choices=VALUATION_FUND_TICKET_CHOICES)
-    # class_select = forms.MultipleChoiceField(choices=CLASS_CHOICES)
-
     class Meta:
         model = Opportunity
         fields = '__all__'
