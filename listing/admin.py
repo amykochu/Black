@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from listing.models import Listing, Widget8, Widget9, Widget13, Widget14, Widget17
+from listing.models import Opportunity, Mandate, Widget8, Widget9, Widget13, Widget14, Widget17
 
 
-class ListingAdmin(admin.ModelAdmin):
-
-    list_display = ('widget1', 'widget2', 'widget3', 'created_on', 'updated_on',)
+# class ListingAdmin(admin.ModelAdmin):
+#
+#     list_display = ('widget1', 'widget2', 'widget3', 'created_on', 'updated_on',)
 
 
 class Widget8Admin(admin.ModelAdmin):
@@ -33,7 +33,8 @@ class Widget17Admin(admin.ModelAdmin):
     list_display = ('widget_choice',)
 
 
-admin.site.register(Listing, ListingAdmin)
+admin.site.register(Mandate)
+admin.site.register(Opportunity)
 admin.site.register(Widget8, Widget8Admin)
 admin.site.register(Widget9, Widget9Admin)
 admin.site.register(Widget13, Widget13Admin)
