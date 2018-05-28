@@ -1,6 +1,6 @@
 from django import forms
 
-from listing.models import Opportunity, Mandate
+from listing.models import Opportunity, Mandate, Country, Geography
 
 
 # class SearchForm(forms.ModelForm):
@@ -28,6 +28,10 @@ class OpportunityForm(forms.ModelForm):
     class Meta:
         model = Opportunity
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['country'].queryset = Country.objects.none()
 
 
 class MandateForm(forms.ModelForm):
