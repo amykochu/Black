@@ -25,4 +25,5 @@ urlpatterns = [
     path('upload/', views.UploadView.as_view(), name='upload'),
     path('search/', views.SearchView.as_view(), name='search'),
     path('detail/<pk>/', views.WidgetDetailView.as_view(), name='detail-view'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+              + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

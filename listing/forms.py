@@ -1,16 +1,6 @@
 from django import forms
 
-from listing.models import Opportunity, Mandate, VALUATION_FUND_TICKET_CHOICES
-
-
-# class ListingForm(forms.ModelForm):
-#     """ Form to upload data """
-#
-#     widget6 = forms.MultipleChoiceField(choices=Listing.WIDGET_6_CHOICES)
-#
-#     class Meta:
-#         model = Listing
-#         fields = '__all__'
+from listing.models import Opportunity, Mandate
 
 
 # class SearchForm(forms.ModelForm):
@@ -35,8 +25,9 @@ from listing.models import Opportunity, Mandate, VALUATION_FUND_TICKET_CHOICES
 class OpportunityForm(forms.ModelForm):
     """ Form to upload Opportunity data """
 
-    est_payback = forms.MultipleChoiceField(choices=Opportunity.EST_PAYBACK_CHOICES)
-    size_ticket_total = forms.MultipleChoiceField(choices=VALUATION_FUND_TICKET_CHOICES)
+    # est_payback = forms.MultipleChoiceField(choices=Opportunity.EST_PAYBACK_CHOICES)
+    # size_ticket_total = forms.MultipleChoiceField(choices=VALUATION_FUND_TICKET_CHOICES)
+    # class_select = forms.MultipleChoiceField(choices=CLASS_CHOICES)
 
     class Meta:
         model = Opportunity

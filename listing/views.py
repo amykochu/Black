@@ -27,10 +27,13 @@ class UploadView(View):
 
     def post(self, request):
 
-        form = MandateForm(request.POST)
+        form = OpportunityForm(request.POST, request.FILES)
+        print("FORM ++++   ", request.POST.values)
         if form.is_valid():
             obj = form.save()
-            return redirect('detail-view', obj.id)
+            print("++++++++++++++++++++++++     ", obj)
+            # return redirect('detail-view', obj.id)
+        print("INVALID +++ +++ ++ ++ + ++ ")
         return render(request, 'upload.html', {'form': form})
 
 
