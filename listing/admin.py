@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from listing.models import (Opportunity, Mandate, InvestmentOffered, ValuationFundTicket, Yield, Class,
-                            SeriesStage, InvestorSpecial, EstPayback, Offer, Financial)
+                            SeriesStage, InvestorSpecial, EstPayback, Offer, Financial, Country, Geography)
 
 
 # class ListingAdmin(admin.ModelAdmin):
@@ -19,7 +19,9 @@ admin.site.register(InvestorSpecial)
 admin.site.register(EstPayback)
 admin.site.register(Offer)
 admin.site.register(Financial)
-# admin.site.register(Year)
-
+admin.site.register(Country)
+admin.site.register(Geography)
+# admin.site.register(Type)
+# admin.site.register(Source)
 # admin.site.register(Widget8, Widget8Admin)
 

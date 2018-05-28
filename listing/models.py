@@ -92,6 +92,29 @@ class Financial(models.Model):
         return self.label
 
 
+class Geography(models.Model):
+    """ Model to store Geographic region """
+
+    continent = models.CharField(max_length=200)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.continent
+
+
+class Country(models.Model):
+    """ Model to store Country """
+
+    country = models.CharField(max_length=300)
+    continent = models.ForeignKey(Geography, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.country
+
+
 class Opportunity(models.Model):
     """ Model for opportunity upload """
 
@@ -110,7 +133,8 @@ class Opportunity(models.Model):
     size_ticket_total = models.ManyToManyField(ValuationFundTicket, verbose_name='Size ticket total available',
                                                related_name='opportunity_size_ticket')
     #
-    geography = models.CharField(max_length=500, verbose_name='Geography', blank=True, null=True)
+    geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
     #
     sector = models.CharField(max_length=500, verbose_name='Sector', blank=True, null=True)
     yield_select = models.ManyToManyField(Yield, verbose_name='Yield')
@@ -175,3 +199,8 @@ class Mandate(models.Model):
     class_select = models.ManyToManyField(Class, verbose_name='Class')
     series_stage = models.ManyToManyField(SeriesStage, verbose_name='Series/stage')
     investor_required = models.ManyToManyField(InvestorSpecial, verbose_name='Lead Investor required in place')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.pk)

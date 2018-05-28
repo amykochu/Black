@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<option value="">---------</option>
+{% for city in cities %}
+<option value="{{ city.pk }}">{{ city.name }}</option>
+{% endfor %}
+{% endblock %}

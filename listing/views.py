@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.views.generic import DetailView
 
 from listing.forms import OpportunityForm, MandateForm
-from listing.models import Mandate, Opportunity
+from listing.models import Mandate, Opportunity, Country
 
 
 class DashboardHome(View):
@@ -22,7 +22,11 @@ class UploadView(View):
     """ Listing view """
 
     def get(self, request):
-
+        # geography_id = request.GET.get('geography', None)
+        # cities = ''
+        # if geography_id:
+        #     cities = Country.objects.filter(continent_id=geography_id).order_by('country')
+        #     print("C============ ", vars(cities))
         return render(request, 'upload.html', {'form': OpportunityForm()})
 
     def post(self, request):
@@ -93,3 +97,9 @@ class WidgetDetailView(DetailView):
     template_name = 'widget_detail.html'
     context_object_name = 'result'
 
+
+def load_cities(request):
+    geography_id = request.GET.get('geography')
+    print("tyfhfg +++++++++++++++++++++", geography_id)
+    cities = Country.objects.filter(continent_id=geography_id).order_by('country')
+    return render(request, 'cities.html', {'cities': cities})
