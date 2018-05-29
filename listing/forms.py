@@ -29,10 +29,10 @@ class OpportunityForm(forms.ModelForm):
         model = Opportunity
         fields = '__all__'
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['country'].queryset = Country.objects.none()
-        self.fields['sub_sector'].queryset = SubSector.objects.none()
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['country'].queryset = Country.objects.none()
+    #     self.fields['sub_sector'].queryset = SubSector.objects.none()
 
 
 class MandateForm(forms.ModelForm):
@@ -41,8 +41,3 @@ class MandateForm(forms.ModelForm):
     class Meta:
         model = Mandate
         fields = '__all__'
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['country'].queryset = Country.objects.none()
-        self.fields['sub_sector'].queryset = SubSector.objects.none()

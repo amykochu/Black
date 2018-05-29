@@ -22,6 +22,9 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
+  $("#id_country").empty();
+  $("#id_sub_sector").empty();
+
     $("#id_geography").change(function () {
       var url = '/ajax/load-geography/';  // get the url of the `load_cities` view
       var geographyId = $(this).val();  // get the selected country ID from the HTML input

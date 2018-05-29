@@ -22,9 +22,10 @@ from django.conf import settings
 urlpatterns = [
     path('', views.DashboardHome.as_view(), name='home'),
     path('admin/', admin.site.urls),
-    path('upload/', views.UploadView.as_view(), name='upload'),
+    path('opportunity-upload/', views.OpportunityUploadView.as_view(), name='upload'),
     path('search/', views.SearchView.as_view(), name='search'),
     path('detail/<pk>/', views.WidgetDetailView.as_view(), name='detail-view'),
+    path('mandate-upload/', views.MandateUploadView.as_view(), name='mandate_upload'),
 
 
     path('ajax/load-geography/', views.load_cities, name='ajax_load_geography'),
