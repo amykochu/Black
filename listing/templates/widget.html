@@ -6,10 +6,15 @@
       </div>
       <div class="mr-5">
 
-      <h2>{{ i.widget1 }}</h2>
-      <h5>{{ i.widget2 }}</h5>
-      <span><i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {% for m in i.widget8.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
-      <p>{{ i.widget3 }}</p>
+      <h2>{{ i.company_description }}</h2>
+      <h5>{{ i.valuation }}</h5>
+      <span><i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {{ i.geography }}, {% for m in i.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
+      <p>{{ i.company_description }}</p>
+        <h4>Yield : {% for m in i.yield_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h4>
+        <h5>Investment Type: {% for m in i.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
+        <h5>Series/Stage:{% for m in i.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
+        <h5>Class: {% for m in i.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
+        <h4>Tags: {% for m in i.sub_sector.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h4>
       <div><a href="#">{{ i.widget4 }}</a> <a href="#">{{ i.widget5 }}</a></div>
     </div>
     </div>

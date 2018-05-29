@@ -138,6 +138,15 @@ class SubSector(models.Model):
         return self.sub_sector
 
 
+class HighLevelFinancial(models.Model):
+    """ """
+    revenue = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Revenue', blank=True, null=True)
+    costs = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Costs', blank=True, null=True)
+    ebitda = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='EBITDA', blank=True, null=True)
+    capex = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='CAPEX', blank=True, null=True)
+    net_profit = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Net Profit', blank=True, null=True)
+
+
 class Opportunity(models.Model):
     """ Model for opportunity upload """
 
@@ -146,7 +155,7 @@ class Opportunity(models.Model):
                                                                         'How will value be created/unlocked?', blank=True, null=True)
     selling_by = models.CharField(max_length=500, verbose_name='Who is selling? Why?', blank=True, null=True)
     competitors = models.CharField(max_length=500, verbose_name='Major competitors', blank=True, null=True)
-    valuation = models.ManyToManyField(ValuationFundTicket, verbose_name='Valuation - metrics and rationale')
+    valuation = models.ForeignKey(ValuationFundTicket,  on_delete=models.SET_NULL, null=True, verbose_name='Valuation - metrics and rationale')
     amount_invested = models.DecimalField(max_digits=5, decimal_places=2,
                                           verbose_name='Amount invested to date ($USm)', blank=True, null=True)
     ownership_structure = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Ownership structure (%)', blank=True, null=True)
