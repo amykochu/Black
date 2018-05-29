@@ -115,6 +115,29 @@ class Country(models.Model):
         return self.country
 
 
+class Sector(models.Model):
+    """ Model to store Sectors """
+
+    sector = models.CharField(max_length=300)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.sector
+
+
+class SubSector(models.Model):
+    """ Model to store Sub Sectors """
+
+    sub_sector = models.CharField(max_length=300)
+    sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.sub_sector
+
+
 class Opportunity(models.Model):
     """ Model for opportunity upload """
 
@@ -134,9 +157,10 @@ class Opportunity(models.Model):
                                                related_name='opportunity_size_ticket')
     #
     geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True)
+    country = models.ManyToManyField(Country)
     #
-    sector = models.CharField(max_length=500, verbose_name='Sector', blank=True, null=True)
+    sector = models.ForeignKey(Sector,on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
+    sub_sector = models.ManyToManyField(SubSector, verbose_name='Sub Sector')
     yield_select = models.ManyToManyField(Yield, verbose_name='Yield')
     return_estimate = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Return estimate (3-yr) (%)', blank=True, null=True)
     growth_expectation_year1 = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%) Year 1', blank=True, null=True)
@@ -190,12 +214,16 @@ class Mandate(models.Model):
                                                related_name='mandate_size_ticket')
     percentage_company = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='% of company (min - max)')
     #
-    geography = models.CharField(max_length=500, verbose_name='Geography')
+    geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
+    country = models.ManyToManyField(Country)
     #
-    sector = models.CharField(max_length=500, verbose_name='Sector')
+    sector = models.ForeignKey(Sector,on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
+    sub_sector = models.ManyToManyField(SubSector, verbose_name='Sub Sector')
     yield_select = models.ManyToManyField(Yield, verbose_name='Yield')
     #
-    growth_required = models.CharField(max_length=500, verbose_name='Earnings growth required (%)')
+    growth_expectation_year1 = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%) Year 1', blank=True, null=True)
+    growth_expectation_year2 = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%) Year 2', blank=True, null=True)
+    growth_expectation_year3 = models.CharField(max_length=500, verbose_name='Earnings growth expectation (%) Year 3', blank=True, null=True)
     class_select = models.ManyToManyField(Class, verbose_name='Class')
     series_stage = models.ManyToManyField(SeriesStage, verbose_name='Series/stage')
     investor_required = models.ManyToManyField(InvestorSpecial, verbose_name='Lead Investor required in place')

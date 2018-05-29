@@ -23,20 +23,42 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
     $("#id_geography").change(function () {
-      var url = $("#OpportunityForm").attr("upload");  // get the url of the `load_cities` view
+      var url = '/ajax/load-geography/';  // get the url of the `load_cities` view
       var geographyId = $(this).val();  // get the selected country ID from the HTML input
-	  alert(geographyId)
       $.ajax({                       // initialize an AJAX request
         url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
         data: {
           'geography': geographyId       // add the country id to the GET parameters
         },
-        success: function (data) {   // `data` is the return of the `load_cities` view function
-          $("#id_country").html(data);  // replace the contents of the city input with the data that came from the server
+        success: function (response) {   // `data` is the return of the `load_cities` view function
+        $("#id_country").empty();
+        $("#id_country").append('<option value=""> Select </option>');
+ 		  for(var i=0;i<response.data.length;i++){
+ 		  $("#id_country").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['country'] + '</option>');
+ 		  }
         }
       });
-
     });
+
+
+    $("#id_sector").change(function () {
+      var url = '/ajax/load-sector/';  // get the url of the `load_cities` view
+      var sectorId = $(this).val();  // get the selected country ID from the HTML input
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'sector': sectorId       // add the country id to the GET parameters
+        },
+        success: function (response) {   // `data` is the return of the `load_cities` view function
+        $("#id_sub_sector").empty();
+        $("#id_sub_sector").append('<option value=""> Select </option>');
+ 		  for(var i=0;i<response.data.length;i++){
+ 		  $("#id_sub_sector").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['sub_sector'] + '</option>');
+ 		  }
+        }
+      });
+    });
+
   </script>
 {% endblock %}
 
