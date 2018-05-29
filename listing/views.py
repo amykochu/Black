@@ -32,7 +32,7 @@ class OpportunityUploadView(View):
         form = OpportunityForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save()
-            return redirect('detail-view', obj.id)
+            return redirect('opportunity-detail-view', obj.id)
         return render(request, 'upload.html', {'form': form})
 
 
@@ -48,7 +48,7 @@ class MandateUploadView(View):
         form = MandateForm(request.POST)
         if form.is_valid():
             obj = form.save()
-            return redirect('detail-view', obj.id)
+            return redirect('mandate-detail-view', obj.id)
         return render(request, 'upload.html', {'form': form})
 
 
