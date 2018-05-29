@@ -5,9 +5,11 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.db.models import Q
 from django.views.generic import DetailView
+from django.http import JsonResponse
+
 
 from listing.forms import OpportunityForm, MandateForm
-from listing.models import Mandate, Opportunity, Country
+from listing.models import Mandate, Opportunity, Country, SubSector
 
 
 class DashboardHome(View):
@@ -22,22 +24,15 @@ class UploadView(View):
     """ Listing view """
 
     def get(self, request):
-        # geography_id = request.GET.get('geography', None)
-        # cities = ''
-        # if geography_id:
-        #     cities = Country.objects.filter(continent_id=geography_id).order_by('country')
-        #     print("C============ ", vars(cities))
+
         return render(request, 'upload.html', {'form': OpportunityForm()})
 
     def post(self, request):
 
         form = OpportunityForm(request.POST, request.FILES)
-        print("FORM ++++   ", request.POST.values)
         if form.is_valid():
             obj = form.save()
-            print("++++++++++++++++++++++++     ", obj)
-            # return redirect('detail-view', obj.id)
-        print("INVALID +++ +++ ++ ++ + ++ ")
+            return redirect('detail-view', obj.id)
         return render(request, 'upload.html', {'form': form})
 
 
@@ -99,7 +94,16 @@ class WidgetDetailView(DetailView):
 
 
 def load_cities(request):
+    """ View to load cities wrt Geography """
+
     geography_id = request.GET.get('geography')
-    print("tyfhfg +++++++++++++++++++++", geography_id)
-    cities = Country.objects.filter(continent_id=geography_id).order_by('country')
-    return render(request, 'cities.html', {'cities': cities})
+    cities = Country.objects.filter(continent_id=geography_id).values('id', 'country').order_by('country')
+    return JsonResponse({'data': list(cities)})
+
+
+def load_sectors(request):
+    """ View to load sub sectors wrt Sector """
+
+    sector_id = request.GET.get('sector')
+    sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sub_sector')
+    return JsonResponse({'data': list(sub_sectors)})

@@ -26,6 +26,8 @@ urlpatterns = [
     path('search/', views.SearchView.as_view(), name='search'),
     path('detail/<pk>/', views.WidgetDetailView.as_view(), name='detail-view'),
 
-    path('ajax/load-cities/', views.load_cities, name='ajax_load_cities')
+
+    path('ajax/load-geography/', views.load_cities, name='ajax_load_geography'),
+    path('ajax/load-sector/', views.load_sectors, name='ajax_load_sector'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
