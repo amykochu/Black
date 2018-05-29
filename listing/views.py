@@ -20,7 +20,7 @@ class DashboardHome(View):
         return render(request, 'dashboard.html', {'result': result})
 
 
-class UploadView(View):
+class OpportunityUploadView(View):
     """ Listing view """
 
     def get(self, request):
@@ -30,6 +30,22 @@ class UploadView(View):
     def post(self, request):
 
         form = OpportunityForm(request.POST, request.FILES)
+        if form.is_valid():
+            obj = form.save()
+            return redirect('detail-view', obj.id)
+        return render(request, 'upload.html', {'form': form})
+
+
+class MandateUploadView(View):
+    """ Mandate upload view"""
+
+    def get(self, request):
+
+        return render(request, 'upload.html', {'form': MandateForm()})
+
+    def post(self, request):
+
+        form = MandateForm(request.POST)
         if form.is_valid():
             obj = form.save()
             return redirect('detail-view', obj.id)
@@ -107,3 +123,4 @@ def load_sectors(request):
     sector_id = request.GET.get('sector')
     sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sub_sector')
     return JsonResponse({'data': list(sub_sectors)})
+

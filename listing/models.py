@@ -159,7 +159,7 @@ class Opportunity(models.Model):
     geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
     country = models.ManyToManyField(Country)
     #
-    sector = models.ForeignKey(Sector,on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
+    sector = models.ForeignKey(Sector, on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
     sub_sector = models.ManyToManyField(SubSector, verbose_name='Sub Sector')
     yield_select = models.ManyToManyField(Yield, verbose_name='Yield')
     return_estimate = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Return estimate (3-yr) (%)', blank=True, null=True)
@@ -176,7 +176,7 @@ class Opportunity(models.Model):
     offer = models.ManyToManyField(Offer, verbose_name='Offer')
     special_situation = models.ManyToManyField(InvestorSpecial, verbose_name='Special situation',
                                                related_name='special_situation')
-    financials = models.ManyToManyField(Financial, verbose_name='Financials')
+    financials = models.ForeignKey(Financial, on_delete=models.SET_NULL, verbose_name='Financials', null=True)
     #
     Revenue = models.CharField(max_length=500, verbose_name='Revenue', blank=True, null=True)
     estimated_irr = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='Estimated IRR', blank=True, null=True)
