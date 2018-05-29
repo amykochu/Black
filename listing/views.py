@@ -101,16 +101,24 @@ class SearchView(View):
         return render(request, 'search_page.html', {'result': search_result, 'form': search_params})
 
 
-class WidgetDetailView(DetailView):
-    """ Detail view for Widgets """
+class OpportunityDetailView(DetailView):
+    """ Detail view for Opportunity widgets """
 
     model = Opportunity
     template_name = 'widget_detail.html'
     context_object_name = 'result'
 
 
+class MandateDetailView(DetailView):
+    """ Detail view for Mandate widgets """
+
+    model = Mandate
+    template_name = 'widget_detail.html'
+    context_object_name = 'result'
+
+
 def load_cities(request):
-    """ View to load cities wrt Geography """
+    """ Api to load cities wrt Geography """
 
     geography_id = request.GET.get('geography')
     cities = Country.objects.filter(continent_id=geography_id).values('id', 'country').order_by('country')
@@ -118,7 +126,7 @@ def load_cities(request):
 
 
 def load_sectors(request):
-    """ View to load sub sectors wrt Sector """
+    """ Api to load sub sectors wrt Sector """
 
     sector_id = request.GET.get('sector')
     sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sub_sector')
