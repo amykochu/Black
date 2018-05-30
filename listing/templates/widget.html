@@ -1,28 +1,29 @@
+{% load static %}
 <div class="col-xl-3 col-sm-6 mb-3">
   <div class="card text-dark bg-white o-hidden h-100">
-    <div class="card-body">
-      <div class="card-body-icon">
-
-      </div>
-      <div class="mr-5">
-
+    <div class="wid-cards">
+      
+        <div class="wid-bg" style="background-image: url('{% static '/listing/images/wid-bg.png' %}');">
+          <div class="match">
+            
+          </div>
+          <div class="wid-logo">
+            <img src="{% static '/listing/images/wid-logo.png' %}">
+          </div>
+        </div>
+        <div class="wid-details">
       <h2>{{ i.company_description }}</h2>
       <h5>{{ i.valuation }}</h5>
-      <span><i class="fa fa-map-marker text-warning" aria-hidden="true"></i> {{ i.geography }}, {% for m in i.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
+      <span>{{ i.geography }}, {% for m in i.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
       <p>{{ i.company_description }}</p>
-        <h4>Yield : {% for m in i.yield_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h4>
-        <h5>Investment Type: {% for m in i.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
-        <h5>Series/Stage:{% for m in i.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
-        <h5>Class: {% for m in i.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
-        <h4>Tags: {% for m in i.sub_sector.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h4>
-      <div><a href="#">{{ i.widget4 }}</a> <a href="#">{{ i.widget5 }}</a></div>
+      <div class="wid-specs">
+        <label>Yield : {% for m in i.yield_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Investment Type: {% for m in i.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Series/Stage:{% for m in i.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Class: {% for m in i.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        </div>
+        {% for m in i.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
     </div>
     </div>
-    <span class="card-footer text-dark clearfix small z-1" href="#">
-      <span class="float-left"><i class="fa fa-crosshairs text-danger" aria-hidden="true"></i>{% for m in i.widget8.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
-      <span class="float-right">
-        <a href="{% url 'opportunity-detail-view' i.id %}" class="text-dark"><i class="fa fa-plus" aria-hidden="true"></i></a>
-      </span>
-    </span >
   </div>
 </div>

@@ -1,27 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="card mb-3">
-        <div class="card-header">
-          <b><i class="fa fa-upload" aria-hidden="true"></i> Upload</b></div>
-        <div class="card-body">
+
         	<div class="row">
-		        <div class="col-xl-4 col-sm-6 mb-3">
+		        <div class="col-xl-5	 col-sm-8 mb-3">
 		          <div class="text-dark bg-white o-hidden h-100">
 			            <div class="card-body">
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 							<form action="" method="post" class="listing" enctype="multipart/form-data">
 							    {% csrf_token %}
 							    {{ form.as_p }}
-								<h6>High Level Financial's</h6>
+								{% if opportunity %}
+								<label>High Level Financial's</label>
 								{% include 'financial_table.html' %}
-							<input type="submit" value="Upload">
+								{% endif %}
+								<input type="submit" value="Upload">
 							</form>
-	</div>
+						</div>
+					</div>
+				</div>
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
@@ -38,7 +34,7 @@
         },
         success: function (response) {   // `data` is the return of the `load_cities` view function
         $("#id_country").empty();
-        $("#id_country").append('<option value=""> Select </option>');
+        $("#id_country").append('<option value=""> -- Select All -- </option>');
  		  for(var i=0;i<response.data.length;i++){
  		  $("#id_country").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['country'] + '</option>');
  		  }
@@ -46,6 +42,11 @@
       });
     });
 
+	$("#id_country").change(function () {
+	  if($(this).val()=='') {
+	    $("#id_country option").prop("selected", "selected");
+	  }
+	});
 
     $("#id_sector").change(function () {
       var url = '/ajax/load-sector/';  // get the url of the `load_cities` view
@@ -57,7 +58,7 @@
         },
         success: function (response) {   // `data` is the return of the `load_cities` view function
         $("#id_sub_sector").empty();
-        $("#id_sub_sector").append('<option value=""> Select </option>');
+        $("#id_sub_sector").append('<option value=""> -- Select All --</option>');
  		  for(var i=0;i<response.data.length;i++){
  		  $("#id_sub_sector").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['sub_sector'] + '</option>');
  		  }
@@ -65,6 +66,49 @@
       });
     });
 
+	$("#id_sub_sector").change(function () {
+	  if($(this).val()=='') {
+	    $("#id_sub_sector option").prop("selected", "selected");
+	  }
+	});
   </script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.css"/>
+<script type="text/javascript">
+  $('select').selectize({
+plugins: ['remove_button']
+});
+  $(document).ready(function()
+  {
+    $("#id_geography").change(function()
+    {
+      $(".listing p:nth-child(15) .selectize-control").remove();
+      $("#id_country").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
+      $(".listing p:nth-child(15)").html(`<label for="id_country">Country:</label><select name="country" required="" id="id_country" multiple="multiple"></select>`)
+      setTimeout(function()
+      {
+        $("#id_country").selectize({
+        plugins: ['remove_button']
+        });
+      },100);
+    });
+
+
+    $("#id_sector").change(function()
+    {
+      $(".listing p:nth-child(17) .selectize-control").remove();
+      $("#id_sub_sector").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
+      $(".listing p:nth-child(17)").html(`<label for="id_sub_sector-selectized">Sub Sector:</label><select name="country" required="" id="id_sub_sector" multiple="multiple"></select>`)
+      setTimeout(function()
+      {
+        $("#id_sub_sector").selectize({
+        plugins: ['remove_button']
+        });
+      },100);
+    });
+
+  });
+</script>
 {% endblock %}
 

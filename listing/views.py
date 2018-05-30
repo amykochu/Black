@@ -22,7 +22,7 @@ class DashboardHome(View):
 
 def save_re(data, instance):
     """ To save High Level Financial's"""
-    
+
     labels = ["Revenue", "Costs", "EBITDA", "CAPEX", "Net_Profit"]
     years = ["2015A", "2016A", "2017A", "2018E", "2019E"]
     json_data = {}
@@ -42,7 +42,7 @@ class OpportunityUploadView(View):
 
     def get(self, request):
 
-        return render(request, 'upload.html', {'form': OpportunityForm()})
+        return render(request, 'upload.html', {'form': OpportunityForm(), 'opportunity': True})
 
     def post(self, request):
 
@@ -51,7 +51,7 @@ class OpportunityUploadView(View):
             obj = form.save()
             save_re(request.POST, obj)
             return redirect('opportunity-detail-view', obj.id)
-        return render(request, 'upload.html', {'form': form})
+        return render(request, 'upload.html', {'form': form, 'opportunity': True})
 
 
 class MandateUploadView(View):
