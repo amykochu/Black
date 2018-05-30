@@ -20,6 +20,23 @@ class DashboardHome(View):
         return render(request, 'dashboard.html', {'result': result})
 
 
+def save_re(data, instance):
+    """ To save High Level Financial's"""
+    
+    labels = ["Revenue", "Costs", "EBITDA", "CAPEX", "Net_Profit"]
+    years = ["2015A", "2016A", "2017A", "2018E", "2019E"]
+    json_data = {}
+    for label in labels:
+        for yr in years:
+            field = "{}_{}".format(label, yr)
+            value = data.get(field)
+            if field and value:
+                json_data[field] = value
+    if json_data:
+        instance.revenue_json_data = json_data
+        instance.save()
+
+
 class OpportunityUploadView(View):
     """ Listing view """
 
@@ -32,6 +49,7 @@ class OpportunityUploadView(View):
         form = OpportunityForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save()
+            save_re(request.POST, obj)
             return redirect('opportunity-detail-view', obj.id)
         return render(request, 'upload.html', {'form': form})
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
+from django.contrib.postgres.fields import JSONField
 
 
 class InvestmentOffered(models.Model):
@@ -138,15 +139,6 @@ class SubSector(models.Model):
         return self.sub_sector
 
 
-class HighLevelFinancial(models.Model):
-    """ """
-    revenue = models.DecimalField(max_digits=15, decimal_places=4, verbose_name='Revenue', blank=True, null=True)
-    costs = models.DecimalField(max_digits=15, decimal_places=4, verbose_name='Costs', blank=True, null=True)
-    ebitda = models.DecimalField(max_digits=15, decimal_places=4, verbose_name='EBITDA', blank=True, null=True)
-    capex = models.DecimalField(max_digits=15, decimal_places=4, verbose_name='CAPEX', blank=True, null=True)
-    net_profit = models.DecimalField(max_digits=15, decimal_places=4, verbose_name='Net Profit', blank=True, null=True)
-
-
 class Opportunity(models.Model):
     """ Model for opportunity upload """
 
@@ -188,7 +180,7 @@ class Opportunity(models.Model):
                                                related_name='special_situation', null=True)
     financials = models.ForeignKey(Financial, on_delete=models.SET_NULL, verbose_name='Financials', null=True)
     #
-    Revenue = models.CharField(max_length=500, verbose_name='Revenue', blank=True, null=True)
+    revenue_json_data = JSONField(blank=True, null=True)
     estimated_irr = models.DecimalField(max_digits=15, decimal_places=4, verbose_name='Estimated IRR', blank=True, null=True)
     exit_timing = models.CharField(max_length=500, verbose_name='Expected exit timing', blank=True, null=True)
     use_of_funds = models.CharField(max_length=500, verbose_name='Use of funds', blank=True, null=True)

@@ -8,16 +8,19 @@
 		        <div class="col-xl-4 col-sm-6 mb-3">
 		          <div class="text-dark bg-white o-hidden h-100">
 			            <div class="card-body">
-							<form action="" method="post" class="listing" enctype="multipart/form-data">
-							    {% csrf_token %}
-							    {{ form.as_p }}
-							<input type="submit" value="Upload">
-							</form>
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+							<form action="" method="post" class="listing" enctype="multipart/form-data">
+							    {% csrf_token %}
+							    {{ form.as_p }}
+								<h6>High Level Financial's</h6>
+								{% include 'financial_table.html' %}
+							<input type="submit" value="Upload">
+							</form>
 	</div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
