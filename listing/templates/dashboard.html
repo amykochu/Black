@@ -1,22 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
       <!-- Breadcrumbs-->
 
       <!-- Icon Cards-->
+    <div class="row">
+       <h1 class="col-md-12 heading-h1">Refine</h1>
+       <div class="col-md-12 refines">
+         <button>Total ticket size available</button>
+         <button>Sector</button>
+         <button>Yield</button>
+         <button>Type</button>
+         <button>Series/Stage</button>
+         <button>Class</button>
+       </div>
+    </div>
 
-      	 <div class="card mb-3">
-        <div class="card-header">
-          <b><i class="fa fa-th-large" aria-hidden="true"></i> Latest Widgets</b></div>
-        <div class="card-body">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="grid"><img src="{% static '/listing/images/opprtunity-dashboard.png' %}">
+         <!--<p>45 matched opportunities to your investment mandate, with an average match quality of 87%</p>-->
+        </div>
+      </div>
+      
+    </div>
+
         	<div class="row">
+            <h1 class="col-md-12 heading-h1">Latest Matched Opportunities</h1>
             {% for i in result %}
             {% include "widget.html" %}
             {% endfor %}
       	</div>
-      </div>
-  </div>
 
 
+<!-- 
       	 <div class="card mb-3">
         <div class="card-header">
           <b><i class="fa fa-th-large" aria-hidden="true"></i> Your Matches</b></div>
@@ -27,6 +44,6 @@
 
       	</div>
       </div>
-  </div>
+  </div> -->
 
 {% endblock %}
