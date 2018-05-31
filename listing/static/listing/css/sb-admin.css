@@ -89,7 +89,7 @@ span.nav-item
 .listing p
 {
   float: left;
-  /*width: calc(50% - 40px); */
+  /*width: calc(50% - 40px);*/
   min-height: 73px;
   margin-right: 20px;
 }
@@ -415,21 +415,6 @@ span.nav-item
       white-space: nowrap;
 }
 .listing input[type="text"], .listing select, .listing input[type="number"], .listing textarea
-.listing select {
- height: 36px;
-}
-
-ul.errorlist {
- float: left;
- padding: 0px;
-}
-
-ul.errorlist li {
- display: block;
- font-size: 12px;
- color: red;
-}
-
 {
     display: block;
     width: 100%;
@@ -443,6 +428,19 @@ ul.errorlist li {
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     font-size: 13px;
+}
+.listing select
+{
+	height::35px;
+	}
+ul.errorlist {
+    float: left;
+    padding: 0px;
+}
+ul.errorlist li {
+    display: block;
+    font-size: 12px;
+    color: red;
 }
 .listing table
 {
