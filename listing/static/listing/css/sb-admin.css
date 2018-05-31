@@ -418,6 +418,18 @@ span.nav-item
 .listing select {
  height: 36px;
 }
+
+ul.errorlist {
+ float: left;
+ padding: 0px;
+}
+
+ul.errorlist li {
+ display: block;
+ font-size: 12px;
+ color: red;
+}
+
 {
     display: block;
     width: 100%;
