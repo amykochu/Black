@@ -78,38 +78,38 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.css"/>
 <script type="text/javascript">
-  $('select').selectize({
-plugins: ['remove_button']
-});
-  $(document).ready(function()
-  {
-    $("#id_country").parent("p").addClass("country");
-    $("#id_geography").change(function()
-    {
-      $(".listing .country .selectize-control").remove();
-      $("#id_country").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
-      $(".listing .country").html(`<label for="id_country">Country:</label><select name="country" required="" id="id_country" multiple="multiple"></select>`)
-      setTimeout(function()
-      {
-        $("#id_country").selectize({
-        plugins: ['remove_button']
-        });
-      },1000);
-    });
+  <!--$('select').selectize({-->
+<!--plugins: ['remove_button']-->
+<!--});-->
+  <!--$(document).ready(function()-->
+  <!--{-->
+    <!--$("#id_country").parent("p").addClass("country");-->
+    <!--$("#id_geography").change(function()-->
+    <!--{-->
+      <!--$(".listing .country .selectize-control").remove();-->
+      <!--$("#id_country").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();-->
+      <!--$(".listing .country").html(`<label for="id_country">Country:</label><select name="country" required="" id="id_country" multiple="multiple"></select>`)-->
+      <!--setTimeout(function()-->
+      <!--{-->
+        <!--$("#id_country").selectize({-->
+        <!--plugins: ['remove_button']-->
+        <!--});-->
+      <!--},1000);-->
+    <!--});-->
 
-      $("#id_sub_sector").parent("p").addClass("sub_sector"); 
-    $("#id_sector").change(function()
-    {
-      $(".listing .sub_sector .selectize-control").remove();
-      $("#id_sub_sector").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
-      $(".listing .sub_sector").html(`<label for="id_sub_sector-selectized">Sub Sector:</label><select name="country" required="" id="id_sub_sector" multiple="multiple"></select>`)
-      setTimeout(function()
-      {
-        $("#id_sub_sector").selectize({
-        plugins: ['remove_button']
-        });
-      },1000);
-    });
+      <!--$("#id_sub_sector").parent("p").addClass("sub_sector"); -->
+    <!--$("#id_sector").change(function()-->
+    <!--{-->
+      <!--$(".listing .sub_sector .selectize-control").remove();-->
+      <!--$("#id_sub_sector").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();-->
+      <!--$(".listing .sub_sector").html(`<label for="id_sub_sector-selectized">Sub Sector:</label><select name="country" required="" id="id_sub_sector" multiple="multiple"></select>`)-->
+      <!--setTimeout(function()-->
+      <!--{-->
+        <!--$("#id_sub_sector").selectize({-->
+        <!--plugins: ['remove_button']-->
+        <!--});-->
+      <!--},1000);-->
+    <!--});-->
 
     //  $("#id_sector").change(function()
     // {
