@@ -2,7 +2,7 @@
 {% block content %}
 
         	<div class="row">
-		        <div class="col-xl-5	 col-sm-8 mb-3">
+		        <div class="col-xl-10	 col-sm-8 mb-3">
 		          <div class="text-dark bg-white o-hidden h-100">
 			            <div class="card-body">
 							<form action="" method="post" class="listing" enctype="multipart/form-data">
@@ -12,7 +12,9 @@
 								<label>High Level Financial's</label>
 								{% include 'financial_table.html' %}
 								{% endif %}
-								<input type="submit" value="Upload">
+                  <div style="width: 100%;float: left;">
+                     <input type="submit" value="Upload">
+                  </div>
 							</form>
 						</div>
 					</div>
@@ -81,11 +83,12 @@ plugins: ['remove_button']
 });
   $(document).ready(function()
   {
+    $("#id_country").parent("p").addClass("country");
     $("#id_geography").change(function()
     {
-      $(".listing p:nth-child(15) .selectize-control").remove();
+      $(".listing .country .selectize-control").remove();
       $("#id_country").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
-      $(".listing p:nth-child(15)").html(`<label for="id_country">Country:</label><select name="country" required="" id="id_country" multiple="multiple"></select>`)
+      $(".listing .country").html(`<label for="id_country">Country:</label><select name="country" required="" id="id_country" multiple="multiple"></select>`)
       setTimeout(function()
       {
         $("#id_country").selectize({
@@ -94,12 +97,12 @@ plugins: ['remove_button']
       },100);
     });
 
-
+      $("#id_sub_sector").parent("p").addClass("sub_sector"); 
     $("#id_sector").change(function()
     {
-      $(".listing p:nth-child(17) .selectize-control").remove();
+      $(".listing .sub_sector .selectize-control").remove();
       $("#id_sub_sector").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
-      $(".listing p:nth-child(17)").html(`<label for="id_sub_sector-selectized">Sub Sector:</label><select name="country" required="" id="id_sub_sector" multiple="multiple"></select>`)
+      $(".listing .sub_sector").html(`<label for="id_sub_sector-selectized">Sub Sector:</label><select name="country" required="" id="id_sub_sector" multiple="multiple"></select>`)
       setTimeout(function()
       {
         $("#id_sub_sector").selectize({
@@ -107,6 +110,31 @@ plugins: ['remove_button']
         });
       },100);
     });
+
+    //  $("#id_sector").change(function()
+    // {
+    //   $(".listing p:nth-child(9) .selectize-control").remove();
+    //   $("#id_sub_sector").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
+    //   $(".listing p:nth-child(9)").html(`<label for="id_sub_sector-selectized">Sub Sector:</label><select name="country" required="" id="id_sub_sector" multiple="multiple"></select>`)
+    //   setTimeout(function()
+    //   {
+    //     $("#id_sub_sector").selectize({
+    //     plugins: ['remove_button']
+    //     });
+    //   },100);
+    // });
+    //    $("#id_geography").change(function()
+    // {
+    //   $(".listing p:nth-child(7) .selectize-control").remove();
+    //   $("#id_country").removeClass("selectized").removeAttr("style").removeAttr("tabindex").html();
+    //   $(".listing p:nth-child(7)").html(`<label for="id_country">Country:</label><select name="country" required="" id="id_country" multiple="multiple"></select>`)
+    //   setTimeout(function()
+    //   {
+    //     $("#id_country").selectize({
+    //     plugins: ['remove_button']
+    //     });
+    //   },100);
+    // });
 
   });
 </script>

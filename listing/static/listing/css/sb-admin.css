@@ -17,7 +17,7 @@ body.sticky-footer .content-wrapper {
 }
 #financial-table input
 {
-width:70px;
+width:80px;
 }
 body.fixed-nav {
   padding-top: 56px;
@@ -32,6 +32,11 @@ span.nav-item
 .fa-fw {
     width: 35px!important;
     text-align: center;
+    color: #f3d396;
+}
+.fa.fa-fw.fa-map-marker
+{
+  width: auto!important;
 }
 .content-wrapper {
   min-height: calc(100vh - 56px);
@@ -56,6 +61,16 @@ span.nav-item
   font-size: 13px;
   font-weight: normal;
 }
+.wid-cards-details
+{
+  position: relative;
+}
+.wid-details-logo
+{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
 .wid-details h4 b
 {
   display: inline-block;
@@ -70,6 +85,102 @@ span.nav-item
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 5px;
+}
+.listing p
+{
+  float: left;
+  width: calc(50% - 40px);
+  min-height: 73px;
+  margin-right: 20px;
+}
+.listing textarea
+{
+  height: 50px!important;
+}
+#myImg {
+    border-radius: 5px;
+    /*cursor: pointer;*/
+    transition: 0.3s;
+}
+
+/*#myImg:hover {opacity: 0.7;}*/
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 400px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 20px;
+    font-weight: normal;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
 }
 .scroll-to-top {
   position: fixed;
@@ -193,6 +304,27 @@ span.nav-item
 {
   display: inline-block;
   padding: 12px;
+  position: relative;
+}
+#img-clk
+{
+  position: absolute;
+  right: 25%;
+}
+.selectize-input:after
+   {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -3px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #808080 transparent transparent transparent;
+
 }
 .wid-details h2
 {
@@ -232,7 +364,7 @@ span.nav-item
 }
 .wid-details a
 {
-  background-color: #c6c6c6;
+  background-color: #adabab;
   font-size: 12px;
   color: #fff;
   border-radius: 5px;
@@ -272,7 +404,7 @@ span.nav-item
 .listing p
 {
   float: left;
-  width: 100%;
+  /*width: 100%;*/
   margin-bottom: 5px;
 }
 .listing label
@@ -280,6 +412,7 @@ span.nav-item
   width: 100%;
   font-size: 13px;
   font-weight: bold;
+      white-space: nowrap;
 }
 .listing input[type="text"], .listing select, .listing input[type="number"], .listing textarea
 {
