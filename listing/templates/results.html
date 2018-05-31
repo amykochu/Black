@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for result in match_results %}
+        {% include 'widget.html' %}
+    {% endfor %}
+{% endblock %}
