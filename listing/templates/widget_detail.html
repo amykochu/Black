@@ -15,7 +15,7 @@
      
       <div class="wid-specs">
       	{% for m in result.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
-        <label>Yield : {% for m in result.yield_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Yield : {{ result.yield_select }}</label>
         <label>Investment Type: {% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         <label>Series/Stage:{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         <label>Class: {% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>

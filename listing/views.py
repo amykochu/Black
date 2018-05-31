@@ -20,7 +20,7 @@ class DashboardHome(View):
         return render(request, 'dashboard.html', {'result': result})
 
 
-def save_re(data, instance):
+def save_re(data):
     """ To save High Level Financial's"""
 
     labels = ["Revenue", "Costs", "EBITDA", "CAPEX", "Net_Profit"]
@@ -32,9 +32,7 @@ def save_re(data, instance):
             value = data.get(field)
             if field and value:
                 json_data[field] = value
-    if json_data:
-        instance.revenue_json_data = json_data
-        instance.save()
+    return json_data
 
 
 class OpportunityUploadView(View):
@@ -46,12 +44,16 @@ class OpportunityUploadView(View):
 
     def post(self, request):
 
+        json_data = save_re(request.POST)
         form = OpportunityForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save()
-            save_re(request.POST, obj)
-            return redirect('opportunity-detail-view', obj.id)
-        return render(request, 'upload.html', {'form': form, 'opportunity': True})
+            if json_data:
+                obj.revenue_json_data = json_data
+                obj.save()
+            FindMatch(obj)
+            # return redirect('opportunity-detail-view', obj.id)
+        return render(request, 'upload.html', {'form': form, 'opportunity': True, 'json_data': json_data})
 
 
 class MandateUploadView(View):
@@ -66,6 +68,7 @@ class MandateUploadView(View):
         form = MandateForm(request.POST)
         if form.is_valid():
             obj = form.save()
+            # FindMatch(obj)
             return redirect('mandate-detail-view', obj.id)
         return render(request, 'upload.html', {'form': form})
 
@@ -133,3 +136,33 @@ def load_sectors(request):
     sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sub_sector')
     return JsonResponse({'data': list(sub_sectors)})
 
+
+def FindMatch(profile):
+    """ Matching Algorithm """
+    print("INSIDE MATCH   ============= ")
+    match_data = None
+    is_opportunity = isinstance(profile, Opportunity)
+    is_mandate = isinstance(profile, Mandate)
+
+    if is_opportunity:
+        # sector and yield
+        match_params = [Q(investment_sought__icontains=profile.investment_offered),
+                         Q(size_ticket_total__icontains=profile.size_ticket_total),
+                         Q(sector__sector__icontains=profile.sector.sector),
+                         Q(sub_sector__icontains=profile.sub_sector),
+                         Q(class_select__icontains=profile.class_select),
+                         Q(series_stage__icontains=profile.series_stage),
+                         Q(yield_select__label__icontains=profile.yield_select.label)
+                        ]
+        match_data = Mandate.objects.filter(reduce(operator.or_, match_params)).distinct()
+    if is_mandate:
+        match_params = [Q(investment_offered__=profile.investment_sought),
+                         Q(size_ticket_total__icontains=profile.size_ticket_total),
+                         Q(sector__sector__icontains=profile.sector.sector),
+                         Q(sub_sector__icontains=profile.sub_sector),
+                         Q(class_select__icontains=profile.class_select),
+                         Q(series_stage__icontains=profile.series_stage),
+                         Q(yield_select__label__icontains=profile.yield_select.label)
+                        ]
+        match_data = Opportunity.objects.filter(reduce(operator.and_, match_params)).distinct()
+    return render('results.html', {'match_results': match_data})
