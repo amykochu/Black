@@ -14,12 +14,18 @@
       <span><i class="fa fa-fw fa-map-marker"></i> {{ result.geography }}, {% for m in result.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
      
       <div class="wid-specs">
+        <label>Size ticket total available range: </label>
+        <label></label>
+        <label>Company/Fund description:</label>
       	{% for m in result.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
         <label>Yield : {{ result.yield_select }}</label>
-        <label>Investment Type: {% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>Series/Stage:{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>Class: {% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        </div>
+        <label>Type of investment offered: {% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Series/Stage of investment:{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Asset class: {% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>What makes this opportunity unique? How will value be unlocked: </label>
+        <label>Who is </label>
+
+      </div>
         
          <p>{{ result.company_description }}</p>
     </div>
