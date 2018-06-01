@@ -10,28 +10,29 @@
           </div>
      <div class="wid-details">
       <h2>{{ result.company_description }}</h2><a href="#" id="img-clk" style="background-color: black">Click to Engage</a>
-      <h5>{{ result.valuation }}</h5>
       <span><i class="fa fa-fw fa-map-marker"></i> {{ result.geography }}, {% for m in result.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
-     
+      {% for m in result.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
       <div class="wid-specs">
-        <label>Size ticket total available range: </label>
-        <label></label>
-        <label>Company/Fund description:</label>
-      	{% for m in result.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
+        <label>Size ticket total available range: {{ result.valuation }}</label>
+        <label>Company/Fund description: {{ result.company_description }}</label>
         <label>Yield : {{ result.yield_select }}</label>
         <label>Type of investment offered: {% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         <label>Series/Stage of investment:{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         <label>Asset class: {% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>What makes this opportunity unique? How will value be unlocked: </label>
-        <label>Who is </label>
-
+        <label>What makes this opportunity unique? How will value be unlocked: {{ result.opportunity_created }}</label>
+        <label>Who is selling and why: {{ result.selling_by }}</label>
+        <label>Major competitors: {{ result.competitors }}</label>
+        <label>Ownership structure(%): {{ result.ownership_structure }}</label>
+        <label>Company EBITDA($USm): {{ result.ebitda }}</label>
+        <label>Break-even year: {{ result.break_even_year }}</label>
+        <label>Estimated payback period on raise: {% for m in result.est_payback.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Return estimate forecast(3-yr): {{ result.return_estimate }}</label>
+        <label>Use of funds: {{ result.use_of_funds }}</label>
+        <label>Exit options whom and why: {{ result.proposed_exit }}</label>
       </div>
-        
-         <p>{{ result.company_description }}</p>
     </div>
     </div>
   </div>
 </div>
-
 
 {% endblock %}
