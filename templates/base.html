@@ -34,7 +34,7 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="New">
-          <a class="nav-link" href="/opportunity-upload/">
+          <a class="nav-link" href="#">
             <i class="fa fa-fw"><img src="{% static '/listing/images/opprtunity.png' %}""></i>
             <span class="nav-link-text">Opportunities</span>
           </a>
@@ -45,11 +45,15 @@
             <span class="nav-link-text">Fund Seeking</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+        <li class="nav-item accordion" id="accordion" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="#">
-            <i class="fa fa-fw"><img src="{% static '/listing/images/download.png' %}""></i>
+            <i class="fa fa-fw"><img src="{% static '/listing/images/download.png' %}"></i>
             <span class="nav-link-text">Upload</span>
           </a>
+            <ul class="submenu">
+              <li><a href="/opportunity-upload/">Opportunity</a></li>
+              <li><a href="/mandate-upload/">Mandate</a></li>
+            </ul>
         </li>
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="#">
@@ -126,7 +130,7 @@
 </body>
 
 </html>
-t>
+
     <!-- Core plugin JavaScript-->
     <script src="{% static '/listing/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
     <!-- Page level plugin JavaScript-->
@@ -134,6 +138,16 @@ t>
     <!-- Custom scripts for all pages-->
     <script src="{% static '/listing/js/sb-admin.min.js' %}"></script>
     <!-- Custom scripts for this page-->
+    <script>
+        $(document).ready(function()
+        {
+            $("#accordion").click(function()
+            {
+                $(".submenu").toggle();
+            });
+        });
+
+    </script>
   </div>
 </body>
 
