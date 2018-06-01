@@ -12,24 +12,28 @@
       <h2>{{ result.company_description }}</h2><a href="#" id="img-clk" style="background-color: black">Click to Engage</a>
       <span><i class="fa fa-fw fa-map-marker"></i> {{ result.geography }}, {% for m in result.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
       {% for m in result.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
-      <div class="wid-specs">
-        <label>Size ticket total available range: {{ result.valuation }}</label>
-        <label>Company/Fund description: {{ result.company_description }}</label>
-        <label>Yield : {{ result.yield_select }}</label>
-        <label>Type of investment offered: {% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>Series/Stage of investment:{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>Asset class: {% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>What makes this opportunity unique? How will value be unlocked: {{ result.opportunity_created }}</label>
-        <label>Who is selling and why: {{ result.selling_by }}</label>
-        <label>Major competitors: {{ result.competitors }}</label>
-        <label>Ownership structure(%): {{ result.ownership_structure }}</label>
-        <label>Company EBITDA($USm): {{ result.ebitda }}</label>
-        <label>Break-even year: {{ result.break_even_year }}</label>
-        <label>Estimated payback period on raise: {% for m in result.est_payback.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>Return estimate forecast(3-yr): {{ result.return_estimate }}</label>
-        <label>Use of funds: {{ result.use_of_funds }}</label>
-        <label>Exit options whom and why: {{ result.proposed_exit }}</label>
-      </div>
+      <div class="widget-specs">
+	      <div class="wid-specs">
+	        <label>Size ticket total available range: <b>{{ result.valuation }}</b></label>
+	        <label>Company/Fund description: <b>{{ result.company_description }}</b></label>
+	        <label>Yield : <b>{{ result.yield_select }}</b></label>
+	        <label>Type of investment offered: <b>{% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
+	        <label>Series/Stage of investment:<b>{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
+	        <label>Asset class: <b>{% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
+	        <label>What makes this opportunity unique? How will value be unlocked: <b>{{ result.opportunity_created }}</b></label>
+	        <label>Who is selling and why: <b>{{ result.selling_by }}</b></label>
+	       </div>
+	       <div class="wid-specs">
+	        <label>Major competitors: <b>{{ result.competitors }}</b></label>
+	        <label>Ownership structure(%): <b>{{ result.ownership_structure }}</b></label>
+	        <label>Company EBITDA($USm): <b>{{ result.ebitda }}</b></label>
+	        <label>Break-even year: <b>{{ result.break_even_year }}</b></label>
+	        <label>Estimated payback period on raise: <b>{% for m in result.est_payback.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
+	        <label>Return estimate forecast(3-yr): <b>{{ result.return_estimate }}</b></label>
+	        <label>Use of funds: <b>{{ result.use_of_funds }}</b></label>
+	        <label>Exit options whom and why: <b>{{ result.proposed_exit }}</b></label>
+	      </div>
+	    </div>
     </div>
     </div>
   </div>

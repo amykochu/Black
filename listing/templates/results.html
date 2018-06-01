@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for result in match_results %}
-        {% include 'widget.html' %}
+    {% if not match_data %}
+         <h1 class="col-md-12 heading-h1 text-center">No Match found for your profile</h1>
+    {% endif %}
+    {% if match_data %}
+
+<div class="row">
+     <h1 class="col-md-12 heading-h1">Matched Profiles</h1>
+    {% for i in match_data %}
+        {% include "widget.html" %}
     {% endfor %}
+</div>
+    {% endif %}
 {% endblock %}
