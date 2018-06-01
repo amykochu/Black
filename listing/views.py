@@ -17,7 +17,22 @@ class DashboardHome(View):
     def get(self, request):
 
         result = Opportunity.objects.all().order_by('-pk')[:3]
-        return render(request, 'dashboard.html', {'result': result})
+        return render(request, 'dashboard.html', {'result': result, 'dashboard': True})
+
+
+class AllOpportunity(View):
+    """" """
+    def get(self, request):
+
+        result = Opportunity.objects.all().order_by('-pk')[:6]
+        return render(request, 'dashboard.html', {'result': result, 'opportunity': True})
+
+
+class AllMandate(View):
+    """ """
+    def get(self, request):
+        result = Mandate.objects.all().order_by('-pk')[:6]
+        return render(request, 'dashboard.html', {'result': result, 'mandate': True})
 
 
 def save_re(data):

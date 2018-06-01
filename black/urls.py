@@ -27,6 +27,8 @@ urlpatterns = [
     path('opportunity-detail/<int:pk>/', views.OpportunityDetailView.as_view(), name='opportunity-detail-view'),
     path('mandate-detail/<int:pk>/', views.MandateDetailView.as_view(), name='mandate-detail-view'),
     path('mandate-upload/', views.MandateUploadView.as_view(), name='mandate_upload'),
+    path('fund-seeking/', views.AllMandate.as_view(), name='mandate-all'),
+    path('opportunity/', views.AllOpportunity.as_view(), name='opportunity-all'),
 
     path('ajax/load-geography/', views.load_cities, name='ajax_load_geography'),
     path('ajax/load-sector/', views.load_sectors, name='ajax_load_sector'),
