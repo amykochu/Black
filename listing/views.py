@@ -51,8 +51,8 @@ class OpportunityUploadView(View):
             if json_data:
                 obj.revenue_json_data = json_data
                 obj.save()
-            FindMatch(obj)
-            # return redirect('opportunity-detail-view', obj.id)
+            # FindMatch(obj)
+            return redirect('opportunity-detail-view', obj.id)
         return render(request, 'upload.html', {'form': form, 'opportunity': True, 'json_data': json_data})
 
 
@@ -147,12 +147,12 @@ def FindMatch(profile):
     if is_opportunity:
         # sector and yield
         match_params = [Q(investment_sought__icontains=profile.investment_offered),
-                         Q(size_ticket_total__icontains=profile.size_ticket_total),
-                         Q(sector__sector__icontains=profile.sector.sector),
-                         Q(sub_sector__icontains=profile.sub_sector),
-                         Q(class_select__icontains=profile.class_select),
-                         Q(series_stage__icontains=profile.series_stage),
-                         Q(yield_select__label__icontains=profile.yield_select.label)
+                        Q(size_ticket_total__icontains=profile.size_ticket_total),
+                        Q(sector__sector__icontains=profile.sector.sector),
+                        Q(sub_sector__icontains=profile.sub_sector),
+                        Q(class_select__icontains=profile.class_select),
+                        Q(series_stage__icontains=profile.series_stage),
+                        Q(yield_select__label__icontains=profile.yield_select.label)
                         ]
         match_data = Mandate.objects.filter(reduce(operator.or_, match_params)).distinct()
     if is_mandate:
