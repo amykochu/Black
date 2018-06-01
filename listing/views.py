@@ -16,7 +16,7 @@ class DashboardHome(View):
     """Home dashboard"""
     def get(self, request):
 
-        result = Opportunity.objects.all().order_by('-pk')[:12]
+        result = Opportunity.objects.all().order_by('-pk')[:3]
         return render(request, 'dashboard.html', {'result': result})
 
 
@@ -51,8 +51,8 @@ class OpportunityUploadView(View):
             if json_data:
                 obj.revenue_json_data = json_data
                 obj.save()
-            # FindMatch(obj)
-            return redirect('opportunity-detail-view', obj.id)
+            match_data = FindMatch(obj)
+            return render(request, 'results.html', {'match_data': match_data})
         return render(request, 'upload.html', {'form': form, 'opportunity': True, 'json_data': json_data})
 
 
@@ -68,8 +68,8 @@ class MandateUploadView(View):
         form = MandateForm(request.POST)
         if form.is_valid():
             obj = form.save()
-            # FindMatch(obj)
-            return redirect('mandate-detail-view', obj.id)
+            match_data = FindMatch(obj)
+            return render(request, 'results.html', {'match_data': match_data})
         return render(request, 'upload.html', {'form': form})
 
 
@@ -139,30 +139,44 @@ def load_sectors(request):
 
 def FindMatch(profile):
     """ Matching Algorithm """
-    print("INSIDE MATCH   ============= ")
     match_data = None
     is_opportunity = isinstance(profile, Opportunity)
     is_mandate = isinstance(profile, Mandate)
 
     if is_opportunity:
-        # sector and yield
-        match_params = [Q(investment_sought__icontains=profile.investment_offered),
-                        Q(size_ticket_total__icontains=profile.size_ticket_total),
-                        Q(sector__sector__icontains=profile.sector.sector),
-                        Q(sub_sector__icontains=profile.sub_sector),
-                        Q(class_select__icontains=profile.class_select),
-                        Q(series_stage__icontains=profile.series_stage),
-                        Q(yield_select__label__icontains=profile.yield_select.label)
-                        ]
-        match_data = Mandate.objects.filter(reduce(operator.or_, match_params)).distinct()
+        match_data = Mandate.objects.all()
+        invest_id_list = list(profile.investment_offered.all().values_list('id', flat=True))
+        size_ticket_list = list(profile.size_ticket_total.all().values_list('id', flat=True))
+        class_select_list = list(profile.class_select.all().values_list('id', flat=True))
+        series_stage_list = list(profile.series_stage.all().values_list('id', flat=True))
+
+        yield_select_list = [profile.yield_select_id]
+        sector_list = [profile.sector_id]
+
+        d = {'investment_sought__id': invest_id_list, 'size_ticket_total__id': size_ticket_list,
+             'class_select__id': class_select_list, 'series_stage__id': series_stage_list,
+             'yield_select__id': yield_select_list, 'sector__id': sector_list}
+        for k, v in d.items():
+            for i in v:
+                d2 = {k: i}
+                match_data = match_data.filter(**d2)
+
     if is_mandate:
-        match_params = [Q(investment_offered__=profile.investment_sought),
-                         Q(size_ticket_total__icontains=profile.size_ticket_total),
-                         Q(sector__sector__icontains=profile.sector.sector),
-                         Q(sub_sector__icontains=profile.sub_sector),
-                         Q(class_select__icontains=profile.class_select),
-                         Q(series_stage__icontains=profile.series_stage),
-                         Q(yield_select__label__icontains=profile.yield_select.label)
-                        ]
-        match_data = Opportunity.objects.filter(reduce(operator.and_, match_params)).distinct()
-    return render('results.html', {'match_results': match_data})
+        match_data = Opportunity.objects.all()
+        invest_id_list = list(profile.investment_sought.all().values_list('id', flat=True))
+        size_ticket_list = list(profile.size_ticket_total.all().values_list('id', flat=True))
+        class_select_list = list(profile.class_select.all().values_list('id', flat=True))
+        series_stage_list = list(profile.series_stage.all().values_list('id', flat=True))
+
+        yield_select_list = [profile.yield_select_id]
+        sector_list = [profile.sector_id]
+
+        d = {'investment_offered__id': invest_id_list, 'size_ticket_total__id': size_ticket_list,
+             'class_select__id': class_select_list, 'series_stage__id': series_stage_list,
+             'yield_select__id': yield_select_list, 'sector__id': sector_list}
+        for k, v in d.items():
+            for i in v:
+                d2 = {k: i}
+                match_data = match_data.filter(**d2)
+    return match_data
+    # return render(request, 'results.html', {'match_data': match_data})

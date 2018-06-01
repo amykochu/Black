@@ -236,6 +236,16 @@ span.nav-item
 .o-hidden {
   overflow: hidden !important;
   border-radius: 0px!important;
+  position: relative;
+}
+.gotoUrl
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
 }
 .heading-h1
 {
@@ -311,6 +321,10 @@ span.nav-item
   position: absolute;
   right: 25%;
 }
+.col-xl-4.col-sm-6
+{
+  max-width: 325px;
+}
 .selectize-input:after
    {
     content: ' ';
@@ -379,16 +393,24 @@ span.nav-item
 .wid-specs
 {
   float: left;
-  width: 100%;
+  width: 45%;
   margin-bottom: 10px;
+  margin-right: 5%;
+}
+.widget-specs
+{
+  float: left;
+  width: 100%;
+  margin-top: 15px;
 }
 .wid-specs label
 {
   float: left;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   font-weight: normal;
+  margin-bottom: 10px;
 }
 .z-0 {
   z-index: 0;
