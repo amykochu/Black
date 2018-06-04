@@ -16,30 +16,30 @@ class DashboardHome(View):
     """Home dashboard"""
     def get(self, request):
 
-        result = Opportunity.objects.all().order_by('-pk')[:3]
+        result = Opportunity.objects.all().order_by('-pk')
         return render(request, 'dashboard.html', {'result': result, 'dashboard': True})
 
 
-class AllOpportunity(View):
-    """" """
-    def get(self, request):
+# class AllOpportunity(View):
+#     """" """
+#     def get(self, request):
+#
+#         result = Opportunity.objects.all().order_by('-pk')[:6]
+#         return render(request, 'dashboard.html', {'result': result, 'opportunity': True})
 
-        result = Opportunity.objects.all().order_by('-pk')[:6]
-        return render(request, 'dashboard.html', {'result': result, 'opportunity': True})
 
-
-class AllMandate(View):
-    """ """
-    def get(self, request):
-        result = Mandate.objects.all().order_by('-pk')[:6]
-        return render(request, 'dashboard.html', {'result': result, 'mandate': True})
+# class AllMandate(View):
+#     """ """
+#     def get(self, request):
+#         result = Mandate.objects.all().order_by('-pk')[:6]
+#         return render(request, 'dashboard.html', {'result': result, 'mandate': True})
 
 
 def save_re(data):
     """ To save High Level Financial's"""
 
     labels = ["Revenue", "Costs", "EBITDA", "CAPEX", "Net_Profit"]
-    years = ["2015A", "2016A", "2017A", "2018E", "2019E"]
+    years = ["2015A", "2016A", "2017A", "2018E", "2019E", "2020E"]
     json_data = {}
     for label in labels:
         for yr in years:
@@ -67,7 +67,8 @@ class OpportunityUploadView(View):
                 obj.revenue_json_data = json_data
                 obj.save()
             match_data = FindMatch(obj)
-            return render(request, 'results.html', {'match_data': match_data})
+            # return render(request, 'results.html', {'match_data': match_data})
+            return redirect('/')
         return render(request, 'upload.html', {'form': form, 'opportunity': True, 'json_data': json_data})
 
 
@@ -76,7 +77,7 @@ class MandateUploadView(View):
 
     def get(self, request):
 
-        return render(request, 'upload.html', {'form': MandateForm()})
+        return render(request, 'upload.html', {'form': MandateForm(), 'mandate': True})
 
     def post(self, request):
 
@@ -85,7 +86,7 @@ class MandateUploadView(View):
             obj = form.save()
             match_data = FindMatch(obj)
             return render(request, 'results.html', {'match_data': match_data})
-        return render(request, 'upload.html', {'form': form})
+        return render(request, 'upload.html', {'form': form, 'mandate': True})
 
 
 class SearchView(View):

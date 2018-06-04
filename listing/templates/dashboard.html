@@ -5,7 +5,6 @@
 
       <!-- Icon Cards-->
     <div class="row">
-      {% if dashboard %}
        <h1 class="col-md-12 heading-h1">Refine</h1>
        <div class="col-md-12 refines">
          <button>Total ticket size available</button>
@@ -20,21 +19,20 @@
     <div class="row">
       <div class="col-md-12">
         <div class="grid"><img src="{% static '/listing/images/opprtunity-dashboard.png' %}">
-         <!--<p>45 matched opportunities to your investment mandate, with an average match quality of 87%</p>-->
+         <p>{{ result.count }} matched opportunities to your investment mandate.</p>
         </div>
       </div>
       
     </div>
-      {% endif %}
 
 
         	<div class="row">
             {% if opportunity or dashboard %}
             <h1 class="col-md-12 heading-h1">Latest Opportunities</h1>
             {% endif %}
-            {% if mandate %}
-            <h1 class="col-md-12 heading-h1">Latest Mandates</h1>
-            {% endif %}
+            <!--{% if mandate %}-->
+            <!--<h1 class="col-md-12 heading-h1">Latest Mandates</h1>-->
+            <!--{% endif %}-->
             {% for i in result %}
             {% include "widget.html" %}
             {% endfor %}
