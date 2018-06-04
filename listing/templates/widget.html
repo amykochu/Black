@@ -21,7 +21,7 @@
         <label>Yield : {{ i.yield_select }} </label>
         <label>Investment Type: {% for m in i.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         <label>Series/Stage:{% for m in i.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
-        <label>Class: {% for m in i.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
+        <label>Asset Class: {% for m in i.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         </div>
         {% for m in i.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
 

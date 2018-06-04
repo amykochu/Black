@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
         	<div class="row">
@@ -7,6 +8,11 @@
 			            <div class="card-body">
 							<form action="" method="post" class="listing" enctype="multipart/form-data">
 							    {% csrf_token %}
+								{% if opportunity %}
+								<h4>Fund Seeker Opportunity Upload</h4>
+								{% elif mandate %}
+								<h4>Investor Mandate Upload</h4>
+								{% endif %}
 							    {{ form.as_p }}
 								{% if opportunity %}
 								<label>High Level Financial's</label>
@@ -36,7 +42,6 @@
         },
         success: function (response) {   // `data` is the return of the `load_cities` view function
         $("#id_country").empty();
-        $("#id_country").append('<option value=""> -- Select All -- </option>');
  		  for(var i=0;i<response.data.length;i++){
  		  $("#id_country").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['country'] + '</option>');
  		  }
@@ -60,7 +65,6 @@
         },
         success: function (response) {   // `data` is the return of the `load_cities` view function
         $("#id_sub_sector").empty();
-        $("#id_sub_sector").append('<option value=""> -- Select All --</option>');
  		  for(var i=0;i<response.data.length;i++){
  		  $("#id_sub_sector").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['sub_sector'] + '</option>');
  		  }
@@ -75,9 +79,9 @@
 	});
   </script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.css"/>
-<script type="text/javascript">
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.css"/> -->
+<!-- <script type="text/javascript">
   $('select').selectize({
 plugins: ['remove_button']
 });
@@ -138,6 +142,29 @@ plugins: ['remove_button']
     // });
 
   });
+</script> -->
+<link rel="stylesheet" href="{% static '/listing/css/bootstrap-multiselect.css' %}">
+            <script type="text/javascript" src="{% static '/listing/js/bootstrap-multiselect.js' %}"></script>
+            <script type="text/javascript">
+$(document).ready(function() {
+$('select').multiselect({includeSelectAllOption: true});
+});
+ $("#id_country").parent("p").addClass("country");
+ $("#id_sub_sector").parent("p").addClass("sub_sector");
+    $("#id_geography").change(function()
+    {
+      setTimeout(function()
+      {
+        $("#id_country").multiselect('rebuild');
+      },1000);
+     $("#id_sector").change(function()
+    {
+      setTimeout(function()
+      {
+         $("#id_sub_sector").multiselect('rebuild');
+      },1000);
+    });
+    });
 </script>
 {% endblock %}
 

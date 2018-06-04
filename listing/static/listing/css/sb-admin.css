@@ -397,6 +397,34 @@ span.nav-item
   margin-bottom: 10px;
   margin-right: 5%;
 }
+.listing p button.multiselect
+{
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  width: 100%!important;
+  text-align: left;
+  outline: none;
+}
+.listing p .dropdown-toggle::after
+{
+  position: absolute;
+  right: 10px;
+  top:18px;
+}
+.listing p .btn-group
+{
+  width: 100%!important;
+}
+.listing p .btn-group input[type="radio"]
+{
+  display: none;
+}
+.listing p .multiselect-container
+{
+  width: 100%;
+  padding: 10px;
+}
 .widget-specs
 {
   float: left;
