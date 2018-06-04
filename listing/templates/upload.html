@@ -147,7 +147,7 @@ plugins: ['remove_button']
             <script type="text/javascript" src="{% static '/listing/js/bootstrap-multiselect.js' %}"></script>
             <script type="text/javascript">
 $(document).ready(function() {
-$('select').multiselect({includeSelectAllOption: true});
+$('select').multiselect();
 });
  $("#id_country").parent("p").addClass("country");
  $("#id_sub_sector").parent("p").addClass("sub_sector");
