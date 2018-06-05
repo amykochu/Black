@@ -5,13 +5,13 @@
         	<div class="row">
 		        <div class="col-xl-6	 col-sm-8 mb-3">
 		          <div class="text-dark bg-white o-hidden h-100">
-			            <div class="card-body">
+
 							<form action="" method="post" class="listing" enctype="multipart/form-data">
 							    {% csrf_token %}
 								{% if opportunity %}
-								<h4>Fund Seeker Opportunity Upload</h4>
+								<h4 class="heading-h1">Fund Seeker Opportunity Upload</h4>
 								{% elif mandate %}
-								<h4>Investor Mandate Upload</h4>
+								<h4 class="heading-h1">Investor Mandate Upload</h4>
 								{% endif %}
 							    {{ form.as_p }}
 								{% if opportunity %}
@@ -23,7 +23,7 @@
                   </div>
 							</form>
 						</div>
-					</div>
+
 				</div>
 
 
@@ -147,8 +147,12 @@ plugins: ['remove_button']
             <script type="text/javascript" src="{% static '/listing/js/bootstrap-multiselect.js' %}"></script>
             <script type="text/javascript">
 $(document).ready(function() {
-$('select').multiselect();
+$('select').multiselect({
+  includeSelectAllOption: true,
+  selectAllValue: '0',
+  nonSelectedText: '---------',});
 });
+
  $("#id_country").parent("p").addClass("country");
  $("#id_sub_sector").parent("p").addClass("sub_sector");
     $("#id_geography").change(function()
