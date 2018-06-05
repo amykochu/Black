@@ -110,7 +110,8 @@ def remove_zero(post_data, field):
     """ Method to remove 0 from many2many - select all"""
 
     field_list = post_data.getlist(field)
-    field_list.remove('0')
+    if '0' in field_list:
+        field_list.remove('0')
     return field_list[0]
 
 
