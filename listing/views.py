@@ -60,7 +60,6 @@ class OpportunityUploadView(View):
     def post(self, request):
 
         post_data = request.POST.copy()
-        print("PPPPPPP ======   ", post_data)
         json_data = save_re(request.POST)
         post_data['est_payback'] = remove_zero(post_data, 'est_payback')
         post_data['size_ticket_total'] = remove_zero(post_data, 'size_ticket_total')
@@ -70,7 +69,6 @@ class OpportunityUploadView(View):
         post_data['series_stage'] = remove_zero(post_data, 'series_stage')
         post_data['investment_offered'] = remove_zero(post_data, 'investment_offered')
         post_data['offer'] = remove_zero(post_data, 'offer')
-        print("============    ==========      ", post_data)
         form = OpportunityForm(post_data, request.FILES)
         if form.is_valid():
             obj = form.save()
