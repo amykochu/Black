@@ -59,14 +59,25 @@ class OpportunityUploadView(View):
 
     def post(self, request):
 
+        post_data = request.POST.copy()
+        print("PPPPPPP ======   ", post_data)
         json_data = save_re(request.POST)
-        form = OpportunityForm(request.POST, request.FILES)
+        post_data['est_payback'] = remove_zero(post_data, 'est_payback')
+        post_data['size_ticket_total'] = remove_zero(post_data, 'size_ticket_total')
+        post_data['country'] = remove_zero(post_data, 'country')
+        post_data['sub_sector'] = remove_zero(post_data, 'sub_sector')
+        post_data['class_select'] = remove_zero(post_data, 'class_select')
+        post_data['series_stage'] = remove_zero(post_data, 'series_stage')
+        post_data['investment_offered'] = remove_zero(post_data, 'investment_offered')
+        post_data['offer'] = remove_zero(post_data, 'offer')
+        print("============    ==========      ", post_data)
+        form = OpportunityForm(post_data, request.FILES)
         if form.is_valid():
             obj = form.save()
             if json_data:
                 obj.revenue_json_data = json_data
                 obj.save()
-            match_data = FindMatch(obj)
+            # match_data = FindMatch(obj)
             # return render(request, 'results.html', {'match_data': match_data})
             return redirect('/')
         return render(request, 'upload.html', {'form': form, 'opportunity': True, 'json_data': json_data})
@@ -81,12 +92,28 @@ class MandateUploadView(View):
 
     def post(self, request):
 
-        form = MandateForm(request.POST)
+        post_data = request.POST.copy()
+        post_data['investment_sought'] = remove_zero(post_data, 'investment_sought')
+        post_data['fund_size'] = remove_zero(post_data, 'fund_size')
+        post_data['size_ticket_total'] = remove_zero(post_data, 'size_ticket_total')
+        post_data['country'] = remove_zero(post_data, 'country')
+        post_data['sub_sector'] = remove_zero(post_data, 'sub_sector')
+        post_data['class_select'] = remove_zero(post_data, 'class_select')
+        post_data['series_stage'] = remove_zero(post_data, 'series_stage')
+        form = MandateForm(post_data)
         if form.is_valid():
             obj = form.save()
             match_data = FindMatch(obj)
             return render(request, 'results.html', {'match_data': match_data})
         return render(request, 'upload.html', {'form': form, 'mandate': True})
+
+
+def remove_zero(post_data, field):
+    """ Method to remove 0 from many2many - select all"""
+
+    field_list = post_data.getlist(field)
+    field_list.remove('0')
+    return field_list[0]
 
 
 class SearchView(View):
