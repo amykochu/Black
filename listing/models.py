@@ -226,7 +226,7 @@ class Mandate(models.Model):
     growth_expectation_year1 = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Minimum earnings growth required (%, FY1)', blank=True, null=True)
     growth_expectation_year2 = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Minimum earnings growth required (%, FY2)', blank=True, null=True)
     growth_expectation_year3 = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Minimum earnings growth required (%, FY3)', blank=True, null=True)
-    class_select = models.ManyToManyField(Class, verbose_name='Assert class')
+    class_select = models.ManyToManyField(Class, verbose_name='Asset class')
     series_stage = models.ManyToManyField(SeriesStage, verbose_name='Series/stage of investment sought')
     investor_required = models.ForeignKey(InvestorSpecial, on_delete=models.CASCADE, verbose_name='Lead Investor required in place', null=True)
     created_on = models.DateTimeField(auto_now_add=True)
