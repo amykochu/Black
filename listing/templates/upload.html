@@ -57,8 +57,38 @@ function loadCountry(geographyId, country_selected){
 }
 
 
+
+
+function loadSector(sectorId, sector_selected){
+      var url = '/ajax/load-sector/';  // get the url of the `load_cities` view
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'sector': sectorId       // add the country id to the GET parameters
+        },
+        success: function (response) {   // `data` is the return of the `load_cities` view function
+
+
+
+
+		  $("#id_sub_sector").append(`<optgroup label=${response.sector}> ${response.sector} </optgroup>`)
+		  for(var i=0;i<response.data.length;i++){
+		  $("#id_sub_sector").append(
+		  `<option value= ${response.data[i]['id']} sub_sector_name= ${response.data[i]['sub_sector']} > ${response.data[i]['sub_sector']} </option>
+		  </optgroup>`);
+
+ 		  }
+
+        }
+      });
+}
+
+
+
   $("#id_country").empty();
   $("#id_sub_sector").empty();
+
 
     $("#id_geography").change(function () {
           $("#id_country").find("option").remove()
@@ -79,27 +109,39 @@ function loadCountry(geographyId, country_selected){
 
 
     $("#id_sector").change(function () {
-      var url = '/ajax/load-sector/';  // get the url of the `load_cities` view
+          $("#id_sub_sector").find("option").remove()
+          $("#id_sub_sector").find("optgroup").remove()
+	  var sector_selected = $("option:selected:last",this).text();
       var sectorId = $(this).val();  // get the selected country ID from the HTML input
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-        data: {
-          'sector': sectorId       // add the country id to the GET parameters
-        },
-        success: function (response) {   // `data` is the return of the `load_cities` view function
-        $("#id_sub_sector").empty();
- 		  for(var i=0;i<response.data.length;i++){
- 		  $("#id_sub_sector").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['sub_sector'] + '</option>');
- 		  }
-        }
-      });
-    });
+      console.log(sectorId)
+      for (i=0; i<sectorId.length; i++){
+          loadSector(sectorId[i], sector_selected)
+      }
+	});
+
 
 	$("#id_sub_sector").change(function () {
 	  if($(this).val()=='') {
 	    $("#id_sub_sector option").prop("selected", "selected");
 	  }
 	});
+
+    <!--$("#id_sector").change(function () {-->
+      <!--var url = '/ajax/load-sector/';  // get the url of the `load_cities` view-->
+      <!--var sectorId = $(this).val();  // get the selected country ID from the HTML input-->
+      <!--$.ajax({                       // initialize an AJAX request-->
+        <!--url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)-->
+        <!--data: {-->
+          <!--'sector': sectorId       // add the country id to the GET parameters-->
+        <!--},-->
+        <!--success: function (response) {   // `data` is the return of the `load_cities` view function-->
+        <!--$("#id_sub_sector").empty();-->
+ 		  <!--for(var i=0;i<response.data.length;i++){-->
+ 		  <!--$("#id_sub_sector").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['sub_sector'] + '</option>');-->
+ 		  <!--}-->
+        <!--}-->
+      <!--});-->
+    <!--});-->
   </script>
 
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.js"></script>

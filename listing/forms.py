@@ -19,7 +19,7 @@ class OpportunityForm(forms.ModelForm):
                   'amount_weraise', 'investment_offered', 'offer', 'special_situation', 'financials', 'estimated_irr',
                   'exit_timing', 'use_of_funds', 'deadline_commitment', 'deadline_legal', 'proposed_process',
                   'proposed_exit', 'financial_statements', 'financial_model', 'investor_deck', 'company_bio',
-                  'ceo_bio')
+                  'ceo_bio',)
         # exclude = ('revenue_json_data', )
 
 
