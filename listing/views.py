@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 
 from listing.forms import OpportunityForm, MandateForm, OpportunitySearchForm
-from listing.models import Mandate, Opportunity, Country, SubSector
+from listing.models import Mandate, Opportunity, Country, SubSector, Geography
 
 
 class DashboardHome(View):
@@ -101,8 +101,9 @@ class MandateUploadView(View):
         form = MandateForm(post_data)
         if form.is_valid():
             obj = form.save()
-            match_data = FindMatch(obj)
-            return render(request, 'results.html', {'match_data': match_data})
+            return redirect('/')
+            # match_data = FindMatch(obj)
+            # return render(request, 'results.html', {'match_data': match_data})
         return render(request, 'upload.html', {'form': form, 'mandate': True})
 
 
@@ -166,15 +167,16 @@ class MandateDetailView(DetailView):
 def load_cities(request):
     """ Api to load cities wrt Geography """
 
-    geography_id = request.GET.get('geography')
-    cities = Country.objects.filter(continent_id=geography_id).values('id', 'country').order_by('country')
-    return JsonResponse({'data': list(cities)})
+    geo_id = request.GET.get('geography')
+    cities = Country.objects.filter(continent_id=geo_id).values('id', 'country').order_by('continent')
+    continent = Geography.objects.get(pk=geo_id).continent
+    return JsonResponse({'data': list(cities), 'continent': continent})
 
 
 def load_sectors(request):
     """ Api to load sub sectors wrt Sector """
 
-    sector_id = request.GET.get('sector')
+    sector_id = request.GET.get('sector[]')
     sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sub_sector')
     return JsonResponse({'data': list(sub_sectors)})
 

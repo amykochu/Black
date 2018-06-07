@@ -216,10 +216,10 @@ class Mandate(models.Model):
                                                related_name='mandate_size_ticket')
     percentage_company = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='% of company/fund can purchase/hold (min - max)')
     #
-    geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
+    # geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
     country = models.ManyToManyField(Country)
     #
-    sector = models.ForeignKey(Sector,on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
+    # sector = models.ForeignKey(Sector,on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
     sub_sector = models.ManyToManyField(SubSector, verbose_name='Sub Sector')
     yield_select = models.ForeignKey(Yield, on_delete=models.CASCADE, verbose_name='Yield', null=True)
     #

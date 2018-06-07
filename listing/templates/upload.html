@@ -29,31 +29,54 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
-  $("#id_country").empty();
-  $("#id_sub_sector").empty();
 
-    $("#id_geography").change(function () {
+function loadCountry(geographyId, country_selected){
       var url = '/ajax/load-geography/';  // get the url of the `load_cities` view
-      var geographyId = $(this).val();  // get the selected country ID from the HTML input
+
       $.ajax({                       // initialize an AJAX request
         url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
         data: {
           'geography': geographyId       // add the country id to the GET parameters
         },
         success: function (response) {   // `data` is the return of the `load_cities` view function
-        $("#id_country").empty();
- 		  for(var i=0;i<response.data.length;i++){
- 		  $("#id_country").append('<option value=' + response.data[i]['id'] + '>' + response.data[i]['country'] + '</option>');
+        <!--$("#id_country").empty();-->
+
+
+
+
+		  $("#id_country").append(`<optgroup label=${response.continent}> ${response.continent} </optgroup>`)
+		  for(var i=0;i<response.data.length;i++){
+		  $("#id_country").append(
+		  `<option value= ${response.data[i]['id']} country_name= ${response.data[i]['country']} > ${response.data[i]['country']} </option>
+		  </optgroup>`);
+
  		  }
+
         }
       });
-    });
+}
+
+
+  $("#id_country").empty();
+  $("#id_sub_sector").empty();
+
+    $("#id_geography").change(function () {
+          $("#id_country").find("option").remove()
+          $("#id_country").find("optgroup").remove()
+	  var country_selected = $("option:selected:last",this).text();
+      var geographyId = $(this).val();  // get the selected country ID from the HTML input
+      console.log(geographyId)
+      for (i=0; i<geographyId.length; i++){
+          loadCountry(geographyId[i], country_selected)
+      }
+	});
 
 	$("#id_country").change(function () {
 	  if($(this).val()=='') {
 	    $("#id_country option").prop("selected", "selected");
 	  }
 	});
+
 
     $("#id_sector").change(function () {
       var url = '/ajax/load-sector/';  // get the url of the `load_cities` view
@@ -159,7 +182,10 @@ $('select').multiselect({
     {
       setTimeout(function()
       {
-        $("#id_country").multiselect('rebuild');
+        $("#id_country").multiselect('rebuild',
+        {
+
+         });
       },1000);
      $("#id_sector").change(function()
     {
