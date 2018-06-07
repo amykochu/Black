@@ -424,6 +424,8 @@ span.nav-item
 {
   width: 100%;
   padding: 10px;
+   max-height: 170px;
+    overflow-y: auto;
 }
 .widget-specs
 {
