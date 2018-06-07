@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 
 from listing.forms import OpportunityForm, MandateForm, OpportunitySearchForm
-from listing.models import Mandate, Opportunity, Country, SubSector, Geography
+from listing.models import Mandate, Opportunity, Country, SubSector, Geography, Sector
 
 
 class DashboardHome(View):
@@ -175,10 +175,10 @@ def load_cities(request):
 
 def load_sectors(request):
     """ Api to load sub sectors wrt Sector """
-
-    sector_id = request.GET.get('sector[]')
-    sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sub_sector')
-    return JsonResponse({'data': list(sub_sectors)})
+    sector_id = request.GET.get('sector')
+    sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sector')
+    sector = Sector.objects.get(pk=sector_id).sector
+    return JsonResponse({'data': list(sub_sectors), 'sector': sector})
 
 
 def FindMatch(profile):
