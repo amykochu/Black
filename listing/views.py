@@ -63,7 +63,9 @@ class OpportunityUploadView(View):
         json_data = save_re(request.POST)
         post_data['est_payback'] = remove_zero(post_data, 'est_payback')
         post_data['size_ticket_total'] = remove_zero(post_data, 'size_ticket_total')
+        post_data['geography'] = remove_zero(post_data, 'geography')
         post_data['country'] = remove_zero(post_data, 'country')
+        post_data['sector'] = remove_zero(post_data, 'sector')
         post_data['sub_sector'] = remove_zero(post_data, 'sub_sector')
         post_data['class_select'] = remove_zero(post_data, 'class_select')
         post_data['series_stage'] = remove_zero(post_data, 'series_stage')
@@ -91,13 +93,15 @@ class MandateUploadView(View):
     def post(self, request):
 
         post_data = request.POST.copy()
-        post_data['investment_sought'] = remove_zero(post_data, 'investment_sought')
-        post_data['fund_size'] = remove_zero(post_data, 'fund_size')
-        post_data['size_ticket_total'] = remove_zero(post_data, 'size_ticket_total')
-        post_data['country'] = remove_zero(post_data, 'country')
-        post_data['sub_sector'] = remove_zero(post_data, 'sub_sector')
-        post_data['class_select'] = remove_zero(post_data, 'class_select')
-        post_data['series_stage'] = remove_zero(post_data, 'series_stage')
+        post_data.setlist('investment_sought', remove_zero(post_data, 'investment_sought'))
+        post_data.setlist('fund_size', remove_zero(post_data, 'fund_size'))
+        post_data.setlist('size_ticket_total', remove_zero(post_data, 'size_ticket_total'))
+        post_data.setlist('geography', remove_zero(post_data, 'geography'))
+        post_data.setlist('country', remove_zero(post_data, 'country'))
+        post_data.setlist('sector', remove_zero(post_data, 'sector'))
+        post_data.setlist('sub_sector', remove_zero(post_data, 'sub_sector'))
+        post_data.setlist('class_select', remove_zero(post_data, 'class_select'))
+        post_data.setlist('series_stage', remove_zero(post_data, 'series_stage'))
         form = MandateForm(post_data)
         if form.is_valid():
             obj = form.save()
@@ -113,7 +117,7 @@ def remove_zero(post_data, field):
     field_list = post_data.getlist(field)
     if '0' in field_list:
         field_list.remove('0')
-    return field_list[0]
+    return field_list
 
 
 class SearchView(View):
@@ -212,8 +216,9 @@ def FindMatch(profile):
         class_select_list = list(profile.class_select.all().values_list('id', flat=True))
         series_stage_list = list(profile.series_stage.all().values_list('id', flat=True))
 
+        sector_list = list(profile.sector.all().values_list('id', flat=True))
         yield_select_list = [profile.yield_select_id]
-        sector_list = [profile.sector_id]
+        # sector_list = [profile.sector_id]
 
         d = {'investment_offered__id': invest_id_list, 'size_ticket_total__id': size_ticket_list,
              'class_select__id': class_select_list, 'series_stage__id': series_stage_list,
