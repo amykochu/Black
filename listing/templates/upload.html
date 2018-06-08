@@ -95,8 +95,12 @@ function loadSector(sectorId, sector_selected){
           $("#id_country").find("optgroup").remove()
 	  var country_selected = $("option:selected:last",this).text();
       var geographyId = $(this).val();  // get the selected country ID from the HTML input
-      console.log(geographyId)
-      for (i=1; i<geographyId.length; i++){
+	  var index = geographyId.indexOf('0');
+	  if (index > -1) {
+ 		geographyId.splice(index, 1);
+	  }
+	  console.log(geographyId)
+      for (i=0; i<geographyId.length; i++){
           loadCountry(geographyId[i], country_selected)
       }
 	});
@@ -113,8 +117,12 @@ function loadSector(sectorId, sector_selected){
           $("#id_sub_sector").find("optgroup").remove()
 	  var sector_selected = $("option:selected:last",this).text();
       var sectorId = $(this).val();  // get the selected country ID from the HTML input
-      console.log(sectorId)
-      for (i=1; i<sectorId.length; i++){
+      var index = sectorId.indexOf('0')
+      if (index > -1) {
+        sectorId.splice(index, 1);
+      }
+	  console.log(sectorId)
+      for (i=0; i<sectorId.length; i++){
           loadSector(sectorId[i], sector_selected)
       }
 	});
