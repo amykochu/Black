@@ -96,7 +96,7 @@ function loadSector(sectorId, sector_selected){
 	  var country_selected = $("option:selected:last",this).text();
       var geographyId = $(this).val();  // get the selected country ID from the HTML input
       console.log(geographyId)
-      for (i=0; i<geographyId.length; i++){
+      for (i=1; i<geographyId.length; i++){
           loadCountry(geographyId[i], country_selected)
       }
 	});
@@ -114,7 +114,7 @@ function loadSector(sectorId, sector_selected){
 	  var sector_selected = $("option:selected:last",this).text();
       var sectorId = $(this).val();  // get the selected country ID from the HTML input
       console.log(sectorId)
-      for (i=0; i<sectorId.length; i++){
+      for (i=1; i<sectorId.length; i++){
           loadSector(sectorId[i], sector_selected)
       }
 	});
