@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.DashboardHome.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('opportunity-upload/', views.OpportunityUploadView.as_view(), name='upload'),
-    path('search/', views.SearchView.as_view(), name='search'),
+    # path('search/', views.SearchView.as_view(), name='search'),
     path('opportunity-detail/<int:pk>/', views.OpportunityDetailView.as_view(), name='opportunity-detail-view'),
     # path('mandate-detail/<int:pk>/', views.MandateDetailView.as_view(), name='mandate-detail-view'),
     path('mandate-upload/', views.MandateUploadView.as_view(), name='mandate_upload'),

@@ -8,7 +8,7 @@ from django.views.generic import DetailView
 from django.http import JsonResponse
 
 
-from listing.forms import OpportunityForm, MandateForm, OpportunitySearchForm
+from listing.forms import OpportunityForm, MandateForm
 from listing.models import Mandate, Opportunity, Country, SubSector, Geography, Sector
 
 
@@ -61,16 +61,17 @@ class OpportunityUploadView(View):
 
         post_data = request.POST.copy()
         json_data = save_re(request.POST)
-        post_data['est_payback'] = remove_zero(post_data, 'est_payback')
-        post_data['size_ticket_total'] = remove_zero(post_data, 'size_ticket_total')
-        post_data['geography'] = remove_zero(post_data, 'geography')
-        post_data['country'] = remove_zero(post_data, 'country')
-        post_data['sector'] = remove_zero(post_data, 'sector')
-        post_data['sub_sector'] = remove_zero(post_data, 'sub_sector')
-        post_data['class_select'] = remove_zero(post_data, 'class_select')
-        post_data['series_stage'] = remove_zero(post_data, 'series_stage')
-        post_data['investment_offered'] = remove_zero(post_data, 'investment_offered')
-        post_data['offer'] = remove_zero(post_data, 'offer')
+        post_data.setlist('est_payback', remove_zero(post_data, 'est_payback'))
+        post_data.setlist('offer', remove_zero(post_data, 'offer'))
+        post_data.setlist('investment_sought', remove_zero(post_data, 'investment_sought'))
+        post_data.setlist('fund_size', remove_zero(post_data, 'fund_size'))
+        post_data.setlist('size_ticket_total', remove_zero(post_data, 'size_ticket_total'))
+        post_data.setlist('geography', remove_zero(post_data, 'geography'))
+        post_data.setlist('country', remove_zero(post_data, 'country'))
+        post_data.setlist('sector', remove_zero(post_data, 'sector'))
+        post_data.setlist('sub_sector', remove_zero(post_data, 'sub_sector'))
+        post_data.setlist('class_select', remove_zero(post_data, 'class_select'))
+        post_data.setlist('series_stage', remove_zero(post_data, 'series_stage'))
         form = OpportunityForm(post_data, request.FILES)
         if form.is_valid():
             obj = form.save()
@@ -120,36 +121,36 @@ def remove_zero(post_data, field):
     return field_list
 
 
-class SearchView(View):
-    """ Search page view """
-
-    def get(self, request):
-
-        search_result = None
-        search_key = request.GET.get('search_key', '')
-        search_params = OpportunitySearchForm(request.GET)
-        if search_params.is_valid():
-            geography = search_params.cleaned_data['geography']
-            country = search_params.cleaned_data['country']
-            sector = search_params.cleaned_data['sector']
-            sub_sector = search_params.cleaned_data['sub_sector']
-            yield_select = search_params.cleaned_data['yield_select']
-            size_ticket_total = search_params.cleaned_data['size_ticket_total']
-            return_estimate = search_params.cleaned_data['return_estimate']
-            class_select = search_params.cleaned_data['class_select']
-
-            # print("geography  === ", geography)
-            # param_lis = [Q(widget7__icontains=widget7),
-            #              Q(widget10__icontains=widget10),
-            #              Q(widget11__icontains=widget11),
-            #              Q(widget12__icontains=widget12),
-            #              Q(widget15__icontains=widget15)]
-            # search_result = Opportunity.objects.filter(reduce(operator.and_, param_lis))
-        if search_key:
-            print("SE KEY", search_key)
-            search_result = Opportunity.objects.filter(Q(company_description__icontains=search_key) |
-                                                       Q()).distinct()
-        return render(request, 'search_page.html', {'result': search_result, 'form': OpportunitySearchForm})
+# class SearchView(View):
+#     """ Search page view """
+#
+#     def get(self, request):
+#
+#         search_result = None
+#         search_key = request.GET.get('search_key', '')
+#         search_params = OpportunitySearchForm(request.GET)
+#         if search_params.is_valid():
+#             geography = search_params.cleaned_data['geography']
+#             country = search_params.cleaned_data['country']
+#             sector = search_params.cleaned_data['sector']
+#             sub_sector = search_params.cleaned_data['sub_sector']
+#             yield_select = search_params.cleaned_data['yield_select']
+#             size_ticket_total = search_params.cleaned_data['size_ticket_total']
+#             return_estimate = search_params.cleaned_data['return_estimate']
+#             class_select = search_params.cleaned_data['class_select']
+#
+#             # print("geography  === ", geography)
+#             # param_lis = [Q(widget7__icontains=widget7),
+#             #              Q(widget10__icontains=widget10),
+#             #              Q(widget11__icontains=widget11),
+#             #              Q(widget12__icontains=widget12),
+#             #              Q(widget15__icontains=widget15)]
+#             # search_result = Opportunity.objects.filter(reduce(operator.and_, param_lis))
+#         if search_key:
+#             print("SE KEY", search_key)
+#             search_result = Opportunity.objects.filter(Q(company_description__icontains=search_key) |
+#                                                        Q()).distinct()
+#         return render(request, 'search_page.html', {'result': search_result, 'form': OpportunitySearchForm})
 
 
 class OpportunityDetailView(DetailView):
@@ -191,23 +192,23 @@ def FindMatch(profile):
     is_opportunity = isinstance(profile, Opportunity)
     is_mandate = isinstance(profile, Mandate)
 
-    if is_opportunity:
-        match_data = Mandate.objects.all()
-        invest_id_list = list(profile.investment_offered.all().values_list('id', flat=True))
-        size_ticket_list = list(profile.size_ticket_total.all().values_list('id', flat=True))
-        class_select_list = list(profile.class_select.all().values_list('id', flat=True))
-        series_stage_list = list(profile.series_stage.all().values_list('id', flat=True))
-
-        yield_select_list = [profile.yield_select_id]
-        sector_list = [profile.sector_id]
-
-        d = {'investment_sought__id': invest_id_list, 'size_ticket_total__id': size_ticket_list,
-             'class_select__id': class_select_list, 'series_stage__id': series_stage_list,
-             'yield_select__id': yield_select_list, 'sector__id': sector_list}
-        for k, v in d.items():
-            for i in v:
-                d2 = {k: i}
-                match_data = match_data.filter(**d2)
+    # if is_opportunity:
+    #     match_data = Mandate.objects.all()
+    #     invest_id_list = list(profile.investment_offered.all().values_list('id', flat=True))
+    #     size_ticket_list = list(profile.size_ticket_total.all().values_list('id', flat=True))
+    #     class_select_list = list(profile.class_select.all().values_list('id', flat=True))
+    #     series_stage_list = list(profile.series_stage.all().values_list('id', flat=True))
+    #
+    #     yield_select_list = [profile.yield_select_id]
+    #     sector_list = [profile.sector_id]
+    #
+    #     d = {'investment_sought__id': invest_id_list, 'size_ticket_total__id': size_ticket_list,
+    #          'class_select__id': class_select_list, 'series_stage__id': series_stage_list,
+    #          'yield_select__id': yield_select_list, 'sector__id': sector_list}
+    #     for k, v in d.items():
+    #         for i in v:
+    #             d2 = {k: i}
+    #             match_data = match_data.filter(**d2)
 
     if is_mandate:
         match_data = Opportunity.objects.all()
@@ -216,13 +217,14 @@ def FindMatch(profile):
         class_select_list = list(profile.class_select.all().values_list('id', flat=True))
         series_stage_list = list(profile.series_stage.all().values_list('id', flat=True))
 
-        sector_list = list(profile.sector.all().values_list('id', flat=True))
+        # sector_list = list(profile.sector.all().values_list('id', flat=True))
         yield_select_list = [profile.yield_select_id]
         # sector_list = [profile.sector_id]
 
         d = {'investment_offered__id': invest_id_list, 'size_ticket_total__id': size_ticket_list,
              'class_select__id': class_select_list, 'series_stage__id': series_stage_list,
-             'yield_select__id': yield_select_list, 'sector__id': sector_list}
+             'yield_select__id': yield_select_list, }
+        # 'sector__id': sector_list}
         for k, v in d.items():
             for i in v:
                 d2 = {k: i}

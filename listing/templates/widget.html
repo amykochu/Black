@@ -15,7 +15,7 @@
         <div class="wid-details">
       <h2>{{ i.company_description }}</h2>
       <h5>{{ i.valuation }}</h5>
-      <span>{{ i.geography }}, {% for m in i.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
+      <span>{% for m in i.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
       <p>{{ i.company_description }}</p>
       <div class="wid-specs">
         <label>Yield : {{ i.yield_select }} </label>
