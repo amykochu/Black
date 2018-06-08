@@ -158,10 +158,10 @@ class Opportunity(models.Model):
     size_ticket_total = models.ManyToManyField(ValuationFundTicket, verbose_name='Size ticket input',
                                                related_name='opportunity_size_ticket')
     #
-    geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
+    # geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
     country = models.ManyToManyField(Country)
     #
-    sector = models.ForeignKey(Sector, on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
+    # sector = models.ForeignKey(Sector, on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
     sub_sector = models.ManyToManyField(SubSector, verbose_name='Sub Sector')
     yield_select = models.ForeignKey(Yield, on_delete=models.SET_NULL, verbose_name='Yield', null=True)
     return_estimate = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Return estimate forecast (3-yr) (%)', blank=True, null=True)

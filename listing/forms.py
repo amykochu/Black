@@ -37,24 +37,24 @@ class MandateForm(forms.ModelForm):
                   'investor_required',)
 
 
-class OpportunitySearchForm(forms.ModelForm):
-    """ Form for search """
-
-    class Meta:
-        model = Opportunity
-        fields = {'geography', 'country', 'sector', 'sub_sector', 'yield_select',
-                  'ceo_bio', 'size_ticket_total', 'return_estimate', 'class_select'}
-
-    def __init__(self, *args, **kwargs):
-        super(OpportunitySearchForm, self).__init__(*args, **kwargs)
-        self.fields['geography'].required = False
-        self.fields['country'].required = False
-        self.fields['sector'].required = False
-        self.fields['sub_sector'].required = False
-        self.fields['yield_select'].required = False
-        self.fields['size_ticket_total'].required = False
-        self.fields['class_select'].required = False
-
-        self.fields['return_estimate'].required = False
-        # self.fields['size_ticket_total'].required = False
-        # self.fields['size_ticket_total'].required = False
+# class OpportunitySearchForm(forms.ModelForm):
+#     """ Form for search """
+#
+#     class Meta:
+#         model = Opportunity
+#         fields = {'geography', 'country', 'sector', 'sub_sector', 'yield_select',
+#                   'ceo_bio', 'size_ticket_total', 'return_estimate', 'class_select'}
+#
+#     def __init__(self, *args, **kwargs):
+#         super(OpportunitySearchForm, self).__init__(*args, **kwargs)
+#         self.fields['geography'].required = False
+#         self.fields['country'].required = False
+#         self.fields['sector'].required = False
+#         self.fields['sub_sector'].required = False
+#         self.fields['yield_select'].required = False
+#         self.fields['size_ticket_total'].required = False
+#         self.fields['class_select'].required = False
+#
+#         self.fields['return_estimate'].required = False
+#         # self.fields['size_ticket_total'].required = False
+#         # self.fields['size_ticket_total'].required = False
