@@ -189,26 +189,7 @@ def load_sectors(request):
 def FindMatch(profile):
     """ Matching Algorithm """
     match_data = None
-    is_opportunity = isinstance(profile, Opportunity)
     is_mandate = isinstance(profile, Mandate)
-
-    # if is_opportunity:
-    #     match_data = Mandate.objects.all()
-    #     invest_id_list = list(profile.investment_offered.all().values_list('id', flat=True))
-    #     size_ticket_list = list(profile.size_ticket_total.all().values_list('id', flat=True))
-    #     class_select_list = list(profile.class_select.all().values_list('id', flat=True))
-    #     series_stage_list = list(profile.series_stage.all().values_list('id', flat=True))
-    #
-    #     yield_select_list = [profile.yield_select_id]
-    #     sector_list = [profile.sector_id]
-    #
-    #     d = {'investment_sought__id': invest_id_list, 'size_ticket_total__id': size_ticket_list,
-    #          'class_select__id': class_select_list, 'series_stage__id': series_stage_list,
-    #          'yield_select__id': yield_select_list, 'sector__id': sector_list}
-    #     for k, v in d.items():
-    #         for i in v:
-    #             d2 = {k: i}
-    #             match_data = match_data.filter(**d2)
 
     if is_mandate:
         match_data = Opportunity.objects.all()
