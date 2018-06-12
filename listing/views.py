@@ -7,6 +7,7 @@ from django.db.models import Q
 from django.views.generic import DetailView
 from django.http import JsonResponse
 
+from listing.matching_algorithm import match
 
 from listing.forms import OpportunityForm, MandateForm
 from listing.models import Mandate, Opportunity, Country, SubSector, Geography, Sector
@@ -106,9 +107,9 @@ class MandateUploadView(View):
         form = MandateForm(post_data)
         if form.is_valid():
             obj = form.save()
-            return redirect('/')
-            # match_data = FindMatch(obj)
-            # return render(request, 'results.html', {'match_data': match_data})
+            # return redirect('/')
+            match_data = match(obj)
+            return render(request, 'results.html', {'match_data': match_data})
         return render(request, 'upload.html', {'form': form, 'mandate': True})
 
 
