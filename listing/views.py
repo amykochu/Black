@@ -116,7 +116,7 @@ class MandateUploadView(View):
             obj.save()
             # return redirect('/')
             match_data = match(obj)
-            return render(request, 'results.html', {'match_data': match_data})
+            return render(request, 'dashboard.html', {'result': match_data, 'dashboard': True})
         return render(request, 'upload.html', {'form': form, 'mandate': True})
 
 
