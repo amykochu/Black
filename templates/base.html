@@ -64,7 +64,7 @@
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="#">
             <i class="fa fa-fw"><img src="{% static '/listing/images/user.png' %}"></i>
-            <span class="nav-link-text"> {{ request.user.username }}</span>
+            <span class="nav-link-text"> {{ request.user.username|title }}</span>
           </a>
         </li>
       </ul>
