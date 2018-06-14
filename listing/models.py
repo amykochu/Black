@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.contrib.postgres.fields import JSONField
+from django.contrib.auth.models import User
 
 
 class InvestmentOffered(models.Model):
@@ -210,6 +211,7 @@ class Opportunity(models.Model):
 class Mandate(models.Model):
     """ Model to upload Mandate """
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     investment_sought = models.ManyToManyField(InvestmentOffered, verbose_name='Type of investment sought')
     fund_size = models.ManyToManyField(ValuationFundTicket, verbose_name='Required minimum company or fund size ($USm)')
     size_ticket_total = models.ManyToManyField(ValuationFundTicket, verbose_name='Desired ticket size',

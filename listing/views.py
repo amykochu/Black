@@ -17,8 +17,13 @@ class DashboardHome(View):
     """Home dashboard"""
     def get(self, request):
 
-        result = Opportunity.objects.all().order_by('-pk')
-        return render(request, 'dashboard.html', {'result': result, 'dashboard': True})
+        result = set()
+        if request.user:
+            user = request.user
+            mandates = Mandate.objects.filter(user=user)
+            for mandate in mandates:
+                result.update(match(mandate))
+        return render(request, 'dashboard.html', {'result': list(result), 'dashboard': True})
 
 
 # class AllOpportunity(View):
@@ -106,7 +111,9 @@ class MandateUploadView(View):
         post_data.setlist('series_stage', remove_zero(post_data, 'series_stage'))
         form = MandateForm(post_data)
         if form.is_valid():
-            obj = form.save()
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.save()
             # return redirect('/')
             match_data = match(obj)
             return render(request, 'results.html', {'match_data': match_data})
