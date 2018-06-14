@@ -431,6 +431,9 @@ span.nav-item
   font-size: 18px;
   text-transform: uppercase;
   font-weight: bold;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .wid-details h5
 {

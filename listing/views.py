@@ -112,9 +112,10 @@ class MandateUploadView(View):
             obj.user = request.user
             obj.save()
             form.save_m2m()
-            # return redirect('/')
-            match_data = match(obj)
-            return render(request, 'dashboard.html', {'result': match_data, 'dashboard': True})
+            return redirect('/')
+            # match_data = match(obj)
+            # return render(request, 'dashboard.html', {'result': match_data, 'dashboard': True,
+            #                                           'search_form': OpportunitySearchForm})
         return render(request, 'upload.html', {'form': form, 'mandate': True})
 
 
