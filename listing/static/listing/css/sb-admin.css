@@ -280,7 +280,7 @@ span.nav-item
 }
 .refines button.rf-btn.select
 {
-  background-color: #000;
+  background-color: #818182;
   color: #fff;
 }
 .rf-apply-btn-div
@@ -288,10 +288,21 @@ span.nav-item
   display: inline-block;
   text-align: right;
   width: 100%;
+  position: relative;
+  padding-top: 10px;
+}
+.rf-apply-btn-div:after
+{
+  position: absolute;
+  width: calc(100% + 40px);
+  top: 0px;
+  border-top: 1px solid #ccc;
+  content: '';
+  left: -20px;
 }
 .rf-apply-btn-div button
 {
-  background-color: #000;
+  background-color: #818182;
   color: #fff;
   font-size: 12px;
   border: none;
@@ -329,6 +340,18 @@ span.nav-item
   top: 24px;
   width: 300px;
   display: none;
+  padding-bottom: 10px;
+}
+.refine-search-container ul
+{
+  padding: 0px;
+}
+.refine-search-container ul li
+{
+  padding: 0px;
+  display: inline-block;
+  font-size: 12px;
+  margin-right: 10px;
 }
 .overlay
 {
