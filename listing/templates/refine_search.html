@@ -1,0 +1,93 @@
+    <div class="row">
+       <h1 class="col-md-12 heading-h1">Refine</h1>
+       <div class="col-md-12 refines">
+           {% for field in search_form %}
+         <div class="refine-search-div">
+            <button class="rf-btn"> {{ field.label }}</button>
+            <form action="" method="get">
+            {% csrf_token %}
+            <div class="refine-search-container">
+                {{ field }}
+              <div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>
+            </div>
+            </form>
+          </div>
+                   <!--</form>-->
+           {% endfor %}
+          <!--<div class="refine-search-div">-->
+            <!--<button class="rf-btn">Sector</button>-->
+            <!--<div class="refine-search-container">-->
+
+              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="refine-search-div">-->
+            <!--<button class="rf-btn">Yield</button>-->
+            <!--<div class="refine-search-container">-->
+
+              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="refine-search-div">-->
+             <!--<button class="rf-btn">Type</button>-->
+             <!--<div class="refine-search-container">-->
+
+                  <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
+              <!--</div>-->
+            <!--</div>-->
+             <!--<div class="refine-search-div">-->
+                <!--<button class="rf-btn">Series/Stage</button>-->
+                <!--<div class="refine-search-container">-->
+
+              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
+            <!--</div>-->
+              <!--</div>-->
+          <!--<div class="refine-search-div">-->
+           <!--<button class="rf-btn">Class</button>-->
+           <!--<div class="refine-search-container">-->
+
+              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
+            <!--</div>-->
+          <!--</div>-->
+       </div>
+       <div class="overlay">
+
+      </div>
+    </div>
+
+      <script type="text/javascript">
+    $(document).ready(function()
+    {
+      $(".rf-btn").click(function()
+      {
+        $(".refine-search-container").hide();
+        $(".rf-btn").removeClass("select");
+        $(this).addClass("select").parent().find(".refine-search-container").show();
+        $(".overlay").show();
+      });
+        $(".rf-apply-btn").click(function()
+      {
+        $(this).parent().parent().hide();
+        $(".overlay").hide();
+        $(".rf-btn").removeClass("select");
+      })
+      $(".overlay").click(function()
+      {
+        $(".overlay").hide();
+        $(".refine-search-container").hide();
+        $(".rf-btn").removeClass("select");
+      })
+      $(".collapse").click(function()
+      {
+        $(".overlay").hide();
+        $(".refine-search-container").hide();
+        $(".rf-btn").removeClass("select");
+      })
+       $(".rf-apply-btn-div a").click(function()
+      {
+        $(".overlay").hide();
+        $(".refine-search-container").hide();
+        $(".rf-btn").removeClass("select");
+      })
+    })
+  </script>
