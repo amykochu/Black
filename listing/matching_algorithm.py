@@ -95,7 +95,7 @@ def build_lookup_query(field, field_values):
         match_fields = {
             "Private": "Private,Listed,Direct,Co-Invest",
             "Listed": "Listed,Private,Direct,Co-Invest",
-            "Fund": "Fund",
+            "Fund": "Fund,Co-Invest",
             "Direct": "Direct,Private,Listed,Co-Invest",
             "Co-Invest": "Co-Invest,Private,Listed,Direct,Co-Invest"
         }
