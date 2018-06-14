@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 from listing.matching_algorithm import match
 
-from listing.forms import OpportunityForm, MandateForm
+from listing.forms import OpportunityForm, MandateForm, OpportunitySearchForm
 from listing.models import Mandate, Opportunity, Country, SubSector, Geography, Sector
 
 
@@ -19,26 +19,23 @@ class DashboardHome(View):
 
         result = set()
         if request.user:
+
             user = request.user
             mandates = Mandate.objects.filter(user=user)
             for mandate in mandates:
                 result.update(match(mandate))
-        return render(request, 'dashboard.html', {'result': list(result), 'dashboard': True})
+
+            search_params = request.GET.get('size_ticket_total', '')
+            if search_params:
+                # result = refine_search(search_params, result)
+                pass
+        return render(request, 'dashboard.html', {'result': list(result), 'dashboard': True,
+                                                  'search_form': OpportunitySearchForm})
 
 
-# class AllOpportunity(View):
-#     """" """
-#     def get(self, request):
-#
-#         result = Opportunity.objects.all().order_by('-pk')[:6]
-#         return render(request, 'dashboard.html', {'result': result, 'opportunity': True})
+def refine_search(search_params, result):
 
-
-# class AllMandate(View):
-#     """ """
-#     def get(self, request):
-#         result = Mandate.objects.all().order_by('-pk')[:6]
-#         return render(request, 'dashboard.html', {'result': result, 'mandate': True})
+    return ""
 
 
 def save_re(data):
