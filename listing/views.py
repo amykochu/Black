@@ -180,7 +180,7 @@ def load_cities(request):
     """ Api to load cities wrt Geography """
 
     geo_id = request.GET.get('geography')
-    cities = Country.objects.filter(continent_id=geo_id).values('id', 'country').order_by('continent')
+    cities = Country.objects.filter(continent_id=geo_id).values('id', 'country').order_by('country')
     continent = Geography.objects.get(pk=geo_id).continent
     return JsonResponse({'data': list(cities), 'continent': continent})
 
@@ -188,7 +188,7 @@ def load_cities(request):
 def load_sectors(request):
     """ Api to load sub sectors wrt Sector """
     sector_id = request.GET.get('sector')
-    sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sector')
+    sub_sectors = SubSector.objects.filter(sector_id=sector_id).values('id', 'sub_sector').order_by('sub_sector')
     sector = Sector.objects.get(pk=sector_id).sector
     return JsonResponse({'data': list(sub_sectors), 'sector': sector})
 
