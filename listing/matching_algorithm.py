@@ -19,9 +19,8 @@ def match(mandate_obj):
         d = set()
         d.update(mandate_obj.sub_sector.all().values_list("sector__sector", flat=True))
         get_sector_q = build_lookup_query('sector', list(d))
-
-        match_data = match_data.filter(get_class_q | get_size_ticket_total_q | get_series_stage_q |
-                                       get_investment_offered_q | get_yield_select_q | get_sector_q).distinct()
+        match_data = match_data.filter(get_class_q & get_size_ticket_total_q & get_series_stage_q &
+                                       get_investment_offered_q & get_yield_select_q & get_sector_q).distinct()
         return match_data
 
 
