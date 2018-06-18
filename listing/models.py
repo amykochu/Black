@@ -106,6 +106,9 @@ class Geography(models.Model):
     def __str__(self):
         return self.continent
 
+    class Meta:
+        ordering = ['continent']
+
 
 class Country(models.Model):
     """ Model to store Country """
@@ -128,6 +131,9 @@ class Sector(models.Model):
 
     def __str__(self):
         return self.sector
+
+    class Meta:
+        ordering = ['sector']
 
 
 class SubSector(models.Model):
