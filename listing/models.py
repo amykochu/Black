@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.contrib.postgres.fields import JSONField
@@ -185,8 +187,8 @@ class Opportunity(models.Model):
     estimated_irr = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Estimated IRR')
     exit_timing = models.CharField(max_length=500, verbose_name='Expected exit timing')
     use_of_funds = models.CharField(max_length=500, verbose_name='Use of funds')
-    deadline_commitment = models.DateTimeField(verbose_name='Deadline for formal commitment')
-    deadline_legal = models.DateTimeField(verbose_name='Deadline for execution of legal docs')
+    deadline_commitment = models.DateTimeField(default=timezone.now, verbose_name='Deadline for formal commitment')
+    deadline_legal = models.DateTimeField(default=timezone.now, verbose_name='Deadline for execution of legal docs')
     proposed_process = models.CharField(max_length=500, verbose_name='Proposed capital raise process')
     proposed_exit = models.CharField(max_length=500, verbose_name='Proposed exit options')
     financial_statements = models.FileField(upload_to='listing/documents/',
