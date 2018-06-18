@@ -152,7 +152,7 @@ class Opportunity(models.Model):
     valuation_text = models.CharField(max_length=200, verbose_name='Company valuation - metrics and rationale (Input)')
     amount_invested = models.DecimalField(max_digits=15, decimal_places=2,
                                           verbose_name='Amount invested to date ($USm)')
-    ownership_structure = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Ownership structure (%), Major shareholders (%)')
+    ownership_structure = models.TextField(max_length=300, verbose_name='Ownership structure (%), Major shareholders (%)')
     ebitda = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Company EBITDA ($USm)')
     break_even_year = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Break-even year')
     est_payback = models.ManyToManyField(EstPayback, verbose_name='Estimated payback period on raise')
@@ -185,8 +185,8 @@ class Opportunity(models.Model):
     estimated_irr = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Estimated IRR')
     exit_timing = models.CharField(max_length=500, verbose_name='Expected exit timing')
     use_of_funds = models.CharField(max_length=500, verbose_name='Use of funds')
-    deadline_commitment = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Deadline for formal commitment')
-    deadline_legal = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Deadline for execution of legal docs')
+    deadline_commitment = models.DateTimeField(verbose_name='Deadline for formal commitment')
+    deadline_legal = models.DateTimeField(verbose_name='Deadline for execution of legal docs')
     proposed_process = models.CharField(max_length=500, verbose_name='Proposed capital raise process')
     proposed_exit = models.CharField(max_length=500, verbose_name='Proposed exit options')
     financial_statements = models.FileField(upload_to='listing/documents/',
