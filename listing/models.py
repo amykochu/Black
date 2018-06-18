@@ -152,7 +152,7 @@ class Opportunity(models.Model):
     valuation_text = models.CharField(max_length=200, verbose_name='Company valuation - metrics and rationale (Input)')
     amount_invested = models.DecimalField(max_digits=15, decimal_places=2,
                                           verbose_name='Amount invested to date ($USm)')
-    ownership_structure = models.TextField(max_length=300, verbose_name='Ownership structure (%), Major shareholders (%)')
+    ownership_structure = models.CharField(max_length=300, verbose_name='Ownership structure (%), Major shareholders (%)')
     ebitda = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Company EBITDA ($USm)')
     break_even_year = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Break-even year')
     est_payback = models.ManyToManyField(EstPayback, verbose_name='Estimated payback period on raise')
