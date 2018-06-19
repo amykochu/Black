@@ -226,6 +226,38 @@ class Opportunity(models.Model):
     def __str__(self):
         return str(self.pk)
 
+    def display_est_payback(self):
+        return ', '.join([est_payback.label for est_payback in self.est_payback.all()])
+    est_payback.short_description = 'Estimated payback period on raise'
+
+    def display_size_ticket_total(self):
+        return ', '.join([size_ticket_total.label for size_ticket_total in self.size_ticket_total.all()])
+    size_ticket_total.short_description = 'Desired ticket size'
+
+    def display_country(self):
+        return ', '.join([country.country for country in self.country.all()])
+    display_country.short_description = 'Country'
+
+    def display_sub_sector(self):
+        return ', '.join([sub_sector.sub_sector for sub_sector in self.sub_sector.all()])
+    sub_sector.short_description = 'Sub Sector'
+
+    def display_class_select(self):
+        return ', '.join([class_select.label for class_select in self.class_select.all()])
+    class_select.short_description = 'Asset class'
+
+    def display_series_stage(self):
+        return ', '.join([series_stage.label for series_stage in self.series_stage.all()])
+    series_stage.short_description = 'Series/stage of investment'
+
+    def display_investment_offered(self):
+        return ', '.join([investment_offered.label for investment_offered in self.investment_offered.all()])
+    investment_offered.short_description = 'Investment Offered'
+
+    def display_offer(self):
+        return ', '.join([offer.label for offer in self.offer.all()])
+    offer.short_description = 'Offer'
+
 
 class Mandate(models.Model):
     """ Model to upload Mandate """
@@ -257,3 +289,34 @@ class Mandate(models.Model):
 
     def __str__(self):
         return str(self.pk)
+
+    def display_investment_sought(self):
+        """
+        Creates a string for the investment_sought. This is required to display investment_sought in Admin.
+        """
+        return ', '.join([investment_sought.label for investment_sought in self.investment_sought.all()])
+    display_investment_sought.short_description = 'Type of investment sought'
+
+    def display_fund_size(self):
+        return ', '.join([fund_size.label for fund_size in self.fund_size.all()])
+    display_fund_size.short_description = 'Fund Size'
+
+    def display_size_ticket_total(self):
+        return ', '.join([size_ticket_total.label for size_ticket_total in self.size_ticket_total.all()])
+    size_ticket_total.short_description = 'Desired ticket size'
+
+    def display_country(self):
+        return ', '.join([country.country for country in self.country.all()])
+    display_country.short_description = 'Country'
+
+    def display_sub_sector(self):
+        return ', '.join([sub_sector.sub_sector for sub_sector in self.sub_sector.all()])
+    sub_sector.short_description = 'Sub Sector'
+
+    def display_class_select(self):
+        return ', '.join([class_select.label for class_select in self.class_select.all()])
+    class_select.short_description = 'Asset class'
+
+    def display_series_stage(self):
+        return ', '.join([series_stage.label for series_stage in self.series_stage.all()])
+    series_stage.short_description = 'Series/stage of investment sought'
