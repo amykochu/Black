@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from listing.models import (Opportunity, Mandate, InvestmentOffered, ValuationFundTicket, Yield, Class,
                             SeriesStage, InvestorSpecial, EstPayback, Offer, Financial, Country, Geography,
-                            SubSector, Sector)
+                            SubSector, Sector, CompanyPurchaseMinMax)
 
 
 # class ListingAdmin(admin.ModelAdmin):
@@ -24,5 +24,6 @@ admin.site.register(Country)
 admin.site.register(Geography)
 admin.site.register(Sector)
 admin.site.register(SubSector)
+admin.site.register(CompanyPurchaseMinMax)
 # admin.site.register(Widget8, Widget8Admin)
 
