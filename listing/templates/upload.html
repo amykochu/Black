@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
         	<div class="row">
 		        <div class="col-xl-6	 col-sm-8 mb-3">
 		          <div class="text-dark bg-white o-hidden h-100">
@@ -247,13 +246,14 @@ $('select').multiselect({
 
          });
       },1000);
-     $("#id_sector").change(function()
+
+   });
+    $("#id_sector").change(function()
     {
       setTimeout(function()
       {
          $("#id_sub_sector").multiselect('rebuild');
       },1000);
-    });
     });
 </script>
 {% endblock %}
