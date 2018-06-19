@@ -9,6 +9,7 @@ class OpportunityForm(forms.ModelForm):
 
     geography = forms.ModelMultipleChoiceField(queryset=Geography.objects.all())
     sector = forms.ModelMultipleChoiceField(queryset=Sector.objects.all())
+    required_css_class = 'required'
 
     class Meta:
         model = Opportunity
@@ -29,6 +30,7 @@ class MandateForm(forms.ModelForm):
 
     geography = forms.ModelMultipleChoiceField(queryset=Geography.objects.all())
     sector = forms.ModelMultipleChoiceField(queryset=Sector.objects.all())
+    required_css_class = 'required'
 
     class Meta:
         model = Mandate

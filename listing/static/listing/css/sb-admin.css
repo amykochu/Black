@@ -15,6 +15,11 @@ body.sticky-footer {
 body.sticky-footer .content-wrapper {
   min-height: calc(100vh - 56px - 56px);
 }
+
+
+th.required { font-weight: bold; }
+
+
 #financial-table input
 {
 width:80px;
@@ -634,10 +639,19 @@ span.nav-item
 }
 .listing label
 {
-  width: 100%;
+ /* width: 100%;*/
   font-size: 13px;
   font-weight: bold;
       white-space: nowrap;
+      position:relative;
+}
+.listing label.required:after
+{
+    position:absolute;
+    right:-10px;
+    top:-2px;
+    color:red;
+    content:"*";
 }
 .listing input[type="text"], .listing select, .listing input[type="number"], .listing textarea
 {
