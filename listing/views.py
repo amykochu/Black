@@ -1,6 +1,7 @@
 import operator
 from functools import reduce
 
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
 from django.db.models import Q
@@ -82,7 +83,7 @@ class OpportunityUploadView(View):
                 obj.revenue_json_data = json_data
                 obj.save()
             # match_data = FindMatch(obj)
-            # return render(request, 'results.html', {'match_data': match_data})
+            messages.success(request, 'Opportunity data has been uploaded successfully.')
             return redirect('/')
         return render(request, 'upload.html', {'form': form, 'opportunity': True, 'json_data': json_data})
 
@@ -112,6 +113,7 @@ class MandateUploadView(View):
             obj.user = request.user
             obj.save()
             form.save_m2m()
+            messages.success(request, 'Mandate data has been uploaded successfully.')
             return redirect('/')
             # match_data = match(obj)
             # return render(request, 'dashboard.html', {'result': match_data, 'dashboard': True,
