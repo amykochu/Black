@@ -34,8 +34,9 @@ class MandateForm(forms.ModelForm):
 
     class Meta:
         model = Mandate
-        fields = ('investment_sought', 'fund_size', 'size_ticket_total', 'percentage_company', 'geography',
-                  'country', 'sector', 'sub_sector', 'yield_select', 'growth_expectation_year1',
+        fields = ('investment_sought', 'fund_size', 'size_ticket_total',
+                  'geography', 'country', 'sector', 'sub_sector', 'yield_select',
+                  'growth_expectation_year1',
                   'growth_expectation_year2', 'growth_expectation_year3', 'class_select', 'series_stage',
                   'investor_required',)
 

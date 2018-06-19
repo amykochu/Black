@@ -148,6 +148,17 @@ class SubSector(models.Model):
         return self.sub_sector
 
 
+class CompanyPurchaseMinMax(models.Model):
+    """ Model for % of company/fund can purchase/hold (min - max) """
+
+    label = models.CharField(max_length=20)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.label
+
+
 class Opportunity(models.Model):
     """ Model for opportunity upload """
 
@@ -224,7 +235,9 @@ class Mandate(models.Model):
     fund_size = models.ManyToManyField(ValuationFundTicket, verbose_name='Required minimum company or fund size ($USm)', blank=True)
     size_ticket_total = models.ManyToManyField(ValuationFundTicket, verbose_name='Desired ticket size',
                                                related_name='mandate_size_ticket')
-    percentage_company = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='% of company/fund can purchase/hold (min - max)')
+    # percentage_company_min = models.ForeignKey(CompanyPurchaseMinMax, on_delete=models.CASCADE, verbose_name='% of company/fund can purchase/hold (min)')
+    # percentage_company_max = models.ForeignKey(CompanyPurchaseMinMax, on_delete=models.CASCADE,
+    #                                            verbose_name='% of company/fund can purchase/hold (max)', related_name='percentage_max')
     #
     # geography = models.ForeignKey(Geography, on_delete=models.SET_NULL, null=True)
     country = models.ManyToManyField(Country, blank=True)
