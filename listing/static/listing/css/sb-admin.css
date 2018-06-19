@@ -139,7 +139,15 @@ span.nav-item
     padding: 10px 0;
     height: 150px;
 }
-
+.datepicker th, .datepicker td
+{
+  font-size: 12px;
+}
+.datepicker td.active
+{
+  background-color: #333!important;
+  background-image: none!important;
+}
 /* Add Animation */
 .modal-content, #caption {    
     -webkit-animation-name: zoom;
