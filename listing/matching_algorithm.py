@@ -11,7 +11,9 @@ def match(mandate_obj):
         get_class_q = build_lookup_query('class_select', mandate_obj.class_select.all().values_list('label', flat=True))
         get_size_ticket_total_q = build_lookup_query('size_ticket_total', mandate_obj.size_ticket_total.all().
                                                      values_list('label', flat=True))
-        get_yield_select_q = build_lookup_query('yield_select', [mandate_obj.yield_select.label])
+        # get_yield_select_q = build_lookup_query('yield_select', [mandate_obj.yield_select.label])
+        get_yield_select_q = build_lookup_query('yield_select',
+                                                mandate_obj.yield_select.all().values_list('label', flat=True))
         get_series_stage_q = build_lookup_query('series_stage', mandate_obj.series_stage.all().
                                                 values_list('label', flat=True))
         get_investment_offered_q = build_lookup_query('investment_offered', mandate_obj.investment_sought.all().

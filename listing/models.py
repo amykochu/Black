@@ -276,7 +276,7 @@ class Mandate(models.Model):
     #
     # sector = models.ForeignKey(Sector,on_delete=models.SET_NULL, verbose_name='Sector', blank=True, null=True)
     sub_sector = models.ManyToManyField(SubSector, verbose_name='Sub Sector')
-    yield_select = models.ForeignKey(Yield, on_delete=models.CASCADE, verbose_name='Yield', null=True)
+    yield_select = models.ManyToManyField(Yield, verbose_name='Yield', blank=True)
     #
     growth_expectation_year1 = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Minimum earnings growth required (%, FY1)', blank=True, null=True)
     growth_expectation_year2 = models.DecimalField(max_digits=15, decimal_places=2, verbose_name='Minimum earnings growth required (%, FY2)', blank=True, null=True)
@@ -320,3 +320,6 @@ class Mandate(models.Model):
     def display_series_stage(self):
         return ', '.join([series_stage.label for series_stage in self.series_stage.all()])
     series_stage.short_description = 'Series/stage of investment sought'
+
+    def display_yield_select(self):
+        return ', '.join([yield_select.label for yield_select in self.yield_select.all()])
