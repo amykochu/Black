@@ -6,7 +6,7 @@ from listing.models import (Opportunity, Mandate, InvestmentOffered, ValuationFu
 
 
 class MandateAdmin(admin.ModelAdmin):
-    list_display = ('id', 'percentage_company_min', 'percentage_company_max', 'display_investment_sought',
+    list_display = ('id', 'user', 'percentage_company_min', 'percentage_company_max', 'display_investment_sought',
                     'display_size_ticket_total', 'yield_select', 'growth_expectation_year1', 'display_country',
                     'growth_expectation_year2', 'growth_expectation_year3', 'display_sub_sector',
                     'investor_required', 'display_class_select', 'display_series_stage',
