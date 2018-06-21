@@ -303,7 +303,7 @@ class Mandate(models.Model):
 
     def display_size_ticket_total(self):
         return ', '.join([size_ticket_total.label for size_ticket_total in self.size_ticket_total.all()])
-    size_ticket_total.short_description = 'Desired ticket size'
+    display_size_ticket_total.short_description = 'Desired ticket size'
 
     def display_country(self):
         return ', '.join([country.country for country in self.country.all()])
@@ -311,15 +311,17 @@ class Mandate(models.Model):
 
     def display_sub_sector(self):
         return ', '.join([sub_sector.sub_sector for sub_sector in self.sub_sector.all()])
-    sub_sector.short_description = 'Sub Sector'
+    display_sub_sector.short_description = 'Sub Sector'
 
     def display_class_select(self):
         return ', '.join([class_select.label for class_select in self.class_select.all()])
-    class_select.short_description = 'Asset class'
+    display_class_select.short_description = 'Asset class'
 
     def display_series_stage(self):
         return ', '.join([series_stage.label for series_stage in self.series_stage.all()])
-    series_stage.short_description = 'Series/stage of investment sought'
+    display_series_stage.short_description = 'Series/stage of investment sought'
 
     def display_yield_select(self):
         return ', '.join([yield_select.label for yield_select in self.yield_select.all()])
+    display_yield_select.short_description = 'Yield Select'
+
