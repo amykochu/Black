@@ -111,6 +111,7 @@ def xls_dict_reader(f, sheet_index=0):
                 user.first_name = data['Name'].strip()
                 user.set_password(data['Email'].strip())
                 user.is_admin = True
+                user.save()
 
         # Creating mandate object
         mandate = Mandate.objects.create(user=user,
