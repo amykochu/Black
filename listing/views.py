@@ -25,18 +25,26 @@ class DashboardHome(View):
             mandates = Mandate.objects.filter(user=user)
             for mandate in mandates:
                 result.update(match(mandate))
-
+            print(request.GET)
             search_params = request.GET.get('size_ticket_total', '')
+            q_sector = request.GET.get('sector', '')
+            q_class = request.GET.get('class_select', '')
+            q_yield = request.GET.get('yield_select', '')
+            q_series_stage = request.GET.get('series_stage', '')
+            q_investment = request.GET.get('investment_offered', '')
+            
+            matched_id_list = [i.id for i in result]
             if search_params:
-                # result = refine_search(search_params, result)
-                pass
+                result = refine_search(search_params, matched_id_list)
         return render(request, 'dashboard.html', {'result': list(result), 'dashboard': True,
                                                   'search_form': OpportunitySearchForm})
 
 
-def refine_search(search_params, result):
+def refine_search(search_params, matched_id_list):
 
-    return ""
+    data = Opportunity.objects.filter(id__in=matched_id_list)
+    result = data.filter(size_ticket_total__in=search_params)
+    return result
 
 
 def save_re(data):
