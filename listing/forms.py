@@ -45,22 +45,27 @@ class OpportunitySearchForm(forms.ModelForm):
     """ Form for search """
 
     size_ticket_total = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple, queryset=ValuationFundTicket.objects.all(), required=False)
+            widget=forms.CheckboxSelectMultiple, queryset=ValuationFundTicket.objects.all(),
+            required=False, label='Desired ticket size ($USm)')
     sector = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple, queryset=Sector.objects.all(), required=False)
+            widget=forms.CheckboxSelectMultiple, queryset=Sector.objects.all(), required=False, label='Sectors sought')
     yield_select = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple, queryset=Yield.objects.all(), required=False)
+            widget=forms.CheckboxSelectMultiple, queryset=Yield.objects.all(), required=False,
+            label='Minimum required yield (dividend, interest rate, cap rate)')
     investment_offered = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple, queryset=InvestmentOffered.objects.all(), required=False)
+            widget=forms.CheckboxSelectMultiple, queryset=InvestmentOffered.objects.all(), required=False,
+            label='Type of investment sought')
     series_stage = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple, queryset=SeriesStage.objects.all(), required=False)
+            widget=forms.CheckboxSelectMultiple, queryset=SeriesStage.objects.all(), required=False,
+            label='Series/Stage of investment sought')
     class_select = forms.ModelMultipleChoiceField(
-            widget=forms.CheckboxSelectMultiple, queryset=Class.objects.all(), required=False)
+            widget=forms.CheckboxSelectMultiple, queryset=Class.objects.all(), required=False,
+            label='Asset Class sought')
 
     class Meta:
         model = Opportunity
-        fields = ('size_ticket_total', 'sector', 'yield_select',
-                  'investment_offered', 'series_stage', 'class_select')
+        fields = ('size_ticket_total', 'sector', 'class_select', 'yield_select',
+                  'series_stage', 'investment_offered')
 
     # def __init__(self, *args, **kwargs):
     #     super(OpportunitySearchForm, self).__init__(*args, **kwargs)
