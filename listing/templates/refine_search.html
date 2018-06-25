@@ -54,10 +54,6 @@
         $(".rf-apply-btn").click(function()
       {
         event.preventDefault();
-
-        var url = '/ajax/refine-search/';
-
-
         $(this).parent().parent().hide();
         $(".overlay").hide();
         $(".rf-btn").removeClass("select");
@@ -82,6 +78,7 @@
         $(".refine-search-container").hide();
         $(".rf-btn").removeClass("select");
         $(".refine-search-container input").prop("checked", false);
+        $(".rf-apply-btn").click();
       })
     })
 
