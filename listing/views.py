@@ -19,31 +19,51 @@ class DashboardHome(View):
     def get(self, request):
 
         result = set()
+        matched_id_list = 0
         if request.user:
-
+            form = OpportunitySearchForm(request.GET)
+            search_params = request.GET
             user = request.user
             mandates = Mandate.objects.filter(user=user)
+
             for mandate in mandates:
                 result.update(match(mandate))
-            print(request.GET)
-            search_params = request.GET.get('size_ticket_total', '')
-            q_sector = request.GET.get('sector', '')
-            q_class = request.GET.get('class_select', '')
-            q_yield = request.GET.get('yield_select', '')
-            q_series_stage = request.GET.get('series_stage', '')
-            q_investment = request.GET.get('investment_offered', '')
-            
             matched_id_list = [i.id for i in result]
-            if search_params:
-                result = refine_search(search_params, matched_id_list)
+
+            if search_params and matched_id_list:
+                result = refine_search(request.GET, matched_id_list)
+                return render(request, 'dashboard.html', {'result': list(result), 'dashboard': True,
+                                                          'search_form': form,
+                                                          'id_list': matched_id_list})
         return render(request, 'dashboard.html', {'result': list(result), 'dashboard': True,
-                                                  'search_form': OpportunitySearchForm})
+                                                  'search_form': OpportunitySearchForm,
+                                                  'id_list': matched_id_list})
 
 
-def refine_search(search_params, matched_id_list):
+def refine_search(params, matched_id_list):
+    """ """
+    q = Q()
+    q_size_ticket_total = params.getlist('size_ticket_total', '')
+    q_sector = params.getlist('sector', '')
+    q_class = params.getlist('class_select', '')
+    q_yield = params.getlist('yield_select', '')
+    q_series_stage = params.getlist('series_stage', '')
+    q_investment = params.getlist('investment_offered', '')
 
+    if q_size_ticket_total:
+        q &= Q(size_ticket_total__in=q_size_ticket_total)
+    if q_sector:
+        q &= Q(sub_sector__sector__in=q_sector)
+    if q_class:
+        q &= Q(class_select__in=q_class)
+    if q_yield:
+        q &= Q(yield_select__in=q_yield)
+    if q_series_stage:
+        q &= Q(series_stage__in=q_series_stage)
+    if q_investment:
+        q &= Q(investment_offered__in=q_investment)
     data = Opportunity.objects.filter(id__in=matched_id_list)
-    result = data.filter(size_ticket_total__in=search_params)
+    result = data.filter(q).distinct()
     return result
 
 

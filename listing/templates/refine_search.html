@@ -1,54 +1,20 @@
     <div class="row">
        <h1 class="col-md-12 heading-h1">Refine</h1>
        <div class="col-md-12 refines">
-           {% for field in search_form %}
+         <form action="" method="get" id="refine-form">
+        {% csrf_token %}
+        {% for field in search_form %}
          <div class="refine-search-div">
             <button class="rf-btn"> {{ field.label }}</button>
-            <form action="" method="get">
-            {% csrf_token %}
             <div class="refine-search-container">
+                <input type="checkbox" class="sel-all"> <label class="select-all-text"> Select all</label>
                 {{ field }}
               <div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>
             </div>
-            </form>
           </div>
-                   <!--</form>-->
            {% endfor %}
-          <!--<div class="refine-search-div">-->
-            <!--<button class="rf-btn">Sector</button>-->
-            <!--<div class="refine-search-container">-->
-
-              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="refine-search-div">-->
-            <!--<button class="rf-btn">Yield</button>-->
-            <!--<div class="refine-search-container">-->
-
-              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="refine-search-div">-->
-             <!--<button class="rf-btn">Type</button>-->
-             <!--<div class="refine-search-container">-->
-
-                  <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
-              <!--</div>-->
-            <!--</div>-->
-             <!--<div class="refine-search-div">-->
-                <!--<button class="rf-btn">Series/Stage</button>-->
-                <!--<div class="refine-search-container">-->
-
-              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
-            <!--</div>-->
-              <!--</div>-->
-          <!--<div class="refine-search-div">-->
-           <!--<button class="rf-btn">Class</button>-->
-           <!--<div class="refine-search-container">-->
-
-              <!--<div class="rf-apply-btn-div"><a href="#">Cancel</a><button class="rf-apply-btn">Apply</button></div>-->
-            <!--</div>-->
-          <!--</div>-->
+           <button type="submit" style="display:none">Submit</button>
+           </form>
        </div>
        <div class="overlay">
 
@@ -58,8 +24,28 @@
       <script type="text/javascript">
     $(document).ready(function()
     {
-      $(".rf-btn").click(function()
+    $('.sel-all').click(function() {
+        if($(this).is(":checked")) {
+           $(this).parent().find("input").prop("checked", true);
+        }
+        else
+        {
+        $(this).parent().find("input").prop("checked", false);
+        }
+    });
+    $(".refine-search-container ul input").click(function()
+    {
+    if($(this).is(":checked")) {
+
+         }
+         else
+         {
+         $(".refine-search-container .sel-all").prop("checked", false);
+         }
+    });
+      $(".rf-btn").click(function(event)
       {
+        event.preventDefault();
         $(".refine-search-container").hide();
         $(".rf-btn").removeClass("select");
         $(this).addClass("select").parent().find(".refine-search-container").show();
@@ -67,9 +53,16 @@
       });
         $(".rf-apply-btn").click(function()
       {
+        event.preventDefault();
+
+        var url = '/ajax/refine-search/';
+
+
         $(this).parent().parent().hide();
         $(".overlay").hide();
         $(".rf-btn").removeClass("select");
+        $("#refine-form").submit();
+
       })
       $(".overlay").click(function()
       {
@@ -88,6 +81,8 @@
         $(".overlay").hide();
         $(".refine-search-container").hide();
         $(".rf-btn").removeClass("select");
+        $(".refine-search-container input").prop("checked", false);
       })
     })
+
   </script>

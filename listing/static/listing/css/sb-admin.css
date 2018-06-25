@@ -627,6 +627,13 @@ span.nav-item
 .z-1 {
   z-index: 1;
 }
+.select-all-text
+{
+font-size:13px;
+font-weight:bold;
+position:relative;
+top:-2px;
+}
 .listing
 {
   /*padding: 15px;*/
