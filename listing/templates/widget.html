@@ -14,7 +14,7 @@
         </div>
         <div class="wid-details">
       <h2  title="{{ i.company_description }}">{{ i.company_description }}</h2>
-      <h5>{{ i.valuation }}</h5>
+      <h5>{% for m in i.size_ticket_total.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
       <span>{% for m in i.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
       <p>{{ i.company_description }}</p>
       <div class="wid-specs">
