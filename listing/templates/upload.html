@@ -11,9 +11,10 @@
 								{% elif mandate %}
 								<h4 class="heading-h1">Investor Mandate Upload</h4>
 								{% endif %}
+								<label class="required">Compulsory fields marked with</label>
 							    {{ form.as_p }}
 								{% if opportunity %}
-								<label>High Level Financial's</label>
+								<label style="width: 100%">High Level Financial's</label>
 								{% include 'financial_table.html' %}
 								{% endif %}
                   <div style="width: 100%;float: left;">
