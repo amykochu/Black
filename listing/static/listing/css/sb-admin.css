@@ -296,6 +296,11 @@ span.nav-item
   background-color: #818182;
   color: #fff;
 }
+.refines button.rf-btn.selected
+{
+  background-color: #818182;
+  color: #fff;
+}
 .rf-apply-btn-div
 {
   display: inline-block;
