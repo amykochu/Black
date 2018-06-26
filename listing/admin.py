@@ -6,24 +6,27 @@ from listing.models import (Opportunity, Mandate, InvestmentOffered, ValuationFu
 
 
 class MandateAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'percentage_company_min', 'percentage_company_max', 'display_investment_sought',
-                    'display_size_ticket_total', 'display_yield_select', 'growth_expectation_year1', 'display_country',
-                    'growth_expectation_year2', 'growth_expectation_year3', 'display_sub_sector',
-                    'investor_required', 'display_class_select', 'display_series_stage',
+    list_display = ('id', 'user', 'display_investment_sought', 'display_size_ticket_total',
+                    'display_geography', 'display_country', 'display_sector',
+                    'display_sub_sector', 'display_series_stage',  'display_class_select', 'display_yield_select',
+                    'growth_expectation_year1', 'growth_expectation_year2', 'growth_expectation_year3',
+                    'percentage_company_min', 'percentage_company_max', 'investor_required',
                     'created_on', 'updated_on')
 
 
 class OpportunityAdmin(admin.ModelAdmin):
-    list_display = ('id', 'company_description', 'opportunity_created', 'selling_by', 'competitors', 'valuation',
-                    'valuation_text', 'amount_invested', 'ownership_structure', 'ebitda', 'break_even_year',
-                    'display_est_payback', 'display_size_ticket_total', 'display_country', 'display_sub_sector',
-                    'yield_select', 'return_estimate', 'growth_expectation_year1', 'growth_expectation_year2',
-                    'growth_expectation_year3', 'display_class_select', 'display_series_stage', 'investor_required',
-                    'amount_lead_partner', 'amount_other_partner', 'amount_weraise', 'display_investment_offered',
-                    'display_offer', 'special_situation', 'financials', 'estimated_irr',
-                    'exit_timing', 'use_of_funds', 'deadline_commitment', 'deadline_legal', 'proposed_process',
-                    'proposed_exit', 'financial_statements', 'financial_model', 'investor_deck', 'company_bio',
-                    'ceo_bio', 'created_on', 'updated_on')
+    list_display = ('id', 'company_description',  'valuation', 'valuation_text', 'display_sector', 'display_sub_sector',
+                    'display_geography', 'display_country', 'ownership_structure', 'opportunity_created',
+                    'selling_by', 'competitors', 'display_size_ticket_total',
+                    'use_of_funds', 'display_investment_offered', 'display_class_select', 'display_series_stage',
+                    'display_offer', 'special_situation', 'proposed_process', 'investor_required', 'amount_lead_partner',
+                    'amount_other_partner', 'amount_weraise', 'deadline_commitment', 'deadline_legal',
+                    'amount_invested', 'display_est_payback', 'estimated_irr', 'break_even_year', 'yield_select',
+                    'proposed_exit', 'exit_timing', 'ebitda', 'financials', 'financial_statements', 'financial_model',
+                    'investor_deck', 'company_bio', 'ceo_bio',
+                    # 'return_estimate', 'growth_expectation_year1', 'growth_expectation_year2',
+                    # 'growth_expectation_year3',
+                    'created_on', 'updated_on')
 
 
 admin.site.register(Mandate, MandateAdmin)

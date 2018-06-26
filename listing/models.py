@@ -228,35 +228,47 @@ class Opportunity(models.Model):
 
     def display_est_payback(self):
         return ', '.join([est_payback.label for est_payback in self.est_payback.all()])
-    est_payback.short_description = 'Estimated payback period on raise'
+    display_est_payback.short_description = 'Estimated payback period on raise'
 
     def display_size_ticket_total(self):
         return ', '.join([size_ticket_total.label for size_ticket_total in self.size_ticket_total.all()])
-    size_ticket_total.short_description = 'Desired ticket size'
+    display_size_ticket_total.short_description = 'Desired ticket size'
+
+    def display_geography(self):
+        geography = [country.continent.continent for country in self.country.all()]
+        geo = set(geography)
+        return list(geo)[:3]
+    display_geography.short_description = 'Geography'
 
     def display_country(self):
-        return ', '.join([country.country for country in self.country.all()])
+        return ', '.join([country.country for country in self.country.all()][:3])
     display_country.short_description = 'Country'
 
+    def display_sector(self):
+        sector = [sub_sector.sector.sector for sub_sector in self.sub_sector.all()]
+        sec = set(sector)
+        return list(sec)[:3]
+    display_sector.short_description = 'Sector'
+
     def display_sub_sector(self):
-        return ', '.join([sub_sector.sub_sector for sub_sector in self.sub_sector.all()])
-    sub_sector.short_description = 'Sub Sector'
+        return ', '.join([sub_sector.sub_sector for sub_sector in self.sub_sector.all()][:3])
+    display_sub_sector.short_description = 'Sub Sector'
 
     def display_class_select(self):
-        return ', '.join([class_select.label for class_select in self.class_select.all()])
-    class_select.short_description = 'Asset class'
+        return ', '.join([class_select.label for class_select in self.class_select.all()][:3])
+    display_class_select.short_description = 'Asset class'
 
     def display_series_stage(self):
         return ', '.join([series_stage.label for series_stage in self.series_stage.all()])
-    series_stage.short_description = 'Series/stage of investment'
+    display_series_stage.short_description = 'Series/stage of investment'
 
     def display_investment_offered(self):
         return ', '.join([investment_offered.label for investment_offered in self.investment_offered.all()])
-    investment_offered.short_description = 'Investment Offered'
+    display_investment_offered.short_description = 'Investment Offered'
 
     def display_offer(self):
         return ', '.join([offer.label for offer in self.offer.all()])
-    offer.short_description = 'Offer'
+    display_offer.short_description = 'Offer'
 
 
 class Mandate(models.Model):
@@ -305,16 +317,28 @@ class Mandate(models.Model):
         return ', '.join([size_ticket_total.label for size_ticket_total in self.size_ticket_total.all()])
     display_size_ticket_total.short_description = 'Desired ticket size'
 
+    def display_geography(self):
+        geography = [country.continent.continent for country in self.country.all()]
+        geo = set(geography)
+        return list(geo)[:3]
+    display_geography.short_description = 'Geography'
+
     def display_country(self):
-        return ', '.join([country.country for country in self.country.all()])
+        return ', '.join([country.country for country in self.country.all()][:3])
     display_country.short_description = 'Country'
 
+    def display_sector(self):
+        sector = [sub_sector.sector.sector for sub_sector in self.sub_sector.all()]
+        sec = set(sector)
+        return list(sec)[:3]
+    display_sector.short_description = 'Sector'
+
     def display_sub_sector(self):
-        return ', '.join([sub_sector.sub_sector for sub_sector in self.sub_sector.all()])
+        return ', '.join([sub_sector.sub_sector for sub_sector in self.sub_sector.all()][:3])
     display_sub_sector.short_description = 'Sub Sector'
 
     def display_class_select(self):
-        return ', '.join([class_select.label for class_select in self.class_select.all()])
+        return ', '.join([class_select.label for class_select in self.class_select.all()][:3])
     display_class_select.short_description = 'Asset class'
 
     def display_series_stage(self):
