@@ -23,7 +23,7 @@ class OpportunityAdmin(admin.ModelAdmin):
                     'amount_other_partner', 'amount_weraise', 'deadline_commitment', 'deadline_legal',
                     'amount_invested', 'display_est_payback', 'estimated_irr', 'break_even_year', 'yield_select',
                     'proposed_exit', 'exit_timing', 'ebitda', 'financials', 'financial_statements', 'financial_model',
-                    'investor_deck', 'company_bio', 'ceo_bio',
+                    'investor_deck', 'display_company_bio', 'display_ceo_bio',
                     # 'return_estimate', 'growth_expectation_year1', 'growth_expectation_year2',
                     # 'growth_expectation_year3',
                     'created_on', 'updated_on')

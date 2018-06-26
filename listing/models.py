@@ -270,6 +270,12 @@ class Opportunity(models.Model):
         return ', '.join([offer.label for offer in self.offer.all()])
     display_offer.short_description = 'Offer'
 
+    def display_company_bio(self):
+        return self.company_bio[:50]
+
+    def display_ceo_bio(self):
+        return self.ceo_bio[:50]
+
 
 class Mandate(models.Model):
     """ Model to upload Mandate """
