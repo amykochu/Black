@@ -44,11 +44,11 @@ def build_lookup_query(field, field_values):
     if field == 'sector':
         model = Sector
         match_fields = {
-            "Energy": "Energy",
-            "Materials": "Materials",
+            "Energy": "Energy,Materials",
+            "Materials": "Materials,Energy",
             "Industrials": "Industrials",
-            "Consumer Discretionary": "Consumer Discretionary",
-            "Consumer Staples": "Consumer Staples",
+            "Consumer Discretionary": "Consumer Discretionary,Consumer Staples",
+            "Consumer Staples": "Consumer Staples,Consumer Discretionary",
             "Health Care": "Health Care",
             "Financials": "Financials",
             "Information Technology": "Information Technology",
