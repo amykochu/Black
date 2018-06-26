@@ -24,6 +24,11 @@
       <script type="text/javascript">
     $(document).ready(function()
     {
+      if($(".refine-search-container ul input:checked"))
+      {
+       $(".refine-search-container ul input:checked").parent().parent().parent().parent().parent().find(".rf-btn").addClass("selected");
+        console.log($(this).val());
+      }
     $('.sel-all').click(function() {
         if($(this).is(":checked")) {
            $(this).parent().find("input").prop("checked", true);
@@ -57,7 +62,12 @@
         $(this).parent().parent().hide();
         $(".overlay").hide();
         $(".rf-btn").removeClass("select");
+         if($(".refine-search-container ul input:checked"))
+          {
+           $(".refine-search-container ul input:checked").parent().parent().parent().parent().parent().find(".rf-btn").addClass("selected");
+          }
         $("#refine-form").submit();
+        
 
       })
       $(".overlay").click(function()
