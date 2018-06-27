@@ -19,8 +19,9 @@ class DashboardHome(View):
     def get(self, request):
 
         result = set()
-        matched_id_list = 0
-        if request.user:
+        if not request.user.is_authenticated:
+            return redirect('login')
+        else:
             form = OpportunitySearchForm(request.GET)
             search_params = request.GET
             user = request.user
