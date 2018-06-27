@@ -62,9 +62,10 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
-          <a class="nav-link" href="#">
+          <a class="nav-link" style="cursor:text" >
             <i class="fa fa-fw"><img src="{% static '/listing/images/user.png' %}"></i>
-            <span class="nav-link-text"> {{ request.user.first_name|title }}</span>
+              <span class="nav-link-text"> {{ request.user.first_name|title }}</span></a>
+              <a class="nav-link" href="/logout/" style="padding:0px;margin-left:70px; margin-top:-15px;"><span class="nav-link-text" style="font-size:12px;">Logout</span>
           </a>
         </li>
       </ul>
