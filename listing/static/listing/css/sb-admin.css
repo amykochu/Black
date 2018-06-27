@@ -346,6 +346,7 @@ span.nav-item
 {
   float: left;
   position: relative;
+  margin-bottom: 15px;
 }
 .refine-search-container
 {
