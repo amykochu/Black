@@ -1,6 +1,7 @@
 {% block content %}
 {% load static %}
 <link href="{% static '/listing/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
 <link href="{% static '/listing/css/sb-admin.css' %}" rel="stylesheet">
 <style>
     body
@@ -15,8 +16,8 @@
 
     {% csrf_token %}
 
-
-    {{ form.as_p }}
+        <label>Email :</label> {{ form.username }}
+        <label>{{ form.password.label }} :</label> {{ form.password }}
     <button type="submit" class="rf-btn select" style="float:right;font-size:15px; width:75px; margin-right:105px;">Login</button>
 	</form>
 

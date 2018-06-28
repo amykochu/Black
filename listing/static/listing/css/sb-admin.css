@@ -1233,12 +1233,16 @@ footer.sticky-footer {
 }
 .loginmodal-container label
 {
-    min-width:75px;
+    min-width:70px;
+      font-family:"arial";
+      text-align:right;
+      font-size:13px;
+      margin-right:10px;
 }
 .loginmodal-container input[type=text], input[type=password] {
   height: 30px;
   font-size: 16px;
-  width: 260px;
+  width: calc(100% - 87px);
   margin-bottom: 10px;
   -webkit-appearance: none;
   background: #fff;
@@ -1246,6 +1250,7 @@ footer.sticky-footer {
   border-top: 1px solid #c0c0c0;
   / border-radius: 2px; /
   padding: 0 8px;
+
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
