@@ -1309,13 +1309,14 @@ footer.sticky-footer {
 }
 input.red-border[required]
 {
-    border: 1px solid rgba(255,0,0,.5) ;
+    border: 1px solid rgba(255,0,0,1) ;
     box-shadow: 0px 0px 1px 1px rgba(255,0,0,.5);
 
 }
 .required .btn-group.red-border
 {
-    border: 1px solid rgba(255,0,0,.5) ;
+    border: 1px solid rgba(255,0,0,1) ;
     box-shadow: 0px 0px 1px 1px rgba(255,0,0,.5);
+    border-radius: .25rem;
 
 }
