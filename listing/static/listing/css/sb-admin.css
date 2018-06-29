@@ -511,6 +511,7 @@ span.nav-item
   width: 100%!important;
   text-align: left;
   outline: none;
+  box-shadow:none;
 }
 .listing p .dropdown-toggle::after
 {
