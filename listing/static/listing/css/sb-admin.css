@@ -730,6 +730,10 @@ ul.errorlist li {
     /*margin-top: 15px;*/
     cursor: pointer;
 }
+.listing input[type="submit"]:disabled {
+    opacity:.5;
+    cursor:default;
+}
 .listing input[type="submit"]:hover
 {
   background-color: #3b4146;

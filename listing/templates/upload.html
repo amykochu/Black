@@ -272,26 +272,57 @@ $(document).ready(function() {
 
 $(".submit").click(function()
 {
-		$('.listing input').each(function(){
-    if($(this).val() == '' )
-    {
-       $(this).addClass("red-border");
-       }
-    else
-    {
-		$(this).removeClass("red-border");
+
+	if($('.listing .required input').val() == '' )
+		{
+		  $(".submit").prop('disabled', false);
+
 		}
-});
-$('.listing select').each(function(){
-    if($(this).val() == '' )
-    {
-       $(this).parent().find(".btn-group").addClass("red-border");
-       }
-    else
-    {
-		$(this).parent().find(".btn-group").removeClass("red-border");
+		else
+		{
+			setTimeout (function()
+			{
+			$(".submit").prop('disabled', true);
+			},200);
+
 		}
-});
+	if($('.listing .required select').val() == '' )
+		{
+		  $(".submit").prop('disabled', false);
+
+		}
+		else
+		{
+			setTimeout (function()
+			{
+			$(".submit").prop('disabled', true);
+			},200);
+		}
+
+	$('.listing .required input').each(function(){
+		if($(this).val() == '' )
+		{
+		   $(this).addClass("red-border");
+		   <!--error_list.push($(this).val());-->
+
+		}
+		else
+		{
+			$(this).removeClass("red-border");
+		}
+	});
+	$('.listing .required select').each(function(){
+		if($(this).val() == '' )
+		{
+
+		   $(this).parent().find(".btn-group").addClass("red-border");
+
+		   }
+		else
+		{
+			$(this).parent().find(".btn-group").removeClass("red-border");
+			}
+	});
 });
   var date = new Date();
   date.setDate(date.getDate());
