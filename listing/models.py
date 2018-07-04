@@ -1,5 +1,5 @@
 from django.utils import timezone
-
+from django.conf import settings
 from django.db import models
 from django.core.validators import FileExtensionValidator
 from django.contrib.postgres.fields import JSONField
@@ -126,6 +126,9 @@ class Sector(models.Model):
     """ Model to store Sectors """
 
     sector = models.CharField(max_length=300)
+    header_image = models.ImageField(upload_to='listing/header_images/', verbose_name='Header Image',
+                                     validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'jpeg'])],
+                                     blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -276,6 +279,10 @@ class Opportunity(models.Model):
     def display_ceo_bio(self):
         return self.ceo_bio[:50]
 
+    def get_header_image_url(self):
+        image_url = self.sub_sector.all()[0].sector.header_image
+        return image_url.url if image_url else settings.DEFAULT_HEADER_IMAGE
+
 
 class Mandate(models.Model):
     """ Model to upload Mandate """
@@ -354,4 +361,3 @@ class Mandate(models.Model):
     def display_yield_select(self):
         return ', '.join([yield_select.label for yield_select in self.yield_select.all()])
     display_yield_select.short_description = 'Yield Select'
-
