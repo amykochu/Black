@@ -14,6 +14,7 @@
         </div>
         <div class="wid-details">
       <h2  title="{{ i.company_description }}">{{ i.company_description }}</h2>
+      <br><br>
       <h5>{% for m in i.size_ticket_total.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</h5>
       <span>{% for m in i.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</span>
       <p>{{ i.company_description }}</p>
@@ -23,7 +24,7 @@
         <label>Series/Stage:{% for m in i.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         <label>Asset Class: {% for m in i.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         </div>
-        {% for m in i.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
+        {% for m in i.sub_sector.all|slice:":5" %} <a href="#">{{ m }} </a>{% endfor %}
     </div>
 
     </div>
