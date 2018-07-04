@@ -4,7 +4,7 @@
     <a href="/opportunity-detail/{{ i.id }}" class="gotoUrl"></a>
     <div class="wid-cards">
       
-        <div class="wid-bg" style="background-image: url('{% static '/listing/images/wid-bg.png' %}');">
+        <div class="wid-bg" style="background-image: url('{{ i.get_header_image_url }}');">
           <div class="match">
             
           </div>
@@ -24,7 +24,6 @@
         <label>Asset Class: {% for m in i.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</label>
         </div>
         {% for m in i.sub_sector.all %} <a href="#">{{ m }} </a>{% endfor %}
-
     </div>
 
     </div>
