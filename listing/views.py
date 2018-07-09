@@ -136,6 +136,7 @@ class MandateUploadView(View):
         post_data.setlist('sub_sector', remove_zero(post_data, 'sub_sector'))
         post_data.setlist('class_select', remove_zero(post_data, 'class_select'))
         post_data.setlist('series_stage', remove_zero(post_data, 'series_stage'))
+        post_data.setlist('category', remove_zero(post_data, 'category'))
         form = MandateForm(post_data)
         if form.is_valid():
             obj = form.save(commit=False)
