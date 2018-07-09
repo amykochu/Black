@@ -176,6 +176,17 @@ class Category(models.Model):
         return self.label
 
 
+class FundSize(models.Model):
+    """ Model for Category - Mandate data """
+
+    label = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.label
+
+
 class Opportunity(models.Model):
     """ Model for opportunity upload """
 
@@ -302,7 +313,9 @@ class Mandate(models.Model):
     """ Model to upload Mandate """
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category, verbose_name='Category')
     investment_sought = models.ManyToManyField(InvestmentOffered, verbose_name='Type of investment sought')
+    fund_description = models.TextField(max_length=500, verbose_name='Fund description', blank=True, null=True)
     fund_size = models.ManyToManyField(ValuationFundTicket, verbose_name='Required minimum company or fund size ($USm)', blank=True)
     size_ticket_total = models.ManyToManyField(ValuationFundTicket, verbose_name='Desired ticket size',
                                                related_name='mandate_size_ticket')
