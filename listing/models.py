@@ -336,6 +336,8 @@ class Mandate(models.Model):
     class_select = models.ManyToManyField(Class, verbose_name='Asset class')
     series_stage = models.ManyToManyField(SeriesStage, verbose_name='Series/stage of investment sought')
     investor_required = models.ForeignKey(InvestorSpecial, on_delete=models.CASCADE, verbose_name='Lead Investor required in place', blank=True, null=True)
+    fund_size_select = models.ForeignKey(FundSize, on_delete=models.CASCADE, verbose_name='Fund size ($USm)',
+                                         blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
