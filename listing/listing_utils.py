@@ -1,11 +1,15 @@
 import xlrd
 import mmap
 
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
 
 from listing.models import (Mandate, InvestmentOffered, ValuationFundTicket, Yield, Class,
                             SeriesStage, InvestorSpecial, Country, Geography,
                             SubSector, Sector, CompanyPurchaseMinMax)
+
+
+User = get_user_model()
 
 
 def xls_dict_reader(f, sheet_index=0):
@@ -106,7 +110,7 @@ def xls_dict_reader(f, sheet_index=0):
         user = None
         if data['Name'] and data['Email']:
 
-            user, created = User.objects.get_or_create(email=data['Email'].strip(), username=data['Email'].strip())
+            user, created = User.objects.get_or_create(email=data['Email'].strip())
             if created:
                 user.first_name = data['Name'].strip()
                 user.set_password(data['Email'].strip())
