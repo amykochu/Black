@@ -4,14 +4,20 @@ from listing.models import (Opportunity, Mandate, InvestmentOffered, ValuationFu
                             SeriesStage, InvestorSpecial, EstPayback, Offer, Financial, Country, Geography,
                             SubSector, Sector, CompanyPurchaseMinMax, Category, FundSize)
 
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
+
 
 class MandateAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'display_investment_sought', 'display_size_ticket_total',
-                    'display_geography', 'display_country', 'display_sector',
+
+    list_display = ('id', 'user', 'display_category', 'display_investment_sought', 'display_fund_description',
+                    'display_fund_size', 'display_size_ticket_total', 'display_geography', 'display_country', 'display_sector',
                     'display_sub_sector', 'display_series_stage',  'display_class_select', 'display_yield_select',
                     'growth_expectation_year1', 'growth_expectation_year2', 'growth_expectation_year3',
                     'percentage_company_min', 'percentage_company_max', 'investor_required',
-                    'created_on', 'updated_on')
+                    'fund_size_select', 'created_on', 'updated_on')
 
 
 class OpportunityAdmin(admin.ModelAdmin):

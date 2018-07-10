@@ -353,7 +353,7 @@ class Mandate(models.Model):
 
     def display_fund_size(self):
         return ', '.join([fund_size.label for fund_size in self.fund_size.all()])
-    display_fund_size.short_description = 'Fund Size'
+    display_fund_size.short_description = 'Required minimum company or fund size ($USm)'
 
     def display_size_ticket_total(self):
         return ', '.join([size_ticket_total.label for size_ticket_total in self.size_ticket_total.all()])
@@ -390,3 +390,11 @@ class Mandate(models.Model):
     def display_yield_select(self):
         return ', '.join([yield_select.label for yield_select in self.yield_select.all()])
     display_yield_select.short_description = 'Yield Select'
+
+    def display_category(self):
+        return ', '.join([category.label for category in self.category.all()])
+    display_category.short_description = 'Category'
+
+    def display_fund_description(self):
+        return self.fund_description
+    display_fund_description.short_description = 'Fund description'
