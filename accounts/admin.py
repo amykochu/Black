@@ -15,8 +15,12 @@ class UserAdmin(admin.ModelAdmin):
     inlines = [
         MandateInline,
     ]
+    list_editable = ('email', 'first_name', 'last_name', 'title', 'location', 'country', 'fund', 'mobile',
+                     'land_line', )
+    # list_filter = ('is_staff', 'is_superuser', 'is_active', )
     list_display = ('id', 'email', 'first_name', 'last_name', 'title', 'location', 'country', 'fund', 'mobile',
                     'land_line', )
     exclude = ('password', 'last_login', 'groups', 'user_permissions')
+
 
 admin.site.register(User, UserAdmin)

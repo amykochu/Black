@@ -1,23 +1,15 @@
 from django.contrib import admin
+from django.contrib.admin.views.main import ChangeList
+from django.contrib.auth import get_user_model
+
 
 from listing.models import (Opportunity, Mandate, InvestmentOffered, ValuationFundTicket, Yield, Class,
                             SeriesStage, InvestorSpecial, EstPayback, Offer, Financial, Country, Geography,
                             SubSector, Sector, CompanyPurchaseMinMax, Category, FundSize)
-
-from django.contrib.auth import get_user_model
+from listing.forms import MandateChangeListForm
 
 
 User = get_user_model()
-
-
-class MandateAdmin(admin.ModelAdmin):
-
-    list_display = ('id', 'user', 'display_category', 'display_investment_sought', 'display_fund_description',
-                    'display_fund_size', 'display_size_ticket_total', 'display_geography', 'display_country', 'display_sector',
-                    'display_sub_sector', 'display_series_stage',  'display_class_select', 'display_yield_select',
-                    'growth_expectation_year1', 'growth_expectation_year2', 'growth_expectation_year3',
-                    'percentage_company_min', 'percentage_company_max', 'investor_required',
-                    'fund_size_select', 'created_on', 'updated_on')
 
 
 class OpportunityAdmin(admin.ModelAdmin):
@@ -33,6 +25,42 @@ class OpportunityAdmin(admin.ModelAdmin):
                     # 'return_estimate', 'growth_expectation_year1', 'growth_expectation_year2',
                     # 'growth_expectation_year3',
                     'created_on', 'updated_on')
+
+
+class MandateChangeList(ChangeList):
+
+    def __init__(self, request, model, list_display, list_display_links,
+                 list_filter, date_hierarchy, search_fields, list_select_related,
+                 list_per_page, list_max_show_all, list_editable, model_admin):
+        super(MandateChangeList, self).__init__(request, model, list_display, list_display_links,
+                                                    list_filter, date_hierarchy, search_fields, list_select_related,
+                                                    list_per_page, list_max_show_all, list_editable, model_admin)
+
+        # these need to be defined here, and not in MandateAdmin
+        self.list_display = ['action_checkbox', 'email', 'first_name', 'last_name', 'title', 'location',
+                             'user_country',
+                             'fund', 'mobile', 'land_line', 'category',
+                             'investment_sought', 'fund_description',
+                             'fund_size', 'size_ticket_total', 'percentage_company_min', 'percentage_company_max',
+                             'display_geography', 'country', 'display_sector', 'sub_sector', 'yield_select',
+                             'growth_expectation_year1', 'growth_expectation_year2', 'growth_expectation_year3',
+                             'class_select', 'series_stage', 'investor_required', 'fund_size_select',
+                             'created_on', 'updated_on']
+        # self.list_display_links = ['user']
+        self.list_editable = ['email', 'first_name', 'last_name', 'title', 'location', 'user_country', 'fund', 'mobile',
+                              'land_line', 'category', 'investment_sought',
+                              'fund_description', 'fund_size', 'size_ticket_total', 'percentage_company_min',
+                              'percentage_company_max', 'country', 'sub_sector', 'yield_select',
+                              'growth_expectation_year1', 'growth_expectation_year2', 'growth_expectation_year3',
+                              'class_select', 'series_stage', 'investor_required', 'fund_size_select']
+
+
+class MandateAdmin(admin.ModelAdmin):
+    def get_changelist(self, request, **kwargs):
+        return MandateChangeList
+
+    def get_changelist_form(self, request, **kwargs):
+        return MandateChangeListForm
 
 
 admin.site.register(Mandate, MandateAdmin)

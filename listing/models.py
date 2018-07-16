@@ -398,3 +398,41 @@ class Mandate(models.Model):
     def display_fund_description(self):
         return self.fund_description
     display_fund_description.short_description = 'Fund description'
+
+    def first_name(self):
+        return self.user.first_name
+    first_name.short_description = 'First Name'
+
+    def last_name(self):
+        return self.user.first_name
+    last_name.short_description = 'Last Name'
+
+    def title(self):
+        return self.user.title
+    title.short_description = 'Title'
+
+    def email(self):
+        return self.user.email
+    email.short_description = 'Email'
+
+    def location(self):
+        return self.user.location
+    location.short_description = 'Location'
+
+    def user_country(self):
+        return self.user.country
+    user_country.short_description = 'Country(user)'
+
+    def fund(self):
+        return self.user.fund
+    fund.short_description = 'Fund'
+
+    def mobile(self):
+        return self.user.mobile
+    mobile.short_description = 'Mobile'
+
+    def land_line(self):
+        return self.user.land_line
+    land_line.short_description = 'Land Line'
+
+
