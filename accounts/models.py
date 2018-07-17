@@ -5,6 +5,10 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 
 
+USER_TYPES = ((1, 'INVESTOR'),
+              (2, 'FUND_SEEKER'))
+
+
 class UserManager(BaseUserManager):
     """Create and save user"""
 
@@ -34,19 +38,22 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     """ Creating customized user model """
 
-    first_name = models.CharField('* First Name', max_length=64)
-    last_name = models.CharField('* Last Name', max_length=64)
-    email = models.EmailField('* Email', unique=True, db_index=True)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64, blank=True, null=True)
+    email = models.EmailField(unique=True, db_index=True)
     title = models.CharField(max_length=128, blank=True, default='')
     location = models.CharField(blank=True, default='', max_length=128)
     country = models.ForeignKey('listing.Country', blank=True, null=True, db_index=True, on_delete=models.CASCADE)
     fund = models.CharField(max_length=200, blank=True, default='')
     mobile = models.CharField(max_length=16, blank=True, default="")
-    land_line = models.CharField(max_length=16, blank=True, default="")
+    mobile_code = models.CharField(max_length=6, blank=True, null=True, default="")
+    land_line = models.CharField(max_length=16, blank=True, null=True, default="")
+    land_line_code = models.CharField(max_length=6, blank=True, null=True, default="")
+    user_type = models.IntegerField(choices=USER_TYPES, blank=True, null=True)
+    is_active = models.BooleanField(default=False)
 
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
 
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
