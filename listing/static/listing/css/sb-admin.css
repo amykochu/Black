@@ -6,6 +6,7 @@ html {
 body {
   overflow-x: hidden;
   font-family: "Roboto Condensed";
+  background-color: #000;
 }
 
 body.sticky-footer {
@@ -13,7 +14,7 @@ body.sticky-footer {
 }
 
 body.sticky-footer .content-wrapper {
-  min-height: calc(100vh - 56px - 56px);
+  min-height: calc(100vh - 56px);
 }
 
 
@@ -22,10 +23,40 @@ th.required { font-weight: bold; }
 
 #financial-table input
 {
-width:110px;
+  width: 100%;
+  max-width: 110px;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+.conpany-desc table tr
+{
+  border-bottom: 1px solid #ccc;
+}
+.conpany-desc table td
+{
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  width: 50%;
+}
+.conpany-desc table tr:nth-child(odd)
+{
+  background-color: #f1f1f1;
+}
+.conpany-desc table
+{
+  width: 100%;
+  margin-bottom: 50px;
+  border: 1px solid #ccc;
+}
+.conpany-desc table td:last-child
+{
+  padding-left: 20px;
+
 }
 body.fixed-nav {
-  padding-top: 56px;
+  /* padding-top: 56px; */
 }
 span.nav-item
 {
@@ -46,11 +77,38 @@ span.nav-item
 .content-wrapper {
   min-height: calc(100vh - 56px);
   padding-top: 1rem;
+  padding-top: 56px; 
 }
 .mr-5 p
 {
   font-size: 12px;
   margin-bottom: 5px;
+}
+.login-footer
+{
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+}
+.login-footer button
+{
+  float: right!important;
+  font-family: "Roboto Condensed";
+  font-size: 15px!important;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: 0px!important;
+}
+.login-footer span
+{
+  float: left;
+  font-family: "Roboto Condensed";
+  font-size: 13px!important;
+  padding-top: 10px;
+}
+.login-footer span a
+{
+  text-decoration: underline;
 }
 .mr-5 div a
 {

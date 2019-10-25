@@ -66,7 +66,7 @@
           {% if user.is_superuser %}
                 <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" href="/opportunity-list/">
-            <i class="fa fa-fw"><img src="{% static '/listing/images/search.png' %}"></i>
+            <i class="fa fa-fw"><img src="{% static '/listing/images/users.svg' %}" height="25"></i>
             <span class="nav-link-text">Fund Seekers</span>
           </a>
         </li>
@@ -75,8 +75,13 @@
           <a class="nav-link" style="cursor:text" >
             <i class="fa fa-fw"><img src="{% static '/listing/images/user.png' %}"></i>
               <span class="nav-link-text"> {{ request.user.first_name|title }}</span></a>
-              <a class="nav-link" href="/logout/" style="padding:0px;margin-left:70px; margin-top:-15px;"><span class="nav-link-text" style="font-size:12px;">Logout</span>
+              
           </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+            <a class="nav-link" href="/logout/" >
+              <i class="fa fa-fw"><img src="{% static '/listing/images/logout.svg' %}"></i>
+              <span class="nav-link-text" > Logout</span></a>
         </li>
       </ul>
           {% endif %}

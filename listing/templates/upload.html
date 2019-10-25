@@ -2,76 +2,102 @@
 {% load static %}
 {% block content %}
 <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
-        	<div class="row">
-		        <div class="col-xl-6	 col-sm-8 mb-3">
+<form action="" method="post" class="listing" enctype="multipart/form-data">    
+  <h4 class="heading-h1">Fund Seeker Opportunity Upload</h4>
+  <label class="required">Compulsory fields marked with</label>
+  <br>    
+<div class="row">
+
+		        <div class="col-xl-5	 col-sm-8 mb-3">
 		          <div class="text-dark bg-white h-100">
-							<form action="" method="post" class="listing" enctype="multipart/form-data">
+
 							    {% csrf_token %}
 								{% if opportunity %}
-								<h4 class="heading-h1">Fund Seeker Opportunity Upload</h4>
-								<label class="required">Compulsory fields marked with</label>
-								<br>
+
 								<p><label class="required">{{ form.company_description.label }}:</label> {{ form.company_description }}</p>
-								<p><label class="required">{{ form.opportunity_created.label }}:</label> {{ form.opportunity_created }}</p>
+								
 								<p><label>{{ form.selling_by.label }}:</label> {{ form.selling_by }}</p>
-								<p><label>{{ form.competitors.label }}:</label> {{ form.competitors }}</p>
+								
 								<p class="required"><label class="required">{{ form.valuation.label }}:</label> {{ form.valuation }}</p>
-								<p><label class="required">{{ form.valuation_text.label }}:</label> {{ form.valuation_text }}</p>
+								
 								<p><label class="required">{{ form.amount_invested.label }}:</label> {{ form.amount_invested }}</p>
-								<p><label class="required">{{ form.ownership_structure.label }}:</label> {{ form.ownership_structure }}</p>
+								
 								<p><label class="required">{{ form.ebitda.label }}:</label> {{ form.ebitda }}</p>
-								<p><label>{{ form.break_even_year.label }}:</label> {{ form.break_even_year }}</p>
+								
 								<p><label>{{ form.est_payback.label }}:</label> {{ form.est_payback }}</p>
-								<p class="required"><label class="required">{{ form.size_ticket_total.label }}:</label> {{ form.size_ticket_total }}</p>
+								
 								<p class="required"><label class="required">{{ form.geography.label }}:</label> {{ form.geography }}</p>
-								<p class="required"><label class="required">{{ form.country.label }}:</label> {{ form.country }}</p>
+								
 								<p class="required"><label class="required">{{ form.sector.label }}:</label> {{ form.sector }}</p>
-								<p class="required"><label class="required">{{ form.sub_sector.label }}:</label> {{ form.sub_sector }}</p>
+								
 								<p class="required"><label class="required">{{ form.yield_select.label }}:</label> {{ form.yield_select }}</p>
-								<p><label class="required">{{ form.return_estimate.label }}:</label> {{ form.return_estimate }}</p>
+								
 								<p><label class="required">{{ form.growth_expectation_year1.label }}:</label> {{ form.growth_expectation_year1 }}</p>
-								<p><label class="required">{{ form.growth_expectation_year2.label }}:</label> {{ form.growth_expectation_year2 }}</p>
+								
 								<p><label class="required">{{ form.growth_expectation_year3.label }}:</label> {{ form.growth_expectation_year3 }}</p>
-								<p class="required"><label class="required">{{ form.class_select.label }}:</label> {{ form.class_select }}</p>
+								
 								<p class="required"><label class="required">{{ form.series_stage.label }}:</label> {{ form.series_stage }}</p>
-								<p class="required"><label class="required">{{ form.investor_required.label }}:</label> {{ form.investor_required }}</p>
+								
 								<p><label>{{ form.amount_lead_partner.label }}:</label> {{ form.amount_lead_partner }}</p>
-								<p><label>{{ form.amount_other_partner.label }}:</label> {{ form.amount_other_partner }}</p>
+								
 								<p><label>{{ form.amount_weraise.label }}:</label> {{ form.amount_weraise }}</p>
-								<p class="required"><label class="required">{{ form.investment_offered.label }}:</label> {{ form.investment_offered }}</p>
+								
 								<p><label>{{ form.offer.label }}:</label> {{ form.offer }}</p>
-								<p><label>{{ form.special_situation.label }}:</label> {{ form.special_situation }}</p>
+								
 								<p class="required"><label class="required">{{ form.financials.label }}:</label> {{ form.financials }}</p>
 								<label class="required" >High Level Financial's </label>
 								{% include 'financial_table.html' %}
 								<p><label>{{ form.estimated_irr.label }}:</label> {{ form.estimated_irr }}</p>
 								<p><label>{{ form.exit_timing.label }}:</label> {{ form.exit_timing }}</p>
 								<p><label class="required">{{ form.use_of_funds.label }}:</label> {{ form.use_of_funds }}</p>
-								<p class="required"><label class="required">{{ form.deadline_commitment.label }}:</label> {{ form.deadline_commitment }}</p>
-								<p class="required"><label class="required">{{ form.deadline_legal.label }}:</label> {{ form.deadline_legal }}</p>
-								<p><label class="required">{{ form.proposed_process.label }}:</label> {{ form.proposed_process }}</p>
-								<p><label class="required">{{ form.proposed_exit.label }}:</label> {{ form.proposed_exit }}</p>
-								<p><label>{{ form.financial_statements.label }}:</label> {{ form.financial_statements }}</p>
-								<p><label>{{ form.financial_model.label }}:</label> {{ form.financial_model }}</p>
-								<p><label>{{ form.investor_deck.label }}:</label> {{ form.investor_deck }}</p>
+
+
 								<p><label>{{ form.company_bio.label }}:</label> {{ form.company_bio }}</p>
-								<p><label>{{ form.ceo_bio.label }}:</label> {{ form.ceo_bio }}</p>
+
 								<!--<p><label>{{ form..label }}:</label> {{ form. }}</p>-->
 
-								{% elif mandate %}
-								<h4 class="heading-h1">Investor Mandate Upload</h4>
-								<label class="required">Compulsory fields marked with</label>
-								{{ form.as_p }}
-								{% endif %}
-
-                  <div style="width: 100%;float: left;">
-                     <input type="submit" value="Upload" class="submit">
-                  </div>
-							</form>
+						
+                <div style="width: 100%;float: left; padding-top:25px">
+                    <input type="submit" value="Upload" class="submit">
+                 </div>
+             
 						</div>
 
-				</div>
+        </div>
+        <div class="col-xl-5 offset-xl-1	 col-sm-8 mb-3">
+            <p><label class="required">{{ form.opportunity_created.label }}:</label> {{ form.opportunity_created }}</p>
+            <p><label>{{ form.competitors.label }}:</label> {{ form.competitors }}</p>
+            <p><label class="required">{{ form.valuation_text.label }}:</label> {{ form.valuation_text }}</p>
+            <p><label class="required">{{ form.ownership_structure.label }}:</label> {{ form.ownership_structure }}</p>
+            <p><label>{{ form.break_even_year.label }}:</label> {{ form.break_even_year }}</p>
+            <p class="required"><label class="required">{{ form.size_ticket_total.label }}:</label> {{ form.size_ticket_total }}</p>
+            <p class="required"><label class="required">{{ form.country.label }}:</label> {{ form.country }}</p>
+            <p class="required"><label class="required">{{ form.sub_sector.label }}:</label> {{ form.sub_sector }}</p>
+            <p><label class="required">{{ form.return_estimate.label }}:</label> {{ form.return_estimate }}</p>
+            <p><label class="required">{{ form.growth_expectation_year2.label }}:</label> {{ form.growth_expectation_year2 }}</p>
+            <p class="required"><label class="required">{{ form.class_select.label }}:</label> {{ form.class_select }}</p>
+            <p class="required"><label class="required">{{ form.investor_required.label }}:</label> {{ form.investor_required }}</p>
+            <p><label>{{ form.amount_other_partner.label }}:</label> {{ form.amount_other_partner }}</p>
+            <p class="required"><label class="required">{{ form.investment_offered.label }}:</label> {{ form.investment_offered }}</p>
+            <p><label>{{ form.special_situation.label }}:</label> {{ form.special_situation }}</p>
+            {% elif mandate %}
+            <h4 class="heading-h1">Investor Mandate Upload</h4>
+            <label class="required">Compulsory fields marked with</label>
+            {{ form.as_p }}
+            {% endif %}
+            <p class="required"><label class="required">{{ form.deadline_commitment.label }}:</label> {{ form.deadline_commitment }}</p>
+            <p class="required"><label class="required">{{ form.deadline_legal.label }}:</label> {{ form.deadline_legal }}</p>
+            <p><label class="required">{{ form.proposed_process.label }}:</label> {{ form.proposed_process }}</p>
+            <p><label class="required">{{ form.proposed_exit.label }}:</label> {{ form.proposed_exit }}</p>
+            <p><label>{{ form.financial_statements.label }}:</label> {{ form.financial_statements }}</p>
+            <p><label>{{ form.financial_model.label }}:</label> {{ form.financial_model }}</p>
+            <p><label>{{ form.investor_deck.label }}:</label> {{ form.investor_deck }}</p>
+            <p><label>{{ form.ceo_bio.label }}:</label> {{ form.ceo_bio }}</p>
+        </div>
+</form>
 
+
+</div>
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">      
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>

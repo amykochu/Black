@@ -1,58 +1,265 @@
-{% extends 'base.html' %}
-{% block content %}
-	{% load static %}
-<div class="col-xl-7 col-sm-6 mb-3">
-  <div class="text-dark bg-white o-hidden h-100">
-    <div class="wid-cards-details">
+{% extends 'base.html' %} {% block content %} {% load static %}
+<h4 class="heading-h1">Description</h4>
+<div class="row conpany-desc">
 
-      <div class="widget-specs">
-	      <div class="wid-specs">
-			  <label>Company/Fund description: <b>{{ result.company_description }}</b></label>
-			  <label>What makes this opportunity unique? How will value be created/unlocked?:<b>{{ result.opportunity_created }}</b></label>
-			  <label>Who is selling? Why?: <b>{{ result.selling_by }}</b></label>
-			  <label>Major competitors: <b>{{ result.competitors }}</b></label>
-			  <label>Company valuation - metrics and rationale ($USm):<b>{{ result.valuation }}</b></label>
-			  <label>Company valuation - metrics and rationale (Input): <b>{{ result.valuation_text }}</b></label>
-			  <label>Amount invested to date ($USm):<b>{{ result.amount_invested }}</b></label>
-			  <label>Ownership structure (%), Major shareholders (%)::<b>{{ result.ownership_structure }}</b></label>
-			  <label>Company EBITDA ($USm):<b>{{ result.ebitda }}</b></label>
-			  <label>Break-even year:<b>{{ result.break_even_year }}</b></label>
-			  <label>Estimated payback period on raise:<b>{% for m in result.est_payback.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
-              <label>Size ticket input:<b>{% for m in result.size_ticket_total.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
-              <label>Country:<b>{% for m in result.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
- 			  <label>Sub Sector:<b>{% for m in result.sub_sector.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
- 			  <label>Yield:<b>{{ result.yield_select }}</b></label>
-			  <label>Return estimate forecast (3-yr) (%):<b>{{ result.return_estimate }}</b></label>
-			  <label>Earnings expectation forecast ($USm FY1):<b>{{ result.growth_expectation_year1 }}</b></label>
-			  <label>Earnings expectation forecast ($USm FY2):<b>{{ result.growth_expectation_year2 }}</b></label>
-			  <label>Earnings expectation forecast ($USm FY3):<b>{{ result.growth_expectation_year3 }}</b></label>
-			  <label>Asset class:<b>{% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
-			  <label>Series/stage of investment:<b>{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
-			  <label>Is there a lead investor?:<b>{{ result.investor_required }}</b></label>
-			  <label>Amount injected by Lead Partner ($USm):<b>{{ result.amount_lead_partner }}</b></label>
-              <label>Amount injected by Other Partners ($USm):<b>{{ result.amount_other_partner }}</b></label>
-	          <label>Amount available for WeRaise ($USm):<b>{{ result.amount_weraise }}</b></label>
-			  <label>Type of investment offered:<b>{% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
-			  <label>Offer:<b>{% for m in result.offer.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b></label>
-			  <label>Special situation:<b>{{ result.special_situation }}</b></label>
-              <label>Financials (currency):<b>{{ result.financials }}</b></label>
-			  <label>Estimated IRR:<b>{{ result.estimated_irr }}</b></label>
-			  <label>Expected exit timing:<b>{{ result.exit_timing }}</b></label>
-			  <label>Use of funds:<b>{{ result.use_of_funds }}</b></label>
-			  <label>Deadline for formal commitment:<b>{{ result.deadline_commitment }}</b></label>
-			  <label>Deadline for execution of legal docs:<b>{{ result.deadline_legal }}</b></label>
-			  <label>Proposed capital raise process:<b>{{ result.proposed_process }}</b></label>
-			  <label>Proposed exit options:<b>{{ result.proposed_exit }}</b></label>
-			  <label>Do you have 3 years audited financial statements available?:<b>{{ result.financial_statements.url }}</b></label>
-			  <label>Do you have a financial model?:<b>{{ result.financial_model.url }}</b></label>
-			  <label>Do you have an investor deck?:<b>{{ result.investor_deck.url }}</b></label>
-			  <label>Company Bio:<b>{{ result.company_bio }}</b></label>
-			  <label>CEO Bio:<b>{{ result.ceo_bio }}</b></label>
-	      </div>
-	    </div>
-    </div>
-    </div>
-  </div>
+	<div class="col-xl-6">
+		<table>
+			<tr>
+				<td>Company/Fund description:</td>
+				<td>
+					<b>{{ result.company_description }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>What makes this opportunity unique?
+					<br/>How will value be created/unlocked?:</td>
+				<td>
+					<b>{{ result.opportunity_created }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Who is selling? Why?:</td>
+				<td>
+					<b>{{ result.selling_by }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Major competitors:</td>
+				<td>
+					<b>{{ result.competitors }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Company valuation - metrics and rationale ($USm):</td>
+				<td>
+					<b>{{ result.valuation }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Company valuation - metrics and rationale (Input):</td>
+				<td>
+					<b>{{ result.valuation_text }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Amount invested to date ($USm):</td>
+				<td>
+					<b>{{ result.amount_invested }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Ownership structure (%), Major shareholders (%):</td>
+				<td>
+					<b>{{ result.ownership_structure }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Company EBITDA ($USm):</td>
+				<td>
+					<b>{{ result.ebitda }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Break-even year:</td>
+				<td>
+					<b>{{ result.break_even_year }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Estimated payback period on raise:</td>
+				<td>
+					<b>{% for m in result.est_payback.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Size ticket input:</td>
+				<td>
+					<b>{% for m in result.size_ticket_total.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Country:</td>
+				<td>
+					<b>{% for m in result.country.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Sub Sector:</td>
+				<td>
+					<b>{% for m in result.sub_sector.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Yield:</td>
+				<td>
+					<b>{{ result.yield_select }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Return estimate forecast (3-yr) (%):</td>
+				<td>
+					<b>{{ result.return_estimate }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Earnings expectation forecast ($USm FY1):</td>
+				<td>
+					<b>{{ result.growth_expectation_year1 }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Earnings expectation forecast ($USm FY2):</td>
+				<td>
+					<b>{{ result.growth_expectation_year2 }}</b>
+				</td>
+			</tr>
+			<tr>
+				<td>Earnings expectation forecast ($USm FY3):</td>
+				<td>
+					<b>{{ result.growth_expectation_year3 }}</b>
+				</td>
+			</tr>
+
+			<tr>
+					<td>Asset class:</td>
+					<td>
+						<b>{% for m in result.class_select.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+					</td>
+				</tr>
+				<tr>
+						<td>Series/stage of investment:</td>
+						<td>
+							<b>{% for m in result.series_stage.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+						</td>
+					</tr>
+		</table>
+	</div>
+
+<div class="col-xl-6">
+	<table>
+
+
+				<tr>
+					<td>Is there a lead investor?:</td>
+					<td>
+						<b>{{ result.investor_required }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Amount injected by Lead Partner ($USm):</td>
+					<td>
+						<b>{{ result.amount_lead_partner }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Amount injected by Other Partners ($USm):</td>
+					<td>
+						<b>{{ result.amount_other_partner }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Amount available for WeRaise ($USm):</td>
+					<td>
+						<b>{{ result.amount_weraise }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Type of investment offered:</td>
+					<td>
+						<b>{% for m in result.investment_offered.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Offer:</td>
+					<td>
+						<b>{% for m in result.offer.all %} {{ m }} {% if not forloop.last %}, {% endif %} {% endfor %}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Special situation:</td>
+					<td>
+						<b>{{ result.special_situation }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Financials (currency):</td>
+					<td>
+						<b>{{ result.financials }}</b>
+					</td>
+				</tr>
+			<tr>
+					<td>Estimated IRR:</td>
+					<td>
+						<b>{{ result.estimated_irr }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Expected exit timing:</td>
+					<td>
+						<b>{{ result.exit_timing }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Use of funds:</td>
+					<td>
+						<b>{{ result.use_of_funds }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Deadline for formal commitment:</td>
+					<td>
+						<b>{{ result.deadline_commitment }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Deadline for execution of legal docs:</td>
+					<td>
+						<b>{{ result.deadline_legal }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Proposed capital raise process:</td>
+					<td>
+						<b>{{ result.proposed_process }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Proposed exit options:</td>
+					<td>
+						<b>{{ result.proposed_exit }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>Do you have 3 years audited financial statements available?:</td>
+					<td>
+						<b><a href="{% if result.financial_statements %} {{ result.financial_statements.url }}{% endif %}">Download</a></b>
+					</td>
+				</tr>
+				<tr>
+					<td>Do you have a financial model?:</td>
+					<td>
+						<b><a href="{% if result.financial_model %} {{ result.financial_model.url }} {% endif %}">Download</a> </b>
+					</td>
+				</tr>
+				<tr>
+					<td>Do you have an investor deck?:</td>
+					<td>
+						<b><a href="{% if result.investor_deck %} {{ result.investor_deck.url }} {% endif %}">Download</a></b>
+					</td>
+				</tr>
+				<tr>
+					<td>Company Bio:</td>
+					<td>
+						<b>{{ result.company_bio }}</b>
+					</td>
+				</tr>
+				<tr>
+					<td>CEO Bio:</td>
+					<td>
+						<b>{{ result.ceo_bio }}</b>
+					</td>
+				</tr>
+	</table>
 </div>
-
+</div>
 {% endblock %}
