@@ -21,11 +21,13 @@
 </head>
 <body class="fixed-nav sticky-footer" id="page-top">
   <!-- Navigation-->
+
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="/"><img src="{% static '/listing/images/logo.png' %}"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
     </button>
+      {% if user.is_authenticated %}
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
@@ -61,6 +63,14 @@
             <span class="nav-link-text">Search</span>
           </a>
         </li>
+          {% if user.is_superuser %}
+                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link" href="/opportunity-list/">
+            <i class="fa fa-fw"><img src="{% static '/listing/images/search.png' %}"></i>
+            <span class="nav-link-text">Fund Seekers</span>
+          </a>
+        </li>
+          {% endif %}
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
           <a class="nav-link" style="cursor:text" >
             <i class="fa fa-fw"><img src="{% static '/listing/images/user.png' %}"></i>
@@ -69,6 +79,7 @@
           </a>
         </li>
       </ul>
+          {% endif %}
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">
           <a class="nav-link text-center" id="sidenavToggler">
@@ -79,6 +90,7 @@
 
     </div>
   </nav>
+
   <div class="content-wrapper">
     <div class="container-fluid">
       <div class="content">

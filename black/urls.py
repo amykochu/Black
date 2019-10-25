@@ -19,6 +19,7 @@ from listing import views
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views as auth_views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('opportunity-upload/', views.OpportunityUploadView.as_view(), name='upload'),
     # path('search/', views.SearchView.as_view(), name='search'),
+    path('opportunity-list/', views.OpportunityListView.as_view(), name='opportunity-list'),
     path('opportunity-detail/<int:pk>/', views.OpportunityDetailView.as_view(), name='opportunity-detail-view'),
     # path('mandate-detail/<int:pk>/', views.MandateDetailView.as_view(), name='mandate-detail-view'),
     path('mandate-upload/', views.MandateUploadView.as_view(), name='mandate_upload'),

@@ -1,12 +1,13 @@
 import operator
+import json
 from functools import reduce
 
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views import View
 from django.db.models import Q
-from django.views.generic import DetailView
-from django.http import JsonResponse
+from django.views.generic import DetailView, ListView
+from django.http import JsonResponse, HttpResponse
 
 from listing.matching_algorithm import match
 
@@ -251,3 +252,26 @@ def FindMatch(profile):
                 match_data = match_data.filter(**d2)
     return match_data
     # return render(request, 'results.html', {'match_data': match_data})
+
+
+# def opportunities_listing_json(request):
+#     opportunities_list = []
+#     opportunities = Opportunity.objects.all()
+#     for opportunity in opportunities:
+#         opportunities_list.append({
+#             'company_description': opportunity.company_description,
+#             'sector': opportunity.display_sector(),
+#             'country': opportunity.display_country(),
+#             'offer': opportunity.display_offer(),
+#             })
+#
+#     list_json = json.dumps(opportunities_list)
+#     return HttpResponse(list_json, content_type='json')
+
+
+class OpportunityListView(ListView):
+    """ Detail view for Opportunity widgets """
+
+    model = Opportunity
+    template_name = 'opp_list.html'
+    context_object_name = 'opportunities'
