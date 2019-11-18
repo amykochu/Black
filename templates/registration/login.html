@@ -18,8 +18,9 @@
 
         <label>Email :</label> {{ form.username }}
         <label>{{ form.password.label }} :</label> {{ form.password }}
-    <button type="submit" class="rf-btn select" style="float:right;font-size:15px; width:75px; margin-right:105px;">Login</button>
-        New user?<a href="{% url 'upload' %}">Create an account</a><br>
+        <div class="login-footer"><span> New user? <a href="{% url 'upload' %}"> Create an account</a></span><button type="submit" class="rf-btn select" >Login</button></div>
+    
+       
 	</form>
 
 </div>
